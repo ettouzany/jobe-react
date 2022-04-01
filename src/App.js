@@ -1,7 +1,39 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import bootstrap from "bootstrap/dist/js/bootstrap.min.js";
 import jQuery from "jquery/dist/jquery.min.js";
+import { render } from "react-dom";
+import { BrowserRouter as Router, Link , Route, Switch } from "react-router-dom";
+import { StrictMode } from "react";
+import Search from "./Search";
 
+const App = () => {
+    return (
+      <div>
+        
+        <Router>
+        <header>
+            <Link to="/">
+                <h1>Jobe</h1>
+            </Link>
+        </header>
+            <Switch>
+                <Route path="/search" >
+                    <Search/>
+                </Route>
+                <Route path="/">
+                    
+                </Route>
+            </Switch> 
+        </Router>
+        
+      </div>
+    );
+  };
+
+render(  <StrictMode>
+    <App />
+  </StrictMode>,
+document.getElementById("root"));
 
 (function($) {
     "use strict";
@@ -86,7 +118,7 @@ import jQuery from "jquery/dist/jquery.min.js";
             } else {
                 $('.pxp-header').removeClass('pxp-is-sticky');
             }
-        } else if ($('.pxp-header').hasClass('pxp-no-bg')) {
+        } else if ($('.pxp-header').hasClass('pxp-no-bg')) { //eslint-disable-line
             if (window.pageYOffset > 0) {
                 $('.pxp-header').addClass('pxp-is-sticky');
             } else {
@@ -278,7 +310,7 @@ import jQuery from "jquery/dist/jquery.min.js";
         gradient.addColorStop(.5, 'rgba(0, 112, 201, 0.09)');
         gradient.addColorStop(1, 'rgba(0, 112, 201, 0.12)');
 
-        var companyVisitsChart = new Chart(companyVisitsChartElem, {
+        var companyVisitsChart = new Chart(companyVisitsChartElem, { // eslint-disable-line
             type: 'line',
             data: {
                 labels: ['Oct 06', 'Oct 07', 'Oct 08', 'Oct 09', 'Oct 10', 'Oct 11', 'Oct 12'],
@@ -316,7 +348,7 @@ import jQuery from "jquery/dist/jquery.min.js";
                         ticks: {
                             beginAtZero: true,
                             fontColor: 'rgba(153, 153, 153, 1)',
-                            callback: function(value, index, values) {
+                            callback: function(value, index, values) { // eslint-disable-line
                                 if (Math.floor(value) === value) {
                                     return value;
                                 }
@@ -350,12 +382,12 @@ import jQuery from "jquery/dist/jquery.min.js";
     if ($('#pxp-company-dashboard-app-chart').length > 0) {
         var companyAppChartElem = document.getElementById('pxp-company-dashboard-app-chart').getContext('2d');
 
-        var gradient = companyVisitsChartElem.createLinearGradient(0, 250, 0, 0);
+        var gradient = companyVisitsChartElem.createLinearGradient(0, 250, 0, 0);   // eslint-disable-line
         gradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
         gradient.addColorStop(.5, 'rgba(255, 168, 35, 0.09)');
         gradient.addColorStop(1, 'rgba(255, 168, 35, 0.12)');
 
-        var companyAppChart = new Chart(companyAppChartElem, {
+        var companyAppChart = new Chart(companyAppChartElem, { // eslint-disable-line
             type: 'line',
             data: {
                 labels: ['Oct 06', 'Oct 07', 'Oct 08', 'Oct 09', 'Oct 10', 'Oct 11', 'Oct 12'],
@@ -393,7 +425,7 @@ import jQuery from "jquery/dist/jquery.min.js";
                         ticks: {
                             beginAtZero: true,
                             fontColor: 'rgba(153, 153, 153, 1)',
-                            callback: function(value, index, values) {
+                            callback: function(value, index, values) { // eslint-disable-line
                                 if (Math.floor(value) === value) {
                                     return value;
                                 }
@@ -429,12 +461,12 @@ import jQuery from "jquery/dist/jquery.min.js";
     if ($('#pxp-candidate-dashboard-visits-chart').length > 0) {
         var candidateVisitsChartElem = document.getElementById('pxp-candidate-dashboard-visits-chart').getContext('2d');
 
-        var gradient = candidateVisitsChartElem.createLinearGradient(0, 250, 0, 0);
+        var gradient = candidateVisitsChartElem.createLinearGradient(0, 250, 0, 0);  // eslint-disable-line
         gradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
         gradient.addColorStop(.5, 'rgba(0, 112, 201, 0.09)');
         gradient.addColorStop(1, 'rgba(0, 112, 201, 0.12)');
 
-        var candidateVisitsChart = new Chart(candidateVisitsChartElem, {
+        var candidateVisitsChart = new Chart(candidateVisitsChartElem, { // eslint-disable-line
             type: 'line',
             data: {
                 labels: ['Oct 06', 'Oct 07', 'Oct 08', 'Oct 09', 'Oct 10', 'Oct 11', 'Oct 12'],
@@ -472,7 +504,7 @@ import jQuery from "jquery/dist/jquery.min.js";
                         ticks: {
                             beginAtZero: true,
                             fontColor: 'rgba(153, 153, 153, 1)',
-                            callback: function(value, index, values) {
+                            callback: function(value, index, values) {  // eslint-disable-line
                                 if (Math.floor(value) === value) {
                                     return value;
                                 }
@@ -506,12 +538,12 @@ import jQuery from "jquery/dist/jquery.min.js";
     if ($('#pxp-candidate-dashboard-app-chart').length > 0) {
         var candidateAppChartElem = document.getElementById('pxp-candidate-dashboard-app-chart').getContext('2d');
 
-        var gradient = candidateVisitsChartElem.createLinearGradient(0, 250, 0, 0);
+        var gradient = candidateVisitsChartElem.createLinearGradient(0, 250, 0, 0); // eslint-disable-line
         gradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
         gradient.addColorStop(.5, 'rgba(255, 168, 35, 0.09)');
         gradient.addColorStop(1, 'rgba(255, 168, 35, 0.12)');
 
-        var candidateAppChart = new Chart(candidateAppChartElem, {
+        var candidateAppChart = new Chart(candidateAppChartElem, { // eslint-disable-line
             type: 'line',
             data: {
                 labels: ['Oct 06', 'Oct 07', 'Oct 08', 'Oct 09', 'Oct 10', 'Oct 11', 'Oct 12'],
@@ -549,7 +581,7 @@ import jQuery from "jquery/dist/jquery.min.js";
                         ticks: {
                             beginAtZero: true,
                             fontColor: 'rgba(153, 153, 153, 1)',
-                            callback: function(value, index, values) {
+                            callback: function(value, index, values) { // eslint-disable-line
                                 if (Math.floor(value) === value) {
                                     return value;
                                 }
