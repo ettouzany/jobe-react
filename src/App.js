@@ -2,20 +2,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import bootstrap from "bootstrap/dist/js/bootstrap.min.js";
 import jQuery from "jquery/dist/jquery.min.js";
 import { render } from "react-dom";
-import { BrowserRouter as Router, Link , Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router , Route, Switch } from "react-router-dom";
 import { StrictMode } from "react";
 import Search from "./Search";
+import Menu from "./Components/Menu";
 
 const App = () => {
     return (
       <div>
         
         <Router>
-        <header>
-            <Link to="/">
-                <h1>Jobe</h1>
-            </Link>
-        </header>
+            <Menu/>
             <Switch>
                 <Route path="/search" >
                     <Search/>

@@ -23,7 +23,7 @@ const SearchBar = () => {
                   <div className="pxp-hero-form pxp-hero-form-round pxp-large pxp-has-border mt-3 mt-lg-4">
                   <form className="row gx-3 align-items-center">
                       <div className="col-12 col-lg">
-                          <div className="input-group mb-3 mb-lg-s0">
+                          <div className="input-group mb-lg-s0">
                               <span className="input-group-text"><span className="fa fa-search"></span></span>
                               <input type="text" className="form-control" onChange={e => setSearch(e.target.value)} value={search} placeholder="Job Title or Keyword"/>
                           </div>
