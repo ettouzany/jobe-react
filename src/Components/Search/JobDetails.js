@@ -9,7 +9,6 @@ const JobDetails = (props) => {
 
     async function requestJobData() {
         await fetch(`http://localhost:3000/jobs/${props.id}`).then(res => res.json()).then(result => {setJob(result)}).catch(console.log);
-        console.log(job);
     }
     return(
         <div className="tab-pane active" styles={"display:block !important"}>

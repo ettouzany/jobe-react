@@ -1,10 +1,10 @@
 const Card = (props) => {
-    function customClisckEvent () {
+    function interuptClick   () {
         props.customClickEvent(props.id);
     }
 
     return (
-        <a onClick={()=>customClisckEvent()} className="pxp-jobs-card-4 pxp-has-border" id={`job-${props.id}`}  data-bs-toggle="tab" data-bs-target={`#job-details-${props.id}`} role="tab" aria-controls={`job-details-${props.id}`} aria-selected="true" href="/">
+        <a onClick={()=>interuptClick  ()} className="pxp-jobs-card-4 pxp-has-border" id={`job-${props.id}`}  data-bs-toggle="tab" data-bs-target={`#job-details-${props.id}`} role="tab" aria-controls={`job-details-${props.id}`} aria-selected="true" href="/">
             <div className="pxp-jobs-card-4-company-top">
                 {/* <div className="pxp-jobs-card-4-company-logo" style="background-image: url(./assets/images/company-logo-1.png);"></div> */}
                 <div className="pxp-jobs-card-4-info">
