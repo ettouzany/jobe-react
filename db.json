@@ -89,5 +89,6 @@
         "company":"Artistre Studio",
         "location":"San Francisco, CA"
      }
-  ]
+  ],
+  "categories": ["Business Development", "Construction", "Customer Service", "Education", "Engineering", "Finance", "Healthcare", "Human Resources", "Information Technology", "Legal", "Manufacturing", "Marketing", "Operations", "Retail", "Sales", "Support", "Technical Support", "Other"]
 }

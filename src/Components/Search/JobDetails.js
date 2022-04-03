@@ -11,9 +11,9 @@ const JobDetails = (props) => {
         await fetch(`http://localhost:3000/jobs/${props.id}`).then(res => res.json()).then(result => {setJob(result)}).catch(console.log);
     }
     return(
-        <div className="tab-pane active" styles={"display:block !important"}>
-            <div className="pxp-jobs-tab-pane-cover pxp-cover" styles={"background-image: url(./assets/images/office-2.jpg);"}></div>
-            <div className="pxp-jobs-tab-pane-logo" styles={"background-image: url(./assets/images/company-logo-2.png);"}></div>
+        <div className="tab-pane active" >
+            <div className="pxp-jobs-tab-pane-cover pxp-cover" style={{backgroundImage: "url(https://pixelprime.co/themes/jobster/images/office-1.jpg)"}}></div>
+            <div className="pxp-jobs-tab-pane-logo" style={{backgroundImage:  "url(https://pixelprime.co/themes/jobster/images/company-logo-1.png)"}}></div>
             <div className="pxp-jobs-tab-pane-content">
                 <div className="row justify-content-between align-items-center">
                     <div className="col-xl-6">

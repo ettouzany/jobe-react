@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const Menu =()=>{
     return(
     <header  className="pxp-header fixed-top">
         <div  className="pxp-container">
             <div  className="pxp-header-container">
                 <div  className="pxp-logo">
-                    <a href="/"  className="pxp-animate"><span styles={"color: var(--pxpMainColor)"}>j</span>obster</a>
+                    <a href="/"  className="pxp-animate"><span style={{Color: "var(--pxpMainColor)"}}>j</span>obster</a>
                 </div>
                 <div  className="pxp-nav-trigger navbar d-xl-none flex-fill">
                     <a role="button"  href="/"data-bs-toggle="offcanvas" data-bs-target="#pxpMobileNav" aria-controls="pxpMobileNav">
@@ -15,21 +17,21 @@ const Menu =()=>{
                     <div  className="offcanvas offcanvas-start pxp-nav-mobile-container" tabIndex="-1" id="pxpMobileNav">
                         <div  className="offcanvas-header">
                             <div  className="pxp-logo">
-                                <a href="/"  className="pxp-animate"><span styles={"color: var(--pxpMainColor)"}>j</span>obster</a>
+                                <a href="/"  className="pxp-animate"><span style={{Color: "var(--pxpMainColor)"}}>j</span>obster</a>
                             </div>
                             <button type="button"  className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div  className="offcanvas-body">
                             <nav  className="pxp-nav-mobile">
                                 <ul  className="navbar-nav justify-content-end flex-grow-1">
-                                    <li  className="nav-item dropdown">
+                                    {/* <li  className="nav-item dropdown">
                                         <a role="button"  href="/" className="nav-link" data-bs-toggle="dropdown">Home</a>
                                         
                                     </li>
                                     <li  className="nav-item dropdown">
-                                        <a role="button"  href="/" className="nav-link" data-bs-toggle="dropdown">Find Jobs</a>
+                                        <a role="button"  href="/search" className="nav-link" data-bs-toggle="dropdown">Find Jobs</a>
                                        
-                                    </li>
+                                    </li> */}
                                     
                                 </ul>
                             </nav>
@@ -38,12 +40,14 @@ const Menu =()=>{
                 </div>
                 <nav  className="pxp-nav dropdown-hover-all d-none d-xl-block">
                     <ul>
-                        <li  className="dropdown">
-                            <a href="/"  className="dropdown-toggle" data-bs-toggle="dropdown">Home</a>
+                        <li  >
+                            <Link to="/" >Home</Link>
+                            {/* <a href="/"   data-bs-toggle="dropdown">Home</a> */}
                            
                         </li>
-                        <li  className="dropdown">
-                            <a href="/"  className="dropdown-toggle" data-bs-toggle="dropdown">Find Jobs</a>
+                        <li  >
+                            <Link to="/search" >Find Jobs</Link>
+                            {/* <a href="/search"  className="dropdown-toggle" data-bs-toggle="dropdown">Find Jobs</a> */}
 
                         </li>
 

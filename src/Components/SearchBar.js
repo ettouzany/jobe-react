@@ -13,10 +13,7 @@ const SearchBar = () => {
     }, []);
 
     async function requestCats() {
-        const response = await fetch("/api/categories");
-        const data = await response.json();
-        console.log(data);
-        setCategories(data);
+        await fetch(`http://localhost:3000/categories`).then(res => res.json()).then(result => {setCategories(result)}).catch(console.log);
     }
 
     return (
