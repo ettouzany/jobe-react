@@ -3,10 +3,9 @@ import { Outlet } from "react-router-dom";
 
 const DashboardLayout = (props) => {
     
-    document.getElementById("root").style.backgroundColor = "var(--pxpMainColorLight)"
       
     return (
-        <div>
+        <div style={{ backgroundColor: "var(--pxpMainColorLight)" }}>
             <div className="pxp-dashboard-side-panel d-none d-lg-block">
             <div className="pxp-logo">
                 <a href="index.html" className="pxp-animate"><span       style={{ color: "var(--pxpMainColor)" }}>j</span>obster</a>

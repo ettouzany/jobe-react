@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import authService from "../services/auth/auth.service";
+import UserMenu from "./UserMenu";
 const Menu = (props) => {
   return (
     <header className="pxp-header fixed-top">
@@ -90,17 +91,7 @@ const Menu = (props) => {
               Sign in / Login
             </a>
               :
-              <div className="dropdown pxp-user-nav-dropdown">
-              <a href="index.html" className="dropdown-toggle" data-bs-toggle="dropdown">
-                  <div className="pxp-user-nav-avatar pxp-cover" style={{backgroundImage:"url(https://pixelprime.co/themes/jobster/images/avatar-1.jpg)"}}></div>
-                  <div className="pxp-user-nav-name d-none d-md-block">Derek Cotner</div>
-              </a>
-              <ul className="dropdown-menu dropdown-menu-end">
-                  <li><a className="dropdown-item" href="candidate-dashboard.html">Dashboard</a></li>
-                  <li><a className="dropdown-item" href="candidate-dashboard-profile.html">Edit profile</a></li>
-                  <li onClick={props.logoutCallback}><a className="dropdown-item" >Logout</a></li>
-              </ul>
-          </div>
+              <UserMenu user={props.user} logoutCallback={props.logoutCallback}/>
             }
             
 

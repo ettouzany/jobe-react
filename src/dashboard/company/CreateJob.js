@@ -101,7 +101,7 @@ const CreateJob = () => {
 
     return (
         <div>
-            <h1>Edit Profile</h1>
+            <h1>Create Job Offer</h1>
                 <p className="pxp-text-light">Edit your company profile page info.</p>
                 <form onSubmit={handleJobSubmit}>
                     <div className="row mt-4 mt-lg-5">

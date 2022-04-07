@@ -9,7 +9,7 @@ const SearchBar = (props) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    requestCats();
+    // requestCats();
   }, []);
 
   const handleSearchSubmit = (e)=> {
@@ -19,14 +19,14 @@ const SearchBar = (props) => {
 
   };
 
-  async function requestCats() {
-    await fetch(`http://localhost:3000/categories`)
-      .then((res) => res.json())
-      .then((result) => {
-        setCategories(result);
-      })
-      .catch(console.log);
-  }
+  // async function requestCats() {
+  //   await fetch(`http://localhost:3000/categories`)
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       setCategories(result);
+  //     })
+  //     .catch(console.log);
+  // }
 
   return (
     <div className="pxp-hero-form pxp-hero-form-round pxp-large pxp-has-border mt-3 mt-lg-4">
@@ -73,13 +73,14 @@ const SearchBar = (props) => {
               <option value="" key="">
                 All categories
               </option>
-              {categories.map((category) => {
+              
+              {categories? categories.map((category) => {
                 return (
                   <option key={category} value={category}>
                     {category}
                   </option>
                 );
-              })}
+              }) : null}
             </select>
           </div>
         </div>
