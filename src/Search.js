@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "./Components/SearchBar";
 import Card from "./Components/Card";
 import Filtter from "./Components/Search/Filtter";
-import JobDetails from "./Components/Search/JobDetails";
+import JobDetails from "./Components/Post/JobDetails";
 import jobService from "./services/job.service";
 class Search extends Component {
 

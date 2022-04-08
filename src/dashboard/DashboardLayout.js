@@ -7,9 +7,9 @@ const DashboardLayout = (props) => {
     return (
         <div style={{ backgroundColor: "var(--pxpMainColorLight)" }}>
             <div className="pxp-dashboard-side-panel d-none d-lg-block">
-            <div className="pxp-logo">
+            {/* <div className="pxp-logo">
                 <a href="index.html" className="pxp-animate"><span       style={{ color: "var(--pxpMainColor)" }}>j</span>obster</a>
-            </div>
+            </div> */}
 
             <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">
                 <div className="pxp-dashboard-side-label">Admin tools</div>
@@ -102,8 +102,8 @@ const DashboardLayout = (props) => {
                         </div>
                     </div>
                     <nav className="pxp-user-nav pxp-on-light">
-                        <a href="company-dashboard-new-job.html" className="btn rounded-pill pxp-nav-btn">Post a Job</a>
-                        <div className="dropdown pxp-user-nav-dropdown pxp-user-notifications">
+                        <a href="company-dashboard-new-job.html" className="btn rounded-pill pxp-nav-btn" style={{opacity:"0"}}>Post a Job</a>
+                        {/* <div className="dropdown pxp-user-nav-dropdown pxp-user-notifications">
                             <a role="button" className="dropdown-toggle" data-bs-toggle="dropdown">
                                 <span className="fa fa-bell-o"></span>
                                 <div className="pxp-user-notifications-counter">5</div>
@@ -131,7 +131,7 @@ const DashboardLayout = (props) => {
                                 <li><a className="dropdown-item" href="company-dashboard-profile.html">Edit profile</a></li>
                                 <li><a className="dropdown-item" href="index.html">Logout</a></li>
                             </ul>
-                        </div>
+                        </div> */}
                     </nav>
                 </div>
 
