@@ -15,19 +15,23 @@ class Search extends Component {
       loading: true,
       jobId: 1,
       start: 0,
-      users: [],
+      jobs: [],
       error: null,
     };
   }
 
   //get jobs from the server
   handleJobSearch = async (e) => {
-    e.start= this.state.start;
+    // e.start= this.state.start;
     console.log(e);
       try {
         await jobService.getJobs(e).then(
             (response) => {
                 console.log(response);
+                this.setState({
+                  loading: false,
+                  jobs: response.data,
+                })
             },
             (error) => {
               console.log(error);
@@ -40,26 +44,9 @@ class Search extends Component {
   }
 
 
-  getFetchUsers() {
-    this.setState(
-      {
-        loading: true,
-      },
-      () => {
-        fetch("http://localhost:3000/jobs")
-          .then((res) => res.json())
-          .then((result) =>
-            this.setState({
-              loading: false,
-              users: result,
-            })
-          )
-          .catch(console.log);
-      }
-    );
-  }
+
   componentDidMount() {
-    this.getFetchUsers();
+    this.handleJobSearch({start: this.state.start,Search: null,Location: null,categorie: null,filters: null});
   }
 
   handleClick(id) {
@@ -67,8 +54,10 @@ class Search extends Component {
     this.setState({ jobId: id });
   }
   render() {
-    const { users, jobId, error } = this.state;
 
+    const { jobs, jobId, error } = this.state;
+
+    console.log(jobs);
     // const [jobId, setJobId] = useState("1");
     // const [jobs, setJobs] = useState([]);
     // useEffect(() => {
@@ -111,30 +100,25 @@ class Search extends Component {
                       role="tablist"
                     >
                       {error ? <p>{error.message}</p> : null}
-                      {users.map((user) => {
+                      {jobs.length>0 ? jobs.map((job) => {
                         const {
                           id,
-                          title,
-                          image,
-                          date,
-                          type,
-                          company,
-                          location,
-                        } = user;
+                          jobTitle, jobLocation, jobDescription,userId
+                        } = job;
                         return (
                           <Card
                             customClickEvent={this.handleClick}
                             key={id}
                             id={id}
-                            title={title}
-                            image={image}
-                            date={date}
-                            type={type}
-                            company={company}
-                            location={location}
+                            title={jobTitle}
+                            image={"image"}
+                            date={"date"}
+                            type={"type"}
+                            company={"company"}
+                            location={jobLocation}
                           />
                         );
-                      })}
+                      }):null}
                     </div>
                   </div>
                 </div>

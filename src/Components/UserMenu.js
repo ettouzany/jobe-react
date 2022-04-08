@@ -4,8 +4,8 @@ const UserMenu = ({ user, logoutCallback }) => {
     return (
         <div className="dropdown pxp-user-nav-dropdown">
               <a href="index.html" className="dropdown-toggle" data-bs-toggle="dropdown">
-                  <div className="pxp-user-nav-avatar pxp-cover" style={{backgroundImage:"url(https://pixelprime.co/themes/jobster/images/avatar-1.jpg)"}}></div>
-                  <div className="pxp-user-nav-name d-none d-md-block">Derek Cotner</div>
+                  <div className="pxp-user-nav-avatar pxp-cover" style={{backgroundImage:`url(${user.photo})`}}></div>
+                  <div className="pxp-user-nav-name d-none d-md-block">{user.firstName}</div>
               </a>
               <ul className="dropdown-menu dropdown-menu-end">
                   <li><Link to={"dashboard"} className="dropdown-item" >Dashboard</Link></li>

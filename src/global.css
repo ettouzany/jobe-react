@@ -1,4 +1,16 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+.googleBtn>div {
+    background-color: transparent !important;
+}
+
+.googleBtn {
+    height: 58px !important;
+    padding: 5px 2px;
+    border-radius: 50px !important;
+    margin: 16px 0;
+    width: 100% !important;
+}
+
 
 /*
 Template Name: Jobster

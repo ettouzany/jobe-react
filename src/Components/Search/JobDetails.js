@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import jobService from "./../../services/job.service";
 
 const JobDetails = (props) => {
   const [job, setJob] = useState({
-    title: "Senior Editor",
+    jobTitle: "Senior Editor",
     company: "Artistre Studio",
-    location: "San Francisco, CA",
+    jobLocation: "San Francisco, CA",
     type: "Full-time",
     date: "3 days ago",
   });
@@ -14,13 +15,22 @@ const JobDetails = (props) => {
   }, [props.id]);
 
   async function requestJobData() {
-    await fetch(`http://localhost:3000/jobs/${props.id}`)
-      .then((res) => res.json())
-      .then((result) => {
-        setJob(result);
-      })
-      .catch(console.log);
+    try {
+      await jobService.getJobById(props.id).then(
+          (response) => {
+              console.log(response);
+              setJob(response.data);
+          },
+          (error) => {
+            console.log(error);
+          }
+      );
   }
+  catch (error) {
+      console.log(error);
+  }
+  }
+
   return (
     <div className="tab-pane active">
       <div
@@ -40,7 +50,7 @@ const JobDetails = (props) => {
       <div className="pxp-jobs-tab-pane-content">
         <div className="row justify-content-between align-items-center">
           <div className="col-xl-6">
-            <h3>{job.title}</h3>
+            <h3>{job.jobTitle}</h3>
             <div className="pxp-jobs-tab-pane-company-location">
               by{" "}
               <a
@@ -54,7 +64,7 @@ const JobDetails = (props) => {
                 href="https://pixelprime.co/themes/jobster/jobs-list-1.html"
                 className="pxp-jobs-tab-pane-location"
               >
-                Los Angeles, CA
+                {job.jobLocation}
               </a>
             </div>
           </div>

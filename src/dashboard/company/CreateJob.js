@@ -20,9 +20,9 @@ const CreateJob = () => {
     const [startDate, setStartDate] = useState("");
 
     //job description
-    const [title, setTitle] = useState("");
+    const [jobTitle, setJobTitle] = useState("");
     const [jobLocation, setJobLocation] = useState("");
-    const [content, setContent] = useState("");
+    const [jobDescription, setJobDescription] = useState("");
 
     //Job settings (Country and language, etc)
     const [jobCountry, setJobCountry] = useState("");
@@ -63,8 +63,8 @@ const CreateJob = () => {
                 jobTime,
                 numberOfPeople,
                 startDate,
-                title,
-                content,
+                jobTitle,
+                jobDescription,
                 jobLocation,
                 jobCountry,
                 jobLanguage,
@@ -110,8 +110,8 @@ const CreateJob = () => {
                                 <label htmlFor="pxp-company-job-title" className="form-label">Job title</label>
                                 <input 
                                  type="text" id="pxp-company-job-title" className="form-control" placeholder="Add title"
-                                 value={title}
-                                    onChange={(e) => setTitle(e.target.value)}
+                                 value={jobTitle}
+                                    onChange={(e) => setJobTitle(e.target.value)}
                                  />
                             </div>
                         </div>
@@ -146,8 +146,8 @@ const CreateJob = () => {
                     <div className="mb-3">
                         <label htmlFor="pxp-company-job-description" className="form-label">Job description</label>
                         <textarea 
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
+                        value={jobDescription}
+                        onChange={(e) => setJobDescription(e.target.value)}
                         className="form-control" id="pxp-company-job-description" placeholder="Type the description here..."></textarea>
                     </div>
 
