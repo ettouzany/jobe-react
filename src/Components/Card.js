@@ -4,7 +4,7 @@ const Card = (props) => {
   }
 
   return (
-    <a
+    <span //eslint-disable-line
       onClick={() => interuptClick()}
       className="pxp-jobs-card-4 pxp-has-border"
       id={`job-${props.id}`}
@@ -13,8 +13,7 @@ const Card = (props) => {
       role="tab"
       aria-controls={`job-details-${props.id}`}
       aria-selected="true"
-      href="/"
-    >
+    > 
       <div className="pxp-jobs-card-4-company-top">
         {/* <div className="pxp-jobs-card-4-company-logo" style="background-image: url(./assets/images/company-logo-1.png);"></div> */}
         <div className="pxp-jobs-card-4-info">
@@ -38,7 +37,7 @@ const Card = (props) => {
           </span>
         </div>
       </div>
-    </a>
+    </span>
   );
 };
 

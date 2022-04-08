@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import jobService from "./../../services/job.service";
+import applicationService from "./../../services/application.service";
 
 const JobDetails = (props) => {
   const [job, setJob] = useState({
@@ -30,6 +31,22 @@ const JobDetails = (props) => {
       console.log(error);
   }
   }
+  const applyToJob = async () => {
+    try {
+      await applicationService.addApplication(props.id).then(
+          (response) => {
+              console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+      );
+  }
+  catch (error) {
+      console.log(error);
+  }
+  }
+
 
   return (
     <div className="tab-pane active">
@@ -121,7 +138,7 @@ const JobDetails = (props) => {
                   </li>
                 </ul>
               </div>
-              <button className="btn ms-2 pxp-jobs-tab-pane-apply-btn rounded-pill">
+              <button onClick={applyToJob} className="btn ms-2 pxp-jobs-tab-pane-apply-btn rounded-pill">
                 Apply Now
               </button>
             </div>
@@ -289,12 +306,11 @@ const JobDetails = (props) => {
           </div>
 
           <div className="mt-4 mt-lg-5">
-            <a
-              href="https://pixelprime.co/themes/jobster/jobs-list-10.html#"
+            <button onClick={()=>{console.log("sas")}}
               className="btn rounded-pill pxp-section-cta"
             >
               Apply Now
-            </a>
+            </button>
           </div>
         </div>
       </div>

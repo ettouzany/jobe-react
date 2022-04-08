@@ -13,7 +13,7 @@ class SignUp extends Component {
             <div>
                 <h1>Sign Up</h1>
                 <form>
-                    <label> First Name: </label>
+                    {/* <label> First Name: </label>
                     <input type="text" name="firstName" />
                     <label> Last Name: </label>
                     <input type="text" name="lastName" />
@@ -21,7 +21,7 @@ class SignUp extends Component {
                     <input type="text" name="email" />
                     <label> Password: </label>
                     <input type="text" name="password" />
-                    <label> Confirm Password: </label>
+                    <label> Confirm Password: </label> */}
                     <input type="text" name="confirmPassword" />
                     <input type="submit" value="Submit" />
                 </form>

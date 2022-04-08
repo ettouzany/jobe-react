@@ -16,7 +16,6 @@ const SearchBar = (props) => {
     e.preventDefault();
     console.log(search, location, category);
     props.searchCallback({search, location, category});
-
   };
 
   // async function requestCats() {

@@ -21,16 +21,17 @@ class Search extends Component {
   }
 
   //get jobs from the server
-  handleJobSearch = async (e) => {
+  async handleJobSearch(e)  { 
     // e.start= this.state.start;
     console.log(e);
       try {
         await jobService.getJobs(e).then(
             (response) => {
-                console.log(response);
+                console.log("os",response);
                 this.setState({
                   loading: false,
                   jobs: response.data,
+                  jobId:response.data.length? response.data[0].id:-1,
                 })
             },
             (error) => {
@@ -103,7 +104,8 @@ class Search extends Component {
                       {jobs.length>0 ? jobs.map((job) => {
                         const {
                           id,
-                          jobTitle, jobLocation, jobDescription,userId
+                          jobTitle, jobLocation, 
+                          //jobDescription,userId
                         } = job;
                         return (
                           <Card
