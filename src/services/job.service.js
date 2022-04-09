@@ -18,7 +18,7 @@ const getJobs = ({search,location,categorie,filters,start}) => {
     if(categorie) params.append("categorie", categorie);
     if(filters) params.append("filters", filters);
     if(start) params.append("start", start);
-    return axios.get(API_URL+ "",{ headers: authHeader(),params });
+    return axios.get(API_URL+ "/all",{ headers: authHeader(),params });
 };
 
 //get a job by id

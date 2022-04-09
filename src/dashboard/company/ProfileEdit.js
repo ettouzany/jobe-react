@@ -1,7 +1,68 @@
 
+import authService from "../../services/auth/auth.service";
+import Croppie from "croppie";
+import * as React from "react"
+
 const ProfileEdit = () => {
+
+    const [image, setImage] = React.useState("")
+    const [croppie, setCroppie] = React.useState(null)
+  
+    function handleImage(image) {
+        console.log(image)
+      setImage(image)
+      const el = document.getElementById("image-helper")
+      console.log(el)
+      if (el) {
+        const croppieInstance = new Croppie(el, {
+          enableExif: true,
+          viewport: {
+            height: 250,
+            width: 250,
+          },
+          boundary: {
+            height: 280,
+            width: 400,
+         }
+      });
+      
+      croppieInstance.bind({
+        url: image,
+      });
+      setCroppie(croppieInstance)
+      }
+    }
+  
+    function handleSubmit(event) {
+      event.preventDefault()
+      if (croppie !== null) {
+        croppie.result({type: 'base64',
+        size: {
+            width: 480,
+            height: 480
+        }}).then((blob) => {
+          console.log(blob)
+        }
+        )
+      }
+    }
     return (
         <div>
+                <form onSubmit={handleSubmit}>
+                          {/* Your image upload functionality here */}
+
+        {image === "" && (
+                //  <ImageUpload image={image} setImage={handleImage} />
+               <span onClick={()=>handleImage("https://lh3.googleusercontent.com/a-/AOh14GhDGviSQfClhU35GXHymyJwSFvbig8sOIKKIyW5-w=s96-c")}>click</span>
+            )}
+        
+              <div id="image-helper"></div>
+            
+          <button color="primary" variant="contained" type="submit">
+            Submit
+          </button>
+    </form>
+
             <h1>Edit Profile</h1>
                 <p className="pxp-text-light">Edit your company profile page info.</p>
 
