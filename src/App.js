@@ -21,6 +21,7 @@ import ProfileEdit from "./dashboard/company/ProfileEdit";
 import ManageJobs from "./dashboard/company/ManageJobs";
 import Condadates from "./dashboard/company/Condadates";
 import Dashboard from "./dashboard/company/Dashboard";
+import Footer from "./Components/footer";
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -77,6 +78,8 @@ const App = () => {
                     <LoginForm/>
                 </div>
         </Modal>
+        {location.pathname.search('/dashboard') ?<Footer />:null}
+
     </div>
 
     
@@ -84,11 +87,10 @@ const App = () => {
 };
 export default App;
 render(
-  <StrictMode>
-      <BrowserRouter>
-
-    <App/>
-    </BrowserRouter>
+    <StrictMode>
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
     </StrictMode>,
   document.getElementById("root")
 );

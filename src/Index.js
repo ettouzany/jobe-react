@@ -73,10 +73,10 @@ class Index extends Component {
 
                             <div className="pxp-hero-boxed-icon-circles">
                                 <div className="pxp-hero-boxed-icon-circle-1 pxp-animate-icon-circle-bounce animate__animated animate__bounceIn">
-                                    <img src="images/paper-icon.png" alt="Paper icon"/>
+                                    <img src="https://pixelprime.co/themes/jobster/images/paper-icon.png" alt="Paper icon"/>
                                 </div>
                                 <div className="pxp-hero-boxed-icon-circle-2 pxp-animate-icon-circle-bounce animate__animated animate__bounceIn">
-                                    <img src="images/folder-icon.png" alt="Folder icon"/>
+                                    <img src="https://pixelprime.co/themes/jobster/images/folder-icon.png" alt="Folder icon"/>
                                 </div>
                             </div>
 
@@ -84,7 +84,7 @@ class Index extends Component {
                                 <div className="pxp-hero-boxed-info-card-big pxp-animate-info-card animate__animated animate__flipInX">
                                     <div className="pxp-hero-boxed-info-card-big-content">
                                         <div className="pxp-hero-boxed-info-card-big-icon">
-                                            <img src="images/service-2-icon.png" alt="Job Fit Scoring"/>
+                                            <img src="https://pixelprime.co/themes/jobster/images/service-2-icon.png" alt="Job Fit Scoring"/>
                                         </div>
                                         <div className="pxp-hero-boxed-info-card-big-title">Job Fit Scoring</div>
                                         <div className="pxp-hero-boxed-info-card-big-text pxp-text-light">Search your career opportunity through 12,800 jobs</div>
@@ -93,7 +93,7 @@ class Index extends Component {
                                 <div className="pxp-hero-boxed-info-card-small pxp-animate-info-card animate__animated animate__flipInX">
                                     <div className="pxp-hero-boxed-info-card-small-content">
                                         <div className="pxp-hero-boxed-info-card-small-icon">
-                                            <img src="images/service-1-icon.png" alt="Full-service recruiting"/>
+                                            <img src="https://pixelprime.co/themes/jobster/images/service-1-icon.png" alt="Full-service recruiting"/>
                                         </div>
                                         <div className="pxp-hero-boxed-info-card-small-title">Full-service recruiting</div>
                                     </div>
