@@ -124,9 +124,7 @@ const JobDetails = (props) => {
                   </li>
                 </ul>
               </div>
-              <button  className="btn ms-2 pxp-jobs-tab-pane-apply-btn rounded-pill">
-                Apply Now
-              </button>
+              <Apply jobId={props.id}/>
             </div>
           </div>
         </div>
@@ -292,11 +290,7 @@ const JobDetails = (props) => {
           </div>
 
           <div className="mt-4 mt-lg-5">
-            <button onClick={()=>{console.log("sas")}}
-              className="btn rounded-pill pxp-section-cta"
-            >
-              Apply Now
-            </button>
+            
             <Apply jobId={props.id}/>
           </div>
         </div>

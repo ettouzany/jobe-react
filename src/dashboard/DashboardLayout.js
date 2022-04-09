@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const DashboardLayout = (props) => {
     
@@ -7,20 +8,21 @@ const DashboardLayout = (props) => {
     return (
         <div style={{ backgroundColor: "var(--pxpMainColorLight)" }}>
             <div className="pxp-dashboard-side-panel d-none d-lg-block">
-            {/* <div className="pxp-logo">
+             <div className="pxp-logo">
                 <a href="index.html" className="pxp-animate"><span       style={{ color: "var(--pxpMainColor)" }}>j</span>obster</a>
-            </div> */}
+            </div> 
 
             <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">
                 <div className="pxp-dashboard-side-label">Admin tools</div>
                 <ul className="list-unstyled">
-                    <li className="pxp-active"><a href="company-dashboard.html"><span className="fa fa-home"></span>Dashboard</a></li>
-                    <li><a href="company-dashboard-profile.html"><span className="fa fa-pencil"></span>Edit Profile</a></li>
-                    <li><a href="company-dashboard-new-job.html"><span className="fa fa-file-text-o"></span>New Job Offer</a></li>
-                    <li><a href="company-dashboard-jobs.html"><span className="fa fa-briefcase"></span>Manage Jobs</a></li>
-                    <li><a href="company-dashboard-candidates.html"><span className="fa fa-user-circle-o"></span>Candidates</a></li>
-                    <li><a href="company-dashboard-subscriptions.html"><span className="fa fa-credit-card"></span>Subscriptions</a></li>
-                    <li><a href="company-dashboard-password.html"><span className="fa fa-lock"></span>Change Password</a></li>
+                    <li className="pxp-active"> <Link to={""} className="pxp-animate"> <span className="fa fa-home"></span>Dashboard </Link> </li>
+                        
+                    <li><Link to="profile"><span className="fa fa-pencil"></span>Edit Profile</Link></li>
+                    <li><Link to="post"><span className="fa fa-file-text-o"></span>New Job Offer</Link></li>
+                    <li><Link to="jobs"><span className="fa fa-briefcase"></span>Manage Jobs</Link></li>
+                    <li><Link to="condadates"><span className="fa fa-user"></span>Candidates</Link></li>
+                    {/* <li><Link to="company-dashboard-subscriptions.html"><span className="fa fa-credit-card"></span>Subscriptions</Link></li>
+                    <li><Link to="company-dashboard-password.html"><span className="fa fa-lock"></span>Change Password</Link></li> */}
                 </ul>
                 <div className="pxp-dashboard-side-label mt-3 mt-lg-4">Insights</div>
                 <ul className="list-unstyled">
@@ -102,8 +104,8 @@ const DashboardLayout = (props) => {
                         </div>
                     </div>
                     <nav className="pxp-user-nav pxp-on-light">
-                        <a href="company-dashboard-new-job.html" className="btn rounded-pill pxp-nav-btn" style={{opacity:"0"}}>Post a Job</a>
-                        {/* <div className="dropdown pxp-user-nav-dropdown pxp-user-notifications">
+                        <a href="company-dashboard-new-job.html" className="btn rounded-pill pxp-nav-btn">Post a Job</a>
+                         <div className="dropdown pxp-user-nav-dropdown pxp-user-notifications">
                             <a role="button" className="dropdown-toggle" data-bs-toggle="dropdown">
                                 <span className="fa fa-bell-o"></span>
                                 <div className="pxp-user-notifications-counter">5</div>
@@ -131,7 +133,7 @@ const DashboardLayout = (props) => {
                                 <li><a className="dropdown-item" href="company-dashboard-profile.html">Edit profile</a></li>
                                 <li><a className="dropdown-item" href="index.html">Logout</a></li>
                             </ul>
-                        </div> */}
+                        </div>
                     </nav>
                 </div>
 

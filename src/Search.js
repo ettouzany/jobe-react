@@ -4,6 +4,7 @@ import Card from "./Components/Card";
 import Filtter from "./Components/Search/Filtter";
 import JobDetails from "./Components/Post/JobDetails";
 import jobService from "./services/job.service";
+import Spinner from 'react-bootstrap/Spinner'
 class Search extends Component {
 
   constructor() {
@@ -22,6 +23,9 @@ class Search extends Component {
 
   //get jobs from the server
   async handleJobSearch(e)  { 
+    this.setState({
+      loading: true,
+    });
     // e.start= this.state.start;
     console.log(e);
       try {
@@ -89,6 +93,14 @@ class Search extends Component {
         </section>
         <section>
           <div className="pxp-container">
+            {
+            this.state.loading ?
+            <div className="d-flex justify-content-center">
+              <Spinner animation="grow" />
+            </div>
+            :
+            jobs.length>0 ?
+            
             <div className="row">
               <div className="col-lg-5 col-xl-4 col-xxl-6">
                 <div className="row">
@@ -101,7 +113,7 @@ class Search extends Component {
                       role="tablist"
                     >
                       {error ? <p>{error.message}</p> : null}
-                      {jobs.length>0 ? jobs.map((job) => {
+                      { jobs.map((job) => {
                         const {
                           id,
                           jobTitle, jobLocation, 
@@ -118,9 +130,10 @@ class Search extends Component {
                             type={"type"}
                             company={"company"}
                             location={jobLocation}
+                            active={id == jobs[0].id}
                           />
                         );
-                      }):null}
+                      })}
                     </div>
                   </div>
                 </div>
@@ -131,6 +144,12 @@ class Search extends Component {
                 </div>
               </div>
             </div>
+            :
+            <div className="pxp-jobs-list-single-column nav mt-4 mt-xxl-0" role="tablist">
+              <p>No jobs found</p>
+            </div>
+            }
+            
           </div>
         </section>
       </div>

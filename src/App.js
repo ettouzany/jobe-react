@@ -3,6 +3,7 @@ import jQuery from "jquery/dist/jquery.min.js";
 import { render } from "react-dom";
 import { useState, useEffect } from "react";
 import AuthService from "./services/auth/auth.service";
+import { useLocation } from 'react-router-dom';
 
 import { BrowserRouter , Route, Routes, Navigate, useNavigate} from "react-router-dom";
 import { StrictMode } from "react";
@@ -21,6 +22,8 @@ const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -43,7 +46,7 @@ const App = () => {
 
   return (
     <div>
-        <Menu loginCallback={handleShow} logoutCallback={logOut} user={currentUser} />
+        {location.pathname.search('/dashboard') ?<Menu loginCallback={handleShow} logoutCallback={logOut} user={currentUser} />:null}
         <Routes>
           <Route path="dashboard" element={!currentUser ? ( <Login /> ) : (  <DashboardLayout/>)} >
             <Route path="" element={<CreateJob />}/>          

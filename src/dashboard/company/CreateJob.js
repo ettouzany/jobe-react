@@ -198,9 +198,13 @@ const CreateJob = () => {
                         </div>
                     </div>
 
+
                     <div className="mt-4 mt-lg-5">
-                        <button className="btn rounded-pill pxp-section-cta" type="submit">Publish Job</button>
-                        <button className="btn rounded-pill pxp-section-cta-o ms-3">Save Draft</button>
+                        <button className="btn rounded-pill pxp-section-cta" type="submit" >Publish Job</button>
+                        <button 
+                        style={{border: '1px solid var(--pxpTextColor)', color: 'var(--pxpTextColor)', marginLeft: '10px'}}
+                        className="btn rounded-pill pxp-section-cta pxp-user-nav-trigger pxp-on-light mx-3 " type="submit" >Preview</button>
+                        <button className="btn rounded-pill pxp-section-cta-o ms-3 ">Save Draft</button>
                     </div>
                 </form>
         </div>

@@ -6,7 +6,7 @@ const Card = (props) => {
   return (
     <span //eslint-disable-line
       onClick={() => interuptClick()}
-      className="pxp-jobs-card-4 pxp-has-border"
+      className={`pxp-jobs-card-4 pxp-has-border ${props.active ? "active" : ""}`}
       id={`job-${props.id}`}
       data-bs-toggle="tab"
       data-bs-target={`#job-details-${props.id}`}
@@ -14,7 +14,7 @@ const Card = (props) => {
       aria-controls={`job-details-${props.id}`}
       aria-selected="true"
     > 
-      <div className="pxp-jobs-card-4-company-top">
+      <div className="pxp-jobs-card-4-company-top ">
         {/* <div className="pxp-jobs-card-4-company-logo" style="background-image: url(./assets/images/company-logo-1.png);"></div> */}
         <div className="pxp-jobs-card-4-info">
           <div className="pxp-jobs-card-4-title">{props.title}</div>
