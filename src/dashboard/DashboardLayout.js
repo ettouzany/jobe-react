@@ -11,7 +11,7 @@ const DashboardLayout = (props) => {
         <div style={{ backgroundColor: "var(--pxpMainColorLight)" }}>
             <div className="pxp-dashboard-side-panel d-none d-lg-block">
              <div className="pxp-logo">
-                <Link to="/" className="pxp-animate"><span       style={{ color: "var(--pxpMainColor)" }}>j</span>obster</Link>
+                <Link to="/" className="pxp-animate"><span       style={{ color: "var(--pxpMainColor)" }}>j</span>obrah</Link>
             </div> 
 
             <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">

@@ -9,7 +9,7 @@ const Menu = (props) => {
           <div className="pxp-logo-nav-container">
           <div className="pxp-logo">
             <a href="/" className="pxp-animate">
-              <span style={{ Color: "var(--pxpMainColor)" }}>j</span>obster
+              <span style={{ color: "var(--pxpMainColor)" }}>j</span>obrah
             </a>
           </div>
           <div className="pxp-nav-trigger navbar d-xl-none flex-fill">
@@ -74,7 +74,7 @@ const Menu = (props) => {
           </div>
           <nav className="pxp-user-nav pxp-on-light">
             
-          <Link to="dashboard"><span className="btn rounded-pill pxp-nav-btn">
+          <Link to="dashboard/post"><span className="btn rounded-pill pxp-nav-btn">
               Post a Job
             </span>
             </Link>

@@ -10,6 +10,117 @@ class Index extends Component {
 
   render() {
     return (
+    <div>
+      <section className="pxp-hero pxp-hero-boxed">
+            <div className="pxp-container">
+                <div className="pxp-hero-boxed-content" style={{backgroundColor: "var(--pxpMainColorLight)"}}>
+                    <div className="row align-items-center justify-content-between">
+                        <div className="col-12 col-xl-6 col-xxl-5">
+                            <h1>Find the perfect<br/><span  style={{ color: "var(--pxpMainColor)"}}>job</span> for you</h1>
+                            <div className="pxp-hero-subtitle mt-3 mt-lg-4">Search your career opportunity through <strong>12,800</strong> jobs</div>
+
+                            <div className="pxp-hero-form pxp-hero-form-round pxp-bigger mt-3 mt-lg-4">
+                                <form className="row gx-3 align-items-center" action="jobs-list-1.html">
+                                    <div className="col-12 col-md">
+                                        <div className="form-floating">
+                                            <input type="email" className="form-control" id="pxpHeroFormKeyword" placeholder="Job title or keyword" value="Job title or keyword"/>
+                                            <label htmlFor="pxpHeroFormKeyword">What</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 col-md pxp-has-left-border">
+                                        <div className="form-floating">
+                                            <input type="text" className="form-control" id="pxpHeroFormLocation" placeholder="Job location" value="Job location"/>
+                                            <label htmlFor="pxpHeroFormLocation">Where</label>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 col-md-auto">
+                                        <button>Find Jobs</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div className="pxp-hero-searches-container">
+                                <div className="pxp-hero-searches-label">Popular Searches</div>
+                                <div className="pxp-hero-searches">
+                                    <div className="pxp-hero-searches-items">
+                                        <a href="jobs-list-1.html">Work from home</a>
+                                        <a href="jobs-list-1.html">Part-time</a>
+                                        <a href="jobs-list-1.html">Administration</a>
+                                        <a href="jobs-list-1.html">Finance</a>
+                                        <a href="jobs-list-1.html">Retail</a>
+                                        <a href="jobs-list-1.html">IT</a>
+                                        <a href="jobs-list-1.html">Engineering</a>
+                                        <a href="jobs-list-1.html">Sales</a>
+                                        <a href="jobs-list-1.html">Manufacturing</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="d-none d-xl-block col-xl-4 col-xxl-5 position-relative">
+                            <div className="pxp-hero-boxed-circulars pxp-animate-circles-bounce animate__animated animate__bounceIn" style={{height: "642.656px;"}}>
+                                <div className="pxp-hero-boxed-circular-outer">
+                                    <div className="pxp-hero-boxed-circular-outer-1"></div>
+                                    <div className="pxp-hero-boxed-circular-outer-2"></div>
+                                    <div className="pxp-hero-boxed-circular-outer-3"></div>
+                                </div>
+                                <div className="pxp-hero-boxed-circular-middle">
+                                    <div className="pxp-hero-boxed-circular-middle-1"></div>
+                                    <div className="pxp-hero-boxed-circular-middle-2"></div>
+                                    <div className="pxp-hero-boxed-circular-middle-3"></div>
+                                </div>
+                                <div className="pxp-hero-boxed-circular-center"></div>
+                            </div>
+
+                            <div className="pxp-hero-boxed-icon-circles">
+                                <div className="pxp-hero-boxed-icon-circle-1 pxp-animate-icon-circle-bounce animate__animated animate__bounceIn">
+                                    <img src="images/paper-icon.png" alt="Paper icon"/>
+                                </div>
+                                <div className="pxp-hero-boxed-icon-circle-2 pxp-animate-icon-circle-bounce animate__animated animate__bounceIn">
+                                    <img src="images/folder-icon.png" alt="Folder icon"/>
+                                </div>
+                            </div>
+
+                            <div className="pxp-hero-boxed-info-cards">
+                                <div className="pxp-hero-boxed-info-card-big pxp-animate-info-card animate__animated animate__flipInX">
+                                    <div className="pxp-hero-boxed-info-card-big-content">
+                                        <div className="pxp-hero-boxed-info-card-big-icon">
+                                            <img src="images/service-2-icon.png" alt="Job Fit Scoring"/>
+                                        </div>
+                                        <div className="pxp-hero-boxed-info-card-big-title">Job Fit Scoring</div>
+                                        <div className="pxp-hero-boxed-info-card-big-text pxp-text-light">Search your career opportunity through 12,800 jobs</div>
+                                    </div>
+                                </div>
+                                <div className="pxp-hero-boxed-info-card-small pxp-animate-info-card animate__animated animate__flipInX">
+                                    <div className="pxp-hero-boxed-info-card-small-content">
+                                        <div className="pxp-hero-boxed-info-card-small-icon">
+                                            <img src="images/service-1-icon.png" alt="Full-service recruiting"/>
+                                        </div>
+                                        <div className="pxp-hero-boxed-info-card-small-title">Full-service recruiting</div>
+                                    </div>
+                                </div>
+                                <div className="pxp-hero-boxed-info-list-container pxp-animate-info-card animate__animated animate__flipInX">
+                                    <div className="pxp-hero-boxed-info-list">
+                                        <div className="pxp-hero-boxed-info-list-item">
+                                            <div className="pxp-hero-boxed-info-list-item-number">286<span>job offers</span></div>
+                                            <div className="pxp-hero-boxed-info-list-item-description">in Business Development</div>
+                                        </div>
+                                        <div className="pxp-hero-boxed-info-list-item">
+                                            <div className="pxp-hero-boxed-info-list-item-number">154<span>job offers</span></div>
+                                            <div className="pxp-hero-boxed-info-list-item-description">in Marketing &amp; Communication</div>
+                                        </div>
+                                        <div className="pxp-hero-boxed-info-list-item">
+                                            <div className="pxp-hero-boxed-info-list-item-number">319<span>job offers</span></div>
+                                            <div className="pxp-hero-boxed-info-list-item-description">in Human Resources</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
       <section
         className="mt-100 pt-100 pb-100 pxp-page-header-simple"
         style={{ backgroundColor: "var(--pxpSecondaryColorLight)" }}
@@ -80,6 +191,8 @@ class Index extends Component {
           </div>
         </div>
       </section>
+      </div>
+
     );
   }
 }
