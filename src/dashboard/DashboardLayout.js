@@ -1,6 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
+import UserMenu from "../Components/UserMenu";
+import authService from "../services/auth/auth.service";
 
 const DashboardLayout = (props) => {
     
@@ -9,7 +11,7 @@ const DashboardLayout = (props) => {
         <div style={{ backgroundColor: "var(--pxpMainColorLight)" }}>
             <div className="pxp-dashboard-side-panel d-none d-lg-block">
              <div className="pxp-logo">
-                <a href="index.html" className="pxp-animate"><span       style={{ color: "var(--pxpMainColor)" }}>j</span>obster</a>
+                <Link to="/" className="pxp-animate"><span       style={{ color: "var(--pxpMainColor)" }}>j</span>obster</Link>
             </div> 
 
             <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">
@@ -43,19 +45,7 @@ const DashboardLayout = (props) => {
 
             <nav className="pxp-dashboard-side-user-nav-container">
                 <div className="pxp-dashboard-side-user-nav">
-                    <div className="dropdown pxp-dashboard-side-user-nav-dropdown dropup">
-                        <a role="button" className="dropdown-toggle" data-bs-toggle="dropdown">
-                            <div className="pxp-dashboard-side-user-nav-avatar pxp-cover" 
-                            style={{backgroundImage: "url(images/company-logo-1.png)"}}
-                            ></div>
-                            <div className="pxp-dashboard-side-user-nav-name">Artistre Studio</div>
-                        </a>
-                        <ul className="dropdown-menu">
-                            <li><a className="dropdown-item" href="company-dashboard.html">Dashboard</a></li>
-                            <li><a className="dropdown-item" href="company-dashboard-profile.html">Edit profile</a></li>
-                            <li><a className="dropdown-item" href="index.html">Logout</a></li>
-                        </ul>
-                    </div>
+                    <UserMenu user={authService.getCurrentUser()} logoutCallback={()=>authService.logout()}/>
                 </div>
             </nav>
             </div>
@@ -121,19 +111,8 @@ const DashboardLayout = (props) => {
                                 <li><a className="dropdown-item pxp-link" href="company-dashboard-notifications.html">Read All</a></li>
                             </ul>
                         </div>
-                        <div className="dropdown pxp-user-nav-dropdown">
-                            <a role="button" className="dropdown-toggle" data-bs-toggle="dropdown">
-                                <div className="pxp-user-nav-avatar pxp-cover" 
-                                style={{backgroundImage: "url(images/company-logo-1.png)"}}
-                                ></div>
-                                <div className="pxp-user-nav-name d-none d-md-block">Artistre Studio</div>
-                            </a>
-                            <ul className="dropdown-menu dropdown-menu-end">
-                                <li><a className="dropdown-item" href="company-dashboard.html">Dashboard</a></li>
-                                <li><a className="dropdown-item" href="company-dashboard-profile.html">Edit profile</a></li>
-                                <li><a className="dropdown-item" href="index.html">Logout</a></li>
-                            </ul>
-                        </div>
+                        <UserMenu user={authService.getCurrentUser()} logoutCallback={()=>authService.logout()}/>
+
                     </nav>
                 </div>
 

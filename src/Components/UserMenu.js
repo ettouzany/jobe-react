@@ -8,8 +8,8 @@ const UserMenu = ({ user, logoutCallback }) => {
                   <div className="pxp-user-nav-name d-none d-md-block">{user.firstName}</div>
               </a>
               <ul className="dropdown-menu dropdown-menu-end">
-                  <li><Link to={"dashboard"} className="dropdown-item" >Dashboard</Link></li>
-                  <li><Link to={"dashboard/profile"} className="dropdown-item" >Edit profile</Link></li>
+                  <li><Link to={"/dashboard"} className="dropdown-item" >Dashboard</Link></li>
+                  <li><Link to={"/dashboard/profile"} className="dropdown-item" >Edit profile</Link></li>
                   <li onClick={logoutCallback}><a className="dropdown-item" >Logout</a></li>
               </ul>
         </div>
