@@ -4277,12 +4277,12 @@ a:hover {
     padding: 1rem 0;
 }
 
-.pxp-dashboard-side-panel nav>ul>li.pxp-active>a {
+.pxp-dashboard-side-panel nav>ul>li>a.pxp-active {
     background-color: var(--pxpMainColorDark);
     color: #fff
 }
 
-.pxp-dashboard-side-panel nav>ul>li:not(.pxp-active)>a:hover {
+.pxp-dashboard-side-panel nav>ul>li>a:not(.pxp-active):hover {
     color: var(--pxpMainColor);
 }
 

@@ -18,6 +18,9 @@ import CreateJob from "./dashboard/company/CreateJob";
 import DashboardLayout from "./dashboard/DashboardLayout";
 import Modal from 'react-bootstrap/Modal'
 import ProfileEdit from "./dashboard/company/ProfileEdit";
+import ManageJobs from "./dashboard/company/ManageJobs";
+import Condadates from "./dashboard/company/Condadates";
+import Dashboard from "./dashboard/company/Dashboard";
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -49,9 +52,11 @@ const App = () => {
         {location.pathname.search('/dashboard') ?<Menu loginCallback={handleShow} logoutCallback={logOut} user={currentUser} />:null}
         <Routes>
           <Route path="dashboard" element={!currentUser ? ( <Login /> ) : (  <DashboardLayout/>)} >
-            <Route path="" element={<CreateJob />}/>          
+            <Route path="" element={<Dashboard />}/>          
             <Route path="post" element={<CreateJob />}/>          
             <Route path="profile" element={<ProfileEdit />}/>          
+            <Route path="jobs" element={<ManageJobs />}/>          
+            <Route path="condadates" element={<Condadates />}/>          
           </Route>
           <Route path="/search" element={<Search />} />
           <Route path="/logout" element={<Logout />} />

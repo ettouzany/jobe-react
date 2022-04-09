@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import UserMenu from "../Components/UserMenu";
 import authService from "../services/auth/auth.service";
 
@@ -17,12 +17,12 @@ const DashboardLayout = (props) => {
             <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">
                 <div className="pxp-dashboard-side-label">Admin tools</div>
                 <ul className="list-unstyled">
-                    <li className="pxp-active"> <Link to={""} className="pxp-animate"> <span className="fa fa-home"></span>Dashboard </Link> </li>
+                    <li> <NavLink exact to={"/dashboard/"} className={({ isActive }) => (isActive? 'pxp-active' : null)+ " pxp-animate"} > <span className="fa fa-home"></span>Dashboard </NavLink> </li>
                         
-                    <li><Link to="profile"><span className="fa fa-pencil"></span>Edit Profile</Link></li>
-                    <li><Link to="post"><span className="fa fa-file-text-o"></span>New Job Offer</Link></li>
-                    <li><Link to="jobs"><span className="fa fa-briefcase"></span>Manage Jobs</Link></li>
-                    <li><Link to="condadates"><span className="fa fa-user"></span>Candidates</Link></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="profile" ><span className="fa fa-pencil"></span>Edit Profile</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="post"><span className="fa fa-file-text-o"></span>New Job Offer</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="jobs"><span className="fa fa-briefcase"></span>Manage Jobs</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="condadates"><span className="fa fa-user"></span>Candidates</NavLink></li>
                     {/* <li><Link to="company-dashboard-subscriptions.html"><span className="fa fa-credit-card"></span>Subscriptions</Link></li>
                     <li><Link to="company-dashboard-password.html"><span className="fa fa-lock"></span>Change Password</Link></li> */}
                 </ul>
