@@ -10,15 +10,18 @@ const addApplication = (jobId) => {
     return axios.post(API_URL, {jobId:jobId}, { headers: authHeader() });
 };
 
-const getApplications = ({search,location,categorie,filters,start}) => {
+const getApplications = ({start}) => {
     //add params ro axios get request
     const params = new URLSearchParams();
-    if(search) params.append("search", search);
-    if(location) params.append("location", location);
-    if(categorie) params.append("categorie", categorie);
-    if(filters) params.append("filters", filters);
     if(start) params.append("start", start);
     return axios.get(API_URL+ "",{ headers: authHeader(),params });
+};
+
+const getJobsApplications = ({start}) => {
+    //add params ro axios get request
+    const params = new URLSearchParams();
+    if(start) params.append("start", start);
+    return axios.get(API_URL+ "/jobCreator",{ headers: authHeader(),params });
 };
 
 //get a application by id
@@ -26,22 +29,13 @@ const getApplicationById = (id) => {
     return axios.get(API_URL + "/" + id, { headers: authHeader() });
 };
 
-const getAllPublicApplications = () => {
-    return axios.get(API_URL + "/public");
-};
-
-const getAllPrivateApplications = () => {
-    return axios.get(API_URL + "/private", { headers: authHeader() });
-};
 
 
 
 const applicationService = {
     addApplication,
     getApplications,
-    
-    getAllPublicApplications,
-    getAllPrivateApplications,
+    getJobsApplications,
     getApplicationById
 };
 

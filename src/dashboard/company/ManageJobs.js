@@ -1,4 +1,53 @@
+import statisticsService from "../../services/statistics.service";
+import { useEffect, useState } from "react";
+import jobService from "../../services/job.service";
 const ManageJobs = (props) => {
+
+    const [jobsStatistics, setjobsStatistics] = useState({
+        total_jobs: 0,
+        total_applications: 0,
+      });
+      const [jobs, setjobs] = useState([]);
+
+      useEffect(() => {
+        requestjobsStatisticsData();
+        requestJobsData();
+      }, []);
+
+      async function requestjobsStatisticsData() {
+        try {
+          await statisticsService.getJobsStatistics().then(
+              (response) => {
+                  console.log(response);
+                  setjobsStatistics(response.data);
+              },
+              (error) => {
+                console.log(error);
+              }
+          );
+      }
+      catch (error) {
+          console.log(error);
+      }
+      }
+    
+        async function requestJobsData() {
+            try {
+                await jobService.getJobs({start: 0}).then(
+                    (response) => {
+                        console.log(response);
+                        setjobs(response.data);
+                    },
+                    (error) => {
+                        console.log(error);
+                    }
+                );
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+
     return (
         <div >
                 <h1>Manage Jobs</h1>
@@ -18,7 +67,7 @@ const ManageJobs = (props) => {
                         </div>
                         <div className="col-auto order-1 order-sm-2">
                             <div className="pxp-company-dashboard-jobs-search mb-3">
-                                <div className="pxp-company-dashboard-jobs-search-results me-3">16 jobs</div>
+                                <div className="pxp-company-dashboard-jobs-search-results me-3">{jobsStatistics.total_jobs} jobs</div>
                                 <div className="pxp-company-dashboard-jobs-search-search-form">
                                     <div className="input-group">
                                         <span className="input-group-text"><span className="fa fa-search"></span></span>
@@ -42,256 +91,41 @@ const ManageJobs = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">Software developer</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>San Francisco, CA</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Software Engineering</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">3 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-success">Published</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">HR Analyst</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>Paris, France</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Human Resources</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">8 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-secondary">Draft</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">Marketing Expert</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>Los Angeles, CA</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Marketing &amp; Communication</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">10 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-success">Published</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">Software developer</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>San Francisco, CA</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Software Engineering</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">3 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-success">Published</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">HR Analyst</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>Paris, France</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Human Resources</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">8 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-secondary">Draft</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">Marketing Expert</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>Los Angeles, CA</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Marketing &amp; Communication</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">10 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-success">Published</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">Software developer</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>San Francisco, CA</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Software Engineering</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">3 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-success">Published</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">HR Analyst</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>Paris, France</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Human Resources</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">8 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-secondary">Draft</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">Marketing Expert</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>Los Angeles, CA</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Marketing &amp; Communication</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">10 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-success">Published</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" className="form-check-input"/></td>
-                                    <td>
-                                        <a href="/">
-                                            <div className="pxp-company-dashboard-job-title">HR Analyst</div>
-                                            <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>Paris, France</div>
-                                        </a>
-                                    </td>
-                                    <td><div className="pxp-company-dashboard-job-category">Human Resources</div></td>
-                                    <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
-                                    <td><a href="/" className="pxp-company-dashboard-job-applications">8 Candidates</a></td>
-                                    <td>
-                                        <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-secondary">Draft</span></div>
-                                        <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
-                                    </td>
-                                    <td>
-                                        <div className="pxp-dashboard-table-options">
-                                            <ul className="list-unstyled">
-                                                <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
-                                                <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
+                            { jobs.map((application) => {
+                        const {
+                          id,
+                          jobTitle
+                          //jobDescription,userId
+                        } = application;
+                        return (
+                                <tr key={id}>
+                                <td><input type="checkbox" className="form-check-input"/></td>
+                                <td>
+                                    <a href="/">
+                                        <div className="pxp-company-dashboard-job-title">{jobTitle}</div>
+                                        <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>San Francisco, CA</div>
+                                    </a>
+                                </td>
+                                <td><div className="pxp-company-dashboard-job-category">Software Engineering</div></td>
+                                <td><div className="pxp-company-dashboard-job-type">Full-time</div></td>
+                                <td><a href="/" className="pxp-company-dashboard-job-applications">3 Candidates</a></td>
+                                <td>
+                                    <div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-success">Published</span></div>
+                                    <div className="pxp-company-dashboard-job-date mt-1">2020/08/24 at 11:56 am</div>
+                                </td>
+                                <td>
+                                    <div className="pxp-dashboard-table-options">
+                                        <ul className="list-unstyled">
+                                            <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
+                                            <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
+                                            <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        );
+                      })}
+                               
                             </tbody>
                         </table>
 
