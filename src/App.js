@@ -22,6 +22,7 @@ import ManageJobs from "./dashboard/company/ManageJobs";
 import Condadates from "./dashboard/company/Condadates";
 import Dashboard from "./dashboard/company/Dashboard";
 import Footer from "./Components/footer";
+import { CondadateProfile } from "./Components/profile/CondadateProfile.";
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -59,6 +60,10 @@ const App = () => {
             <Route path="jobs" element={<ManageJobs />}/>          
             <Route path="condadates" element={<Condadates />}/>          
           </Route>
+          <Route path="p" element={!currentUser ? ( <Login /> ) : (  <CondadateProfile/>)} >
+            {/* <Route path="" element={<Dashboard />}/>      */}
+          </Route>
+
           <Route path="/search" element={<Search />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/signup" element={ !currentUser ? ( <SignUp /> ) : (  <Navigate to="/" replace /> )}/>

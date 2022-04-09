@@ -17,7 +17,7 @@ const Dashboard =()=>{
                     <div className="col-sm-6 col-xxl-3">
                         <div className="pxp-dashboard-stats-card bg-primary bg-opacity-10 mb-3 mb-xxl-0">
                             <div className="pxp-dashboard-stats-card-icon text-success">
-                                <span className="fa fa-user"></span>
+                                <span className="fa fa-user-o"></span>
                             </div>
                             <div className="pxp-dashboard-stats-card-info">
                                 <div className="pxp-dashboard-stats-card-info-number">312</div>
