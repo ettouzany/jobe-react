@@ -21,6 +21,17 @@ const getJobs = ({search,location,categorie,filters,start}) => {
     return axios.get(API_URL+ "/all",{ headers: authHeader(),params });
 };
 
+const getmyJobs = ({search,location,categorie,filters,start}) => {
+    //add params ro axios get request
+    const params = new URLSearchParams();
+    if(search) params.append("search", search);
+    if(location) params.append("location", location);
+    if(categorie) params.append("categorie", categorie);
+    if(filters) params.append("filters", filters);
+    if(start) params.append("start", start);
+    return axios.get(API_URL+ "",{ headers: authHeader(),params });
+};
+
 //get a job by id
 const getJobById = (id) => {
     return axios.get(API_URL + "/" + id, { headers: authHeader() });
@@ -39,6 +50,7 @@ const getAllPrivateJobs = () => {
 const jobService = {
     addJob,
     getJobs,
+    getmyJobs,
     getAllPublicJobs,
     getAllPrivateJobs,
     getJobById

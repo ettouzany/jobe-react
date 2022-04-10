@@ -25,15 +25,15 @@ const ManageJobs = (props) => {
                 console.log(error);
               }
           );
-      }
-      catch (error) {
-          console.log(error);
-      }
+        }
+        catch (error) {
+            console.log(error);
+        }
       }
     
         async function requestJobsData() {
             try {
-                await jobService.getJobs({start: 0}).then(
+                await jobService.getmyJobs({start: 0}).then(
                     (response) => {
                         console.log(response);
                         setjobs(response.data);
