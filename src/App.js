@@ -23,6 +23,7 @@ import Condadates from "./dashboard/company/Condadates";
 import Dashboard from "./dashboard/company/Dashboard";
 import Footer from "./Components/footer";
 import { CondadateProfile } from "./Components/profile/CondadateProfile.";
+import userService from "./services/user.service";
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -30,6 +31,7 @@ const App = () => {
   const location = useLocation();
   console.log(location.pathname)
   const [show, setShow] = useState(false);
+  const [questionnaire, setQuestionnaire] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,8 +39,11 @@ const App = () => {
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     if (user) {
+        if(user.status === "new"){
+            setQuestionnaire(true);
+        }
       setCurrentUser(user);
-      handleClose();    
+      handleClose();
     }
   }, [localStorage.getItem("user")]);
 
@@ -48,6 +53,23 @@ const App = () => {
     setCurrentUser(undefined);
     navigate("/login");
   };
+
+  const setUserStatus = (isCompany) => {
+      userService.setIsCompanyAndStatus(isCompany, "active").then(
+            (response) => {
+                console.log(response);
+                let user = AuthService.getCurrentUser();
+                user.status = "active";
+                localStorage.setItem("user", JSON.stringify(user));
+                setCurrentUser(user);
+                setQuestionnaire(false);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
+
 
   return (
     <div>
@@ -81,6 +103,25 @@ const App = () => {
                     </div>
                     <h5 className="modal-title text-center mt-4" id="signinModal">Welcome back!</h5>
                     <LoginForm/>
+                </div>
+        </Modal>
+        <Modal fullscreen={true} show={questionnaire} onHide={handleClose} className="modal fade pxp-user-modal" id="pxp-signin-modal">
+        {/* <Modal.Header closeButton>
+        </Modal.Header> */}
+        <div className="modal-body">
+                    <div className="pxp-user-modal-fig text-center">
+                        {/* <!-- <img src="./Jobster - Home v1_files/signin-fig.png" alt="Sign in"> --> */}
+                    </div>
+                    <h5 className="modal-title text-center mt-4" id="signinModal">Welcome back!</h5>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <button className="btn btn-primary btn-block" onClick={() => setUserStatus(true)}>I am a company</button>
+                        </div>
+                        <div className="col-md-6">
+                            <button className="btn btn-primary btn-block" onClick={() => setUserStatus(false)}>I am a condadate</button>
+                        </div>
+                    </div>
+
                 </div>
         </Modal>
         {location.pathname.search('/dashboard') ?<Footer />:null}
