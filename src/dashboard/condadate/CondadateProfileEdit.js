@@ -4,8 +4,9 @@ import Croppie from "croppie";
 import * as React from "react"
 import userService from "../../services/user.service";
 import Modal from 'react-bootstrap/Modal'
-import EducationForm from "./Profile-Forms/EducationForm";
 import educationService from "../../services/education.service";
+import Education from "./profile/Education";
+import Experience from "./profile/Experience";
 
 const CondadateProfileEdit = () => {
     // CompanyStructer: null
@@ -41,7 +42,27 @@ const CondadateProfileEdit = () => {
     const [croppie, setCroppie] = React.useState(null)
     
     const [user, setUser] = React.useState();
-    const [selectedEdecation, setSelectedEdecation] = React.useState();
+    const [SelectedExperience, setSelectedExperience] = React.useState();
+    const [showExperience, setShowExperience] = React.useState(false);
+
+
+
+    const handleCloseExperience = () => setShowExperience(false);
+    const handleShowExperience = () => setShowExperience(true);
+
+  
+
+    const AddToUserExperiences = (experience) => {
+        setUser({ ...user, experiences: [...user.experiences, experience] })
+    }
+
+    const deleteFromUserExperiences = (experience) => {
+        setUser({ ...user, experiences: user.experiences.filter(e => e.id !== experience.id) })
+    }
+
+    const updateUserExperiences = (experience) => {
+        setUser({ ...user, experiences: user.experiences.map(e => e.id === experience.id ? experience : e) })
+    }
 
     React.useEffect(() => {
         userService.getUserFullData().then(user => {
@@ -109,10 +130,7 @@ const CondadateProfileEdit = () => {
         reader.readAsDataURL(file);
     }
 
-    //edir education handler
-    const editEducation = (education) => {
-        setSelectedEdecation(education);
-    }
+
 
 
     return (
@@ -292,38 +310,8 @@ const CondadateProfileEdit = () => {
                             </div>
                             <button className="btn rounded-pill pxp-subsection-cta">Add Experience</button>
                         </div>
-
-                        <div className="mt-4 mt-lg-5">
-                            <h2>Education &amp; Training</h2>
-                            <div className="table-responsive">
-                                <table className="table align-middle">
-                                    <tbody>
-                                        {
-                                            
-                                           user.educations.map((education, index) => {
-                                                  return (
-                                                        <tr key={education.id}>
-                                                        <td style={{width: "30%"}}><div className="pxp-candidate-dashboard-experience-title">{education.title}</div></td>
-                                                        <td style={{width: "25%"}}><div className="pxp-candidate-dashboard-experience-school">{education.institution}</div></td>
-                                                        <td style={{width: "25%"}}><div className="pxp-candidate-dashboard-experience-time">{education.startEndDate}</div></td>
-                                                        <td>
-                                                            <div className="pxp-dashboard-table-options">
-                                                                <ul className="list-unstyled">
-                                                                    <li><button type="button" onClick={() => editEducation(education)} 
-                                                                     title="Edit"><span className="fa fa-pencil"></span></button></li>
-                                                                    <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                        </tr>
-                                                  )
-                                            })
-
-                                        }
-                                </tbody></table>
-                            </div>
-                            
-                        </div>
+                        <Experience es={user.experiences}/>
+                        <Education es={user.educations} />
 
                         <div className="mt-4 mt-lg-5">
                             <button className="btn rounded-pill pxp-section-cta">Save Profile</button>
@@ -359,11 +347,7 @@ const CondadateProfileEdit = () => {
                         </Modal>
 
 
-                        <Modal centered={true} show={selectedEdecation} className="modal fade pxp-user-modal " id="pxp-signin-modal" >
-                            <div className="p-3" s>
-                                <EducationForm {...selectedEdecation}/>
-                            </div>
-                        </Modal>
+
         </div>
     );
 };

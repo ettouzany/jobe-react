@@ -1,9 +1,9 @@
 
-import { useState } from "react";
-import educationService from "../../../services/education.service";
+import educationService from "../../../../services/education.service";
+import { useState, useEffect } from "react";
 
 
-const EducationForm = ({id,title,institution,startEndDate,description}) => {
+const EducationForm = ({id,title,institution,startEndDate,description,getEducation}) => {
     const [education, setEducation] = useState({
         id:id,
         title: title,
@@ -16,6 +16,11 @@ const EducationForm = ({id,title,institution,startEndDate,description}) => {
     const handleUserChange = (e) => {
         console.log(e.target.name)
         setEducation({ ...education, [e.target.name]: e.target.value })
+    }
+
+    const handlenewEdecation = (e) => {
+        e.preventDefault();
+        getEducation(education);
     }
 
     const handleSubmit = (e) => {
@@ -36,7 +41,7 @@ const EducationForm = ({id,title,institution,startEndDate,description}) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handlenewEdecation}>
   <div className="row mt-3 mt-lg-4">
                                 <div className="col-md-12">
                                     <div className="mb-3">

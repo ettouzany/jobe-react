@@ -18,11 +18,14 @@ const getEducations = ({start}) => {
     return axios.get(API_URL+ "",{ headers: authHeader(),params });
 }
 
-
+const deleteEducation = (id) => {
+    return axios.delete(API_URL+"/"+id, { headers: authHeader() });
+}
 
 const educationService = {
     getEducations,
     updateEducation,
+    deleteEducation,
     addEducation
 }
 
