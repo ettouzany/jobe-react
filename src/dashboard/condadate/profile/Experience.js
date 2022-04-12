@@ -64,7 +64,7 @@ const Experience = ({es}) => {
     }
     return (
         <div className="mt-4 mt-lg-5">
-            <h2>Experience &amp; Training</h2><button type="button" className="btn rounded-pill pxp-subsection-cta" onClick={handleShowEdecation}>Add Experience</button>
+            <h2>Work Experience </h2><button type="button" className="btn rounded-pill pxp-subsection-cta" onClick={handleShowEdecation}>Add Experience</button>
             <div className="table-responsive">
                 <table className="table align-middle">
                     <tbody>
