@@ -1,28 +1,28 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
-import UserMenu from "../Components/UserMenu";
-import authService from "../services/auth/auth.service";
+import UserMenu from "../../Components/UserMenu";
+import authService from "../../services/auth/auth.service";
 
-const DashboardLayout = (props) => {
+const CondadateDashboardLayout = (props) => {
     
       
     return (
-        <div style={{ backgroundColor: "var(--pxpMainColorLight)" }}>
+        <div style={{ backgroundColor: "var(--pxpSecondaryColorLight)" }}>
             <div className="pxp-dashboard-side-panel d-none d-lg-block">
              <div className="pxp-logo">
-                <Link to="/" className="pxp-animate"><span       style={{ color: "var(--pxpMainColor)" }}>j</span>obrah</Link>
+                <Link to="/" className="pxp-animate"><span       style={{ color: "var(--pxpSecondaryColorLight)" }}>j</span>obrah</Link>
             </div> 
 
             <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">
                 <div className="pxp-dashboard-side-label">Admin tools</div>
                 <ul className="list-unstyled">
-                    <li> <NavLink exact to={"/dashboard/"} className={({ isActive }) => (isActive? 'pxp-active' : null)+ " pxp-animate"} > <span className="fa fa-home"></span>Dashboard </NavLink> </li>
-                        
+                    <li> <NavLink  to={"/dashboard/"} className={({ isActive }) => (isActive? 'pxp-active' : null)+ " pxp-animate"} > <span className="fa fa-home"></span>Dashboard </NavLink> </li>
                     <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="profile" ><span className="fa fa-pencil"></span>Edit Profile</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="post"><span className="fa fa-file-text-o"></span>New Job Offer</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="jobs"><span className="fa fa-briefcase"></span>Manage Jobs</NavLink></li>
-                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="condadates"><span className="fa fa-user"></span>Candidates</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="applications"><span className="fa fa-file-text"></span>Applications</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="favourites"><span className="fa fa-heart"></span>Favourites</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="password"><span className="fa fa-lock"></span>Change Password</NavLink></li>
+                    <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="switch"><span className="fa fa-briefcase"></span>Switch To Company</NavLink></li>
                     {/* <li><Link to="company-dashboard-subscriptions.html"><span className="fa fa-credit-card"></span>Subscriptions</Link></li>
                     <li><Link to="company-dashboard-password.html"><span className="fa fa-lock"></span>Change Password</Link></li> */}
                 </ul>
@@ -43,7 +43,7 @@ const DashboardLayout = (props) => {
                 </ul>
             </nav>
 
-            <nav className="pxp-dashboard-side-user-nav-container">
+            <nav className="pxp-dashboard-side-user-nav-container" style={{ backgroundColor: "var(--pxpSecondaryColorLight)" }}>
                 <div className="pxp-dashboard-side-user-nav">
                     <UserMenu user={authService.getCurrentUser()} logoutCallback={()=>authService.logout()}/>
                 </div>
@@ -130,4 +130,4 @@ const DashboardLayout = (props) => {
   
 }
 
-export default DashboardLayout;
+export default CondadateDashboardLayout;

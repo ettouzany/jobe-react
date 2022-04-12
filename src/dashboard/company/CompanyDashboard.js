@@ -1,7 +1,7 @@
 import statisticsService from "../../services/statistics.service";
 import { useEffect, useState } from "react";
 import applicationService from "../../services/application.service";
-const Dashboard =()=>{
+const CompanyDashboard =()=>{
 
     const [jobsStatistics, setjobsStatistics] = useState({
         total_jobs: 0,
@@ -136,4 +136,4 @@ const Dashboard =()=>{
         </div>
     )
 }
-export  default Dashboard;
+export  default CompanyDashboard;

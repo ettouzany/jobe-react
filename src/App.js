@@ -1,4 +1,5 @@
 import bootstrap from "bootstrap/dist/js/bootstrap.min.js";
+
 import jQuery from "jquery/dist/jquery.min.js";
 import { render } from "react-dom";
 import { useState, useEffect } from "react";
@@ -15,15 +16,22 @@ import Login from "./Login";
 import LoginForm from "./Components/auth/LoginForm";
 import Logout from "./Logout";
 import CreateJob from "./dashboard/company/CreateJob";
-import DashboardLayout from "./dashboard/DashboardLayout";
 import Modal from 'react-bootstrap/Modal'
 import ProfileEdit from "./dashboard/company/ProfileEdit";
 import ManageJobs from "./dashboard/company/ManageJobs";
 import Condadates from "./dashboard/company/Condadates";
-import Dashboard from "./dashboard/company/Dashboard";
+import Dashboard from "./dashboard/company/CompanyDashboard";
 import Footer from "./Components/footer";
 import { CondadateProfile } from "./Components/profile/CondadateProfile.";
 import userService from "./services/user.service";
+import { Outlet } from "react-router-dom";
+import CompanyDashboardLayout from "./dashboard/company/CompanyDashboardLayout";
+import CondadateDashboardLayout from "./dashboard/condadate/CondadateDashboardLayout";
+import CondadateDashboard from "./dashboard/condadate/CondadateDashboard";
+import condadateFavourites from "./dashboard/condadate/CondadateFavourites";
+import CondadateApplications from "./dashboard/condadate/CondadateApplications";
+import CondadateProfileEdit from "./dashboard/condadate/CondadateProfileEdit";
+
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -75,12 +83,23 @@ const App = () => {
     <div>
         {location.pathname.search('/dashboard') ?<Menu loginCallback={handleShow} logoutCallback={logOut} user={currentUser} />:null}
         <Routes>
-          <Route path="dashboard" element={!currentUser ? ( <Login /> ) : (  <DashboardLayout/>)} >
-            <Route path="" element={<Dashboard />}/>          
-            <Route path="post" element={<CreateJob />}/>          
-            <Route path="profile" element={<ProfileEdit />}/>          
-            <Route path="jobs" element={<ManageJobs />}/>          
-            <Route path="condadates" element={<Condadates />}/>          
+          <Route path="dashboard" element={!currentUser ? ( <Login /> ) : (  <Outlet/>)} >
+            <Route exact path="company" element={!currentUser ? ( <Login /> ) : (  <CompanyDashboardLayout/>)}>
+                <Route path="" element={<Dashboard />}/>          
+                <Route path="post" element={<CreateJob />}/>          
+                <Route path="profile" element={<ProfileEdit />}/>          
+                <Route path="jobs" element={<ManageJobs />}/>          
+                <Route path="condadates" element={<Condadates />}/>
+            </Route>
+            <Route path="" element={!currentUser ? ( <Login /> ) : (  <CondadateDashboardLayout/>)}>
+                <Route path="" element={<CondadateDashboard />}/>
+                <Route path="post" element={<CreateJob />}/>
+                <Route path="profile" element={<CondadateProfileEdit />}/>
+                <Route path="applications" element={<CondadateApplications />}/>
+                <Route path="favourites" element={<condadateFavourites />}/>
+                <Route path="password" element={<CondadateApplications />}/>
+                <Route path="switch" element={<CondadateApplications />}/>
+            </Route>
           </Route>
           <Route path="p" element={!currentUser ? ( <Login /> ) : (  <CondadateProfile/>)} >
             {/* <Route path="" element={<Dashboard />}/>      */}

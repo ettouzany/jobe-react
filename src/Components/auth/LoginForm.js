@@ -26,7 +26,7 @@ const LoginForm = (props) => {
       }
     };
     const handleFailure = (result) => {
-      alert(result);
+      console.log(result);
     };
   
   const handleLoginGoogle = async (googleData) => {
