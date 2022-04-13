@@ -24,7 +24,14 @@ const CondadateProfileEdit = () => {
 
     }
 
-  
+    //submit form
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(user)
+        userService.updateUser(user).then(res => {
+            console.log(res)
+        })
+    }
 
 
 
@@ -39,7 +46,7 @@ const CondadateProfileEdit = () => {
                 {
                     user ? (
                                 
-                    <form onSubmit={(e)=>e.preventDefault()}>
+                    <form onSubmit={handleSubmit}>
                         
                         
                         <InformationForm user={user} handleUserChange={handleUserChange} />

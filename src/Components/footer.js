@@ -1,6 +1,13 @@
+import { Editor } from 'react-draft-wysiwyg';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+
+
 const Footer = ()=>{
+   
     return(
         <footer className="pxp-main-footer mt-100">
+            
             <div className="pxp-main-footer-top pt-100 pb-100" style={{backgroundColor: "var(--pxpMainColorLight)"}}>
                 <div className="pxp-container">
                     <div className="row">
@@ -92,6 +99,12 @@ const Footer = ()=>{
                     </div>
                 </div>
             </div>
+            <Editor
+              wrapperClassName="wrapper-class"
+              editorClassName="editor-class"
+              toolbarClassName="toolbar-class"
+            
+            />
         </footer>
     )
 }

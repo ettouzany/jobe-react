@@ -14,7 +14,19 @@ const getUserFullData = () => {
 const getUserFullDataById = (id) => {
     return axios.get(API_URL + "/users/"+id, { headers: authHeader() });
 };
+//update user
+const updateUser = (user) => {
+    return axios.patch(API_URL + "/users/user", user, { headers: authHeader() });
+};
+
+const UpdateCompany = (company) => {
+    return axios.patch(API_URL + "/users/company" + company.id, company, { headers: authHeader() });
+};
+
+
 const userService = {
+    updateUser,
+    UpdateCompany,
     setIsCompanyAndStatus,
     getUserFullData,
     getUserFullDataById,

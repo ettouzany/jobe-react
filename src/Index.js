@@ -57,7 +57,7 @@ class Index extends Component {
                             </div>
                         </div>
                         <div className="d-none d-xl-block col-xl-4 col-xxl-5 position-relative">
-                            <div className="pxp-hero-boxed-circulars pxp-animate-circles-bounce animate__animated animate__bounceIn" style={{height: "642.656px;"}}>
+                            <div className="pxp-hero-boxed-circulars pxp-animate-circles-bounce animate__animated animate__bounceIn" style={{height: "642px"}}>
                                 <div className="pxp-hero-boxed-circular-outer">
                                     <div className="pxp-hero-boxed-circular-outer-1"></div>
                                     <div className="pxp-hero-boxed-circular-outer-2"></div>

@@ -5,9 +5,9 @@ const InformationForm = ({user,handleUserChange}) => {
     return (
         <div>
             <div className="row mt-4 mt-lg-5">
-            <div className="col-xxl-8">
+            <div className="col-xxl-12">
                     <div className="row">
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                             <div className="mb-3">
                                 <label htmlFor="first_name" className="form-label">First Name</label>
                                 <input
@@ -18,7 +18,7 @@ const InformationForm = ({user,handleUserChange}) => {
                                 type="text" className="form-control" />
                             </div>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                             <div className="mb-3">
                                 <label htmlFor="last_name" className="form-label">Last Name</label>
                                 <input
@@ -29,9 +29,20 @@ const InformationForm = ({user,handleUserChange}) => {
                                 type="text" className="form-control"  />
                             </div>
                         </div>
+                        <div className="col-sm-4">
+                            <div className="mb-3">
+                                <label htmlFor="username" className="form-label">Username</label>
+                                <input
+                                id="username"
+                                name="username"
+                                onChange={(e) => handleUserChange(e)}
+                                value={user.username}
+                                type="text" className="form-control"  />
+                            </div>
+                        </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                             <div className="mb-3">
                                 <label htmlFor="pxp-candidate-title" className="form-label">Title</label>
                                 <input 
@@ -43,7 +54,7 @@ const InformationForm = ({user,handleUserChange}) => {
                                 type="text"  className="form-control" placeholder="E.g. Web Designer"/>
                             </div>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                             <div className="mb-3">
                                 <label htmlFor="pxp-candidate-location" className="form-label">Country</label>
                                 <input 
@@ -54,7 +65,7 @@ const InformationForm = ({user,handleUserChange}) => {
                                 type="tel"  className="form-control" placeholder="E.g. San Francisco, CA"/>
                             </div>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                             <div className="mb-3">
                                 <label htmlFor="pxp-candidate-location" className="form-label">City</label>
                                 <input 

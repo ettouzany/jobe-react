@@ -22,7 +22,11 @@ import {
   
     return ComponentWithRouterProp;
   }
-
+// function GetId()
+// {
+//     const id = useParams();
+//     return id;
+// }
 
 export class CandidateProfile extends Component {
   constructor(props) {
@@ -41,10 +45,7 @@ export class CandidateProfile extends Component {
     }
     
     getUser() {
-        const { id } = this.props.match.params;
-        // const { userId } = this.props.id;
-        userService.getUserFullDataById(id).then(data => {          
-            console.log(data.data);  
+        userService.getUserFullDataById(this.props.router.params.id).then(data => {          
             this.setState({ user:data.data, loading: false });
         }).catch(error => {
             this.setState({ error: true, errorMessage: error.message });
