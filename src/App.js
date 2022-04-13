@@ -4,7 +4,7 @@ import jQuery from "jquery/dist/jquery.min.js";
 import { render } from "react-dom";
 import { useState, useEffect } from "react";
 import AuthService from "./services/auth/auth.service";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { BrowserRouter , Route, Routes, Navigate, useNavigate} from "react-router-dom";
 import { StrictMode } from "react";
@@ -22,22 +22,22 @@ import ManageJobs from "./dashboard/company/ManageJobs";
 import Condadates from "./dashboard/company/Condadates";
 import Dashboard from "./dashboard/company/CompanyDashboard";
 import Footer from "./Components/footer";
-import { CondadateProfile } from "./Components/profile/CondadateProfile.";
+import CondidateProfile  from "./Components/profile/CondidateProfile.";
 import userService from "./services/user.service";
 import { Outlet } from "react-router-dom";
 import CompanyDashboardLayout from "./dashboard/company/CompanyDashboardLayout";
-import CondadateDashboardLayout from "./dashboard/condadate/CondadateDashboardLayout";
-import CondadateDashboard from "./dashboard/condadate/CondadateDashboard";
-import condadateFavourites from "./dashboard/condadate/CondadateFavourites";
-import CondadateApplications from "./dashboard/condadate/CondadateApplications";
-import CondadateProfileEdit from "./dashboard/condadate/CondadateProfileEdit";
+import CondadateDashboardLayout from "./dashboard/condidate/CondadateDashboardLayout";
+import CondadateDashboard from "./dashboard/condidate/CondadateDashboard";
+import condadateFavourites from "./dashboard/condidate/CondadateFavourites";
+import CondadateApplications from "./dashboard/condidate/CondadateApplications";
+import CondadateProfileEdit from "./dashboard/condidate/profile/CondidateProfileEdit";
 
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname)
+  const params = useParams();
   const [show, setShow] = useState(false);
   const [questionnaire, setQuestionnaire] = useState(false);
 
@@ -101,8 +101,7 @@ const App = () => {
                 <Route path="switch" element={<CondadateApplications />}/>
             </Route>
           </Route>
-          <Route path="p" element={!currentUser ? ( <Login /> ) : (  <CondadateProfile/>)} >
-            {/* <Route path="" element={<Dashboard />}/>      */}
+          <Route path="p/:id" element={!currentUser ? ( <Login /> ) : (  <CondidateProfile id={1}/>)} >
           </Route>
 
           <Route path="/search" element={<Search />} />

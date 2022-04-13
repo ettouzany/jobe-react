@@ -10,9 +10,14 @@ const setIsCompanyAndStatus = (isCompany, status) => {
 const getUserFullData = () => {
     return axios.get(API_URL + "/users/me", { headers: authHeader() });
 };
+
+const getUserFullDataById = (id) => {
+    return axios.get(API_URL + "/users/"+id, { headers: authHeader() });
+};
 const userService = {
     setIsCompanyAndStatus,
     getUserFullData,
+    getUserFullDataById,
 };
 
 export default userService;

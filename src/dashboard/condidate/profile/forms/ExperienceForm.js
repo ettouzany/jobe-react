@@ -92,6 +92,7 @@ const ExperienceForm = ({id,jobTitle,company,startDate,endDate,description,curre
                                 name="current"
                                 onChange={(e) => handleUserChange(e)}
                                 value={experience.current}
+                                checked={experience.current}
                                 type="checkbox" className="form-check-input"/>
                             </div>
                             <button type="submit" 

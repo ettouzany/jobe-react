@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
 import EducationForm from './forms/EducationForm'
 import educationService from '../../../services/education.service'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Education = ({es}) => {
     const [educations, setEducations] = useState(es);
@@ -23,7 +23,7 @@ const Education = ({es}) => {
     const deleteFromUserEducations = (education) => {
         //tell the eduaction service to delete the education
         educationService.deleteEducation(education.id).then(
-            (result) => {
+            () => {
                 //remove the education from the list
                 setEducations(educations.filter(e => e.id !== education.id));
             }

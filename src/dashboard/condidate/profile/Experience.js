@@ -1,10 +1,9 @@
 import Modal from 'react-bootstrap/Modal'
 import ExperienceForm from './forms/ExperienceForm'
 import experienceService from '../../../services/experience.service'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Experience = ({es}) => {
-    console.log(es)
     const [experiences, setExperiences] = useState(es);
     const [selectedExperience, setSelectedExperience] = useState(null);
     const [showEdecation, setShowEdecation] = useState(false);
@@ -24,7 +23,7 @@ const Experience = ({es}) => {
     const deleteFromUserExperiences = (experience) => {
         //tell the eduaction service to delete the experience
         experienceService.deleteExperience(experience.id).then(
-            (result) => {
+            () => {
                 //remove the experience from the list
                 setExperiences(experiences.filter(e => e.id !== experience.id));
             }
