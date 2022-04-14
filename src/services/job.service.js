@@ -45,7 +45,9 @@ const getAllPrivateJobs = () => {
     return axios.get(API_URL + "/private", { headers: authHeader() });
 };
 
-
+const updateJobById = (id, job) => {
+    return axios.patch(API_URL + "/" + id, job, { headers: authHeader() });
+};
 
 const jobService = {
     addJob,
@@ -53,7 +55,8 @@ const jobService = {
     getmyJobs,
     getAllPublicJobs,
     getAllPrivateJobs,
-    getJobById
+    getJobById,
+    updateJobById,
 };
 
 export default jobService;

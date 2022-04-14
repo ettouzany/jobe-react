@@ -15,7 +15,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import LoginForm from "./Components/auth/LoginForm";
 import Logout from "./Logout";
-import CreateJob from "./dashboard/company/CreateJob";
+import CreateJob from "./dashboard/company/CreateJob/CreateJob";
 import Modal from 'react-bootstrap/Modal'
 import ProfileEdit from "./dashboard/company/ProfileEdit";
 import ManageJobs from "./dashboard/company/ManageJobs";

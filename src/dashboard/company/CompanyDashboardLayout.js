@@ -17,7 +17,7 @@ const CompanyDashboardLayout = (props) => {
             <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">
                 <div className="pxp-dashboard-side-label">Admin tools</div>
                 <ul className="list-unstyled">
-                    <li> <NavLink exact to={"./"} className={({ isActive }) => (isActive? 'pxp-active' : null)+ " pxp-animate"} > <span className="fa fa-home"></span>Dashboard </NavLink> </li>
+                    <li> <NavLink to={"./"} className={({ isActive }) => (isActive? 'pxp-active' : null)+ " pxp-animate"} > <span className="fa fa-home"></span>Dashboard </NavLink> </li>
                     <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="profile" ><span className="fa fa-pencil"></span>Edit Profile</NavLink></li>
                     <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="post"><span className="fa fa-file-text-o"></span>New Job Offer</NavLink></li>
                     <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="jobs"><span className="fa fa-briefcase"></span>Manage Jobs</NavLink></li>

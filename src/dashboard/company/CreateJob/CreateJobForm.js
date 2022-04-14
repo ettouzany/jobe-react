@@ -1,109 +1,94 @@
-import jobService from "../../services/job.service";
-import { useState } from "react";
-const CreateJob = () => {
-    // payment details
-    const [jobSalaryType, setJobSalaryType] = useState("");
-    const [jobSalary, setJobSalary] = useState("");
-    const [jobSalaryRangeFrom, setJobSalaryRangeFrom] = useState("");
-    const [jobSalaryRangeTo, setJobSalaryRangeTo] = useState("");
-    const [jobSalaryCurrency, setJobSalaryCurrency] = useState("");
+import { useEffect, useState } from "react";
+import jobService from "../../../services/job.service";
+import { Editor } from 'react-draft-wysiwyg';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { EditorState, convertToRaw,convertFromRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 
-    //job type
-    const [jobType, setJobType] = useState("");
-    const [jobTime, setJobTime] = useState("");
 
-    //How many people do you want to hire
-    const [numberOfPeople, setNumberOfPeople] = useState("");
-    
-    //planned start date
-    const [startDate, setStartDate] = useState("");
+const CreateJobForm = ({id}) => {
 
-    //job description
     const [jobTitle, setJobTitle] = useState("");
     const [jobLocation, setJobLocation] = useState("");
     const [jobDescription, setJobDescription] = useState("");
-
-    //Job settings (Country and language, etc)
-    const [jobCountry, setJobCountry] = useState("");
-    const [jobLanguage, setJobLanguage] = useState("");
-
-    //Apply method
-    const [applyMethod, setApplyMethod] = useState("");
-    const [applyEmail, setApplyEmail] = useState("");
-    const [applyLink, setApplyLink] = useState("");
-    const [applyPhone, setApplyPhone] = useState("");
-    const [applyAddress, setApplyAddress] = useState("");
-    const [applyWebsite, setApplyWebsite] = useState("");
-
-    //job requirements
-    const [jobRequirements, setJobRequirements] = useState("");
-    const [jobBenefits, setJobBenefits] = useState("");
-    const [jobSkills, setJobSkills] = useState("");
-    const [jobEducation, setJobEducation] = useState("");
-    const [jobExperience, setJobExperience] = useState("");
-    const [jobCertificates, setJobCertificates] = useState("");
-    const [jobCategories, setJobCategories] = useState("");
-    const [jobTags, setJobTags] = useState("");
+    const [jobCategory, setJobCategory] = useState("");
+    const [jobMinYearsOfExperience, setJobMinYearsOfExperience] = useState("");
+    const [jobCareerLevel, setJobCareerLevel] = useState("");
+    const [jobType, setJobType] = useState("");
+    const [jobSalaryType, setJobSalaryType] = useState("fixed");
+    const [jobSalary, setJobSalary] = useState("");
+    const [jobSalaryRangeFrom, setJobSalaryRangeFrom] = useState("1000");
+    const [jobSalaryRangeTo, setJobSalaryRangeTo] = useState("2000");
+    const [jobSalaryCurrency, setJobSalaryCurrency] = useState("MAD");
+    const [numberOfPeople, setNumberOfPeople] = useState(10);
     
-    //How quickly do you need to hire?
-    const [PostDuration, setPostDuration] = useState("");
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-    //submit job 
+    useEffect(() => {
+        if (id) {
+            jobService.getJobById(id).then(res => {
+                setJobTitle(res.data.jobTitle);
+                setJobLocation(res.data.jobLocation);
+                setJobDescription(res.data.jobDescription);
+                setJobCategory(res.data.jobCategory);
+                setJobMinYearsOfExperience(res.data.jobMinYearsOfExperience);
+                setJobCareerLevel(res.data.jobCareerLevel);
+                setJobType(res.data.jobType);
+                setJobSalaryType(res.data.jobSalaryType);
+                setJobSalary(res.data.jobSalary);
+                setJobSalaryRangeFrom(res.data.jobSalaryRangeFrom);
+                setJobSalaryRangeTo(res.data.jobSalaryRangeTo);
+                setJobSalaryCurrency(res.data.jobSalaryCurrency);
+                setNumberOfPeople(res.data.numberOfPeople);
+                //initialize editor
+                setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.jobDescription))));
+
+            });
+
+            
+        }
+    }, [id]);
+
     const handleJobSubmit = async (e) => {
         e.preventDefault();
         try {
             const job = {
+                
+                jobTitle,
+                jobDescription,
+                jobLocation,
+                jobMinYearsOfExperience,
+                jobCategory,
+                jobCareerLevel,
+                jobType,
                 jobSalaryType,
                 jobSalary,
                 jobSalaryRangeFrom,
                 jobSalaryRangeTo,
                 jobSalaryCurrency,
-                jobType,
-                jobTime,
                 numberOfPeople,
-                startDate,
-                jobTitle,
-                jobDescription,
-                jobLocation,
-                jobCountry,
-                jobLanguage,
-                applyMethod,
-                applyEmail,
-                applyLink,
-                applyPhone,
-                applyAddress,
-                applyWebsite,
-                jobRequirements,
-                jobBenefits,
-                jobSkills,
-                jobEducation,
-                jobExperience,
-                jobCertificates,
-                jobCategories,
-                jobTags,
-                PostDuration
+
+
             }
-            await jobService.addJob(job).then(
-                (response) => {
-                    console.log(response);
-                },
-                (error) => {
-                  console.log(error);
-                }
-            );
-        }
-        catch (error) {
-            console.log(error);
+            if (id) {
+                await jobService.updateJobById(id, job);
+            }
+            else {
+                await jobService.createJob(job);
+            }
+        } catch (err) {
+            console.log(err);
         }
     }
+    const onEditorStateChange = (editorState) => {
+        setEditorState(editorState);
+        setJobDescription(convertToRaw(editorState.getCurrentContent()));
 
-
-    return (
-        <div>
-            <h1>Create Job Offer</h1>
-                <p className="pxp-text-light">Edit your company profile page info.</p>
-                <form onSubmit={handleJobSubmit}>
+        console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+      };
+    return(
+        <form onSubmit={handleJobSubmit}>
                     <div className="row mt-4 mt-lg-5">
                         <div className="col-xxl-6">
                             <div className="mb-3">
@@ -125,7 +110,12 @@ const CreateJob = () => {
                         <div className="col-md-6 col-xxl-3">
                             <div className="mb-3">
                                 <label htmlFor="pxp-company-job-category" className="form-label">Category</label>
-                                <select id="pxp-company-job-category" className="form-select">
+                                <select 
+                                id="jobCategory"
+                                value={jobCategory}
+                                onChange={(e) => setJobCategory(e.target.value)}
+                                onBlur={(e) => setJobCategory(e.target.value)}
+                                className="form-control">
                                     <option>Select a category</option>
                                     <option>Marketing &amp; Communication</option>
                                     <option>Software Engineering</option>
@@ -145,23 +135,46 @@ const CreateJob = () => {
 
                     <div className="mb-3">
                         <label htmlFor="pxp-company-job-description" className="form-label">Job description</label>
+                        <Editor
+                            
+                            wrapperClassName="form-control p-0 overflow-hidden richeditorhight"
+                            editorClassName="p-3"
+                            toolbarClassName="toolbar-class"
+                            editorState={editorState}
+                            onEditorStateChange={onEditorStateChange}
+                            />
+                        {/* <textarea
+                        disabled
+                        value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+                        ></textarea>
                         <textarea 
                         value={jobDescription}
                         onChange={(e) => setJobDescription(e.target.value)}
-                        className="form-control" id="pxp-company-job-description" placeholder="Type the description here..."></textarea>
+                        className="form-control" id="pxp-company-job-description" placeholder="Type the description here..."></textarea> */}
                     </div>
 
                     <div className="row">
                         <div className="col-md-6 col-xxl-3">
                             <div className="mb-3">
-                                <label htmlFor="pxp-company-job-experience" className="form-label">Experience</label>
-                                <input type="text" id="pxp-company-job-experience" className="form-control" placeholder="E.g. Minimum 3 years"/>
+                                <label htmlFor="pxp-company-job-experience" className="form-label">Minimum years of experience</label>
+                                <input 
+                                id="jobMinYearsOfExperience"
+                                name="jobMinYearsOfExperience"
+                                value={jobMinYearsOfExperience}
+                                onChange={(e) => setJobMinYearsOfExperience(e.target.value)}
+                                type="number" className="form-control" placeholder="E.g. Minimum 3 years"/>
                             </div>
                         </div>
                         <div className="col-md-6 col-xxl-3">
                             <div className="mb-3">
-                                <label htmlFor="pxp-company-job-level" className="form-label">Career level</label>
-                                <select id="pxp-company-job-level" className="form-select">
+                                <label htmlFor="jobCareerLevel" className="form-label">Career level</label>
+                                <select 
+                                id="jobCareerLevel"
+                                name="jobCareerLevel"
+                                value={jobCareerLevel}
+                                onChange={(e) => setJobCareerLevel(e.target.value)}
+                                onBlur={(e) => setJobCareerLevel(e.target.value)}
+                                className="form-select">
                                     <option>No Experience</option>
                                     <option>Entry-Level</option>
                                     <option>Mid-Level</option>
@@ -173,7 +186,13 @@ const CreateJob = () => {
                         <div className="col-md-6 col-xxl-3">
                             <div className="mb-3">
                                 <label htmlFor="pxp-company-job-type" className="form-label">Employment type</label>
-                                <select id="pxp-company-job-type" className="form-select">
+                                <select
+                                id="jobType"
+                                name="jobType"
+                                value={jobType}
+                                onChange={(e) => setJobType(e.target.value)}
+                                onBlur={(e) => setJobType(e.target.value)}
+                                className="form-select">
                                     <option>Full Time</option>
                                     <option>Part Time</option>
                                     <option>Remote</option>
@@ -186,7 +205,13 @@ const CreateJob = () => {
                         <div className="col-md-6 col-xxl-3">
                             <div className="mb-3">
                                 <label htmlFor="pxp-company-job-salary" className="form-label">Salary range</label>
-                                <select id="pxp-company-job-salary" className="form-select">
+                                <select 
+                                id="jobSalary"
+                                name="jobSalary"
+                                value={jobSalary}
+                                onChange={(e) => setJobSalary(e.target.value)}
+                                onBlur={(e) => setJobSalary(e.target.value)}
+                                className="form-select">
                                     <option>Select range</option>
                                     <option>$700 - $1000</option>
                                     <option>$1000 - $1200</option>
@@ -207,8 +232,7 @@ const CreateJob = () => {
                         <button className="btn rounded-pill pxp-section-cta-o ms-3 ">Save Draft</button>
                     </div>
                 </form>
-        </div>
-    );
-};
+    )
+}
 
-export default CreateJob;
+export default CreateJobForm;

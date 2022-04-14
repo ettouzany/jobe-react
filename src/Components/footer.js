@@ -1,6 +1,3 @@
-import { Editor } from 'react-draft-wysiwyg';
-import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
 
 
 const Footer = ()=>{
@@ -99,12 +96,7 @@ const Footer = ()=>{
                     </div>
                 </div>
             </div>
-            <Editor
-              wrapperClassName="wrapper-class"
-              editorClassName="editor-class"
-              toolbarClassName="toolbar-class"
-            
-            />
+
         </footer>
     )
 }

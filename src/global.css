@@ -1,4 +1,10 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+.richeditorhight
+{
+    min-height: 340px;
+}
+
 .googleBtn>div {
     background-color: transparent !important;
 }

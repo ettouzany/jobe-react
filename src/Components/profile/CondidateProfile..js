@@ -1,11 +1,16 @@
 import { Component } from "react";
-import ProfileInfo from "./ProfileInfo";
 import userService from "../../services/user.service";
 import {
     useLocation,
     useNavigate,
     useParams
   } from "react-router-dom";
+import CompanyContact from "./Components/CompanyContact";
+import HeaderProfile from "./Components/HeaderProfile";
+import UserInfo from "./Components/UserInfo";
+import CompanyInfo from "./Components/CompanyInfo";
+import ContactForm from "./Components/ContactForm";
+import UserContact from "./Components/UserContact";
   
   function withRouter(Component) {
     function ComponentWithRouterProp(props) {
@@ -56,7 +61,33 @@ export class CandidateProfile extends Component {
     render() {
         return (
            this.state.loading ? <div>Loading...</div> :
-           <ProfileInfo user={this.state.user}/>
+          (
+            <div>
+              <section>
+                        <div className="pxp-container">
+                            <div className="pxp-single-candidate-container">
+                                <div className="row justify-content-center">
+                                    <div className="col-xl-9">
+                                    <HeaderProfile  user={this.state.user}/>
+                                    <div className="row mt-4 mt-lg-5">
+                                            <div className="col-lg-7 col-xxl-8">
+                                              <UserInfo user={this.state.user}/>
+
+                                              <CompanyInfo company={this.state.user}/>
+                                            </div>
+                                            <div className="col-lg-5 col-xxl-4">
+                                              <CompanyContact company={this.state.user}/>
+                                              <UserContact user={this.state.user}/>
+                                              <ContactForm user={this.state.user}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+            </div>
+          )
         );
     }
 
