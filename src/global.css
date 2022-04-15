@@ -20,7 +20,10 @@
 #pxp-apply-modal {
     width: 50% !important;
 }
-
+.my-modal {
+    width: 800px; 
+    max-width: 100%;
+} 
 
 /*
 Template Name: Jobster

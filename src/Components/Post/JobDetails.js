@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import jobService from "../../services/job.service";
 import Apply from "./Apply";
+import Spinner from "react-bootstrap/Spinner";
+//convertFromRaw
+import { EditorState, convertToRaw,convertFromRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
-const JobDetails = (props) => {
-  const [job, setJob] = useState({
-    jobTitle: "Senior Editor",
-    company: "Artistre Studio",
-    jobLocation: "San Francisco, CA",
-    type: "Full-time",
-    date: "3 days ago",
-  });
+
+const JobDetails = ({id}) => {
+  const [job, setJob] = useState();
+  const [loading, setLoading] = useState(true);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   useEffect(() => {
     requestJobData();
-  }, [props.id]);
+    setLoading(true);
+  }, [id]);
 
   async function requestJobData() {
     try {
-      await jobService.getJobById(props.id).then(
+      await jobService.getJobById(id).then(
           (response) => {
-              console.log(response);
               setJob(response.data);
+              setLoading(false);
+              setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(response.data.jobDescription))));
+
           },
           (error) => {
             console.log(error);
@@ -35,7 +39,8 @@ const JobDetails = (props) => {
 
 
   return (
-    <div className="tab-pane active">
+    loading==false ? (
+      <div className="tab-pane active">
       <div
         className="pxp-jobs-tab-pane-cover pxp-cover"
         style={{
@@ -124,7 +129,7 @@ const JobDetails = (props) => {
                   </li>
                 </ul>
               </div>
-              <Apply jobId={props.id}/>
+              <Apply jobId={id}/>
             </div>
           </div>
         </div>
@@ -194,104 +199,10 @@ const JobDetails = (props) => {
         </div>
 
         <div className="pxp-jobs-tab-pane-content-details mt-4 mt-lg-5">
-          <h4>Overview</h4>
-          <p>
-            As a Product Designer, you will work within a Product Delivery Team
-            fused with UX, engineering, product and data talent. You will help
-            the team design beautiful interfaces that solve business challenges
-            for our clients. We work with a number of Tier 1 banks on building
-            web-based applications for AML, KYC and Sanctions List management
-            workflows. This role is ideal if you are looking to segue your
-            career into the FinTech or Big Data arenas.
-          </p>
-          <div className="mt-4">
-            <h4>Responsabilities</h4>
-            <ul>
-              <li>
-                Be involved in every step of the product design cycle from
-                discovery to developer handoff and user acceptance testing.
-              </li>
-              <li>
-                Work with BAs, product managers and tech teams to lead the
-                Product Design
-              </li>
-              <li>
-                Maintain quality of the design process and ensure that when
-                designs are translated into code they accurately reflect the
-                design specifications.
-              </li>
-              <li>
-                Accurately estimate design tickets during planning sessions.
-              </li>
-              <li>
-                Contribute to sketching sessions involving non-designersCreate,
-                iterate and maintain UI deliverables including sketch files,
-                style guides, high fidelity prototypes, micro interaction
-                specifications and pattern libraries.
-              </li>
-              <li>
-                Ensure design choices are data led by identifying assumptions to
-                test each sprint, and work with the analysts in your team to
-                plan moderated usability test sessions.
-              </li>
-              <li>
-                Design pixel perfect responsive UI’s and understand that
-                adopting common interface patterns is better for UX than
-                reinventing the wheel
-              </li>
-              <li>
-                Present your work to the wider business at Show &amp; Tell
-                sessions.
-              </li>
-            </ul>
-          </div>
-          <div className="mt-4">
-            <h4>Requirements</h4>
-            <ul>
-              <li>
-                4+ years of system administration experience with the Microsoft
-                Server platform (2012/2016, Microsoft IIS, Active Directory)
-              </li>
-              <li>
-                3+ years of hands-on system administration experience with AWS
-                (EC2, Elastic Load Balancing, Multi AZ, etc.)
-              </li>
-              <li>4+ years of SQL Server, MySQL</li>
-              <li>
-                Working knowledge of Encryption techniques and protocols,
-                Multi-factor authentication, Data protection, Penetration
-                testing, Security threats
-              </li>
-              <li>Bachelors Degree, or 4+ years of hands-on IT experience</li>
-            </ul>
-          </div>
-          <div className="mt-4">
-            <h4>Skills</h4>
-            <ul>
-              <li>
-                Programming experience developing web applications with the
-                Microsoft .NET stack and a basic knowledge of SQL
-              </li>
-              <li>
-                Development experience with Angular, Node.JS, or ColdFusion
-              </li>
-              <li>HTML, CSS, XHTML, XML</li>
-              <li>
-                Hypervisors, SAN’s, load balancers, firewalls, and Web
-                Application Firewall (WAF)
-              </li>
-              <li>Experience with Higher Logic (a collaboration platform)</li>
-              <li>MongoDB, Drupal</li>
-              <li>Mobile App Development (iOS and Android)</li>
-              <li>Episerver CMS</li>
-              <li>Microsoft Team Foundation Server</li>
-              <li>Speaker Management System (Planstone)</li>
-            </ul>
-          </div>
-
+          <div dangerouslySetInnerHTML={{ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) }} />
           <div className="mt-4 mt-lg-5">
             
-            <Apply jobId={props.id}/>
+            <Apply jobId={id}/>
           </div>
         </div>
       </div>
@@ -299,6 +210,14 @@ const JobDetails = (props) => {
         <span className="fa fa-angle-left"></span> Back
       </button>
     </div>
+    ):(
+      //still loading
+      <div className="tab-pane active" >
+        <div className="d-flex justify-content-center   h-100  align-items-center" style={{minHeight:"360px"}}>
+              <Spinner animation="grow" />
+            </div>
+      </div>
+    )
   );
 };
 

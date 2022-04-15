@@ -22,7 +22,7 @@ const getJobs = ({search,location,categorie,filters,limit,page}) => {
     return axios.get(API_URL+ "/all",{ headers: authHeader(),params });
 };
 
-const getmyJobs = ({search,location,categorie,filters,limit,page}) => {
+const getmyJobs = ({search,location,categorie,filters,limit,page,status}) => {
     //add params ro axios get request
     const params = new URLSearchParams();
     if(search) params.append("search", search);
@@ -31,6 +31,7 @@ const getmyJobs = ({search,location,categorie,filters,limit,page}) => {
     if(filters) params.append("filters", filters);
     if(limit) params.append("limit", limit);
     if(page) params.append("page", page);
+    if(status) params.append("status", status);
     return axios.get(API_URL+ "",{ headers: authHeader(),params });
 };
 
@@ -44,12 +45,21 @@ const updateJobById = (id, job) => {
     return axios.patch(API_URL + "/" + id, job, { headers: authHeader() });
 };
 
+const changeStatus = (ids, status) => {
+    return axios.patch(API_URL + "/status", { ids, status }, { headers: authHeader() });
+}
+
+const deleteJobById = (id) => {
+    return axios.delete(API_URL + "/" + id, { headers: authHeader() });
+};
 const jobService = {
     addJob,
     getJobs,
     getmyJobs,
     getJobById,
     updateJobById,
+    changeStatus,
+    deleteJobById
 };
 
 export default jobService;
