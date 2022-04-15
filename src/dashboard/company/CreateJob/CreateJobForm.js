@@ -75,7 +75,7 @@ const CreateJobForm = ({id}) => {
                 await jobService.updateJobById(id, job);
             }
             else {
-                await jobService.createJob(job);
+                await jobService.addJob(job);
             }
         } catch (err) {
             console.log(err);

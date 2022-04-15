@@ -18,7 +18,7 @@ import Logout from "./Logout";
 import CreateJob from "./dashboard/company/CreateJob/CreateJob";
 import Modal from 'react-bootstrap/Modal'
 import ProfileEdit from "./dashboard/company/ProfileEdit";
-import ManageJobs from "./dashboard/company/ManageJobs";
+import ManageJobs from "./dashboard/company/ManageJobs/ManageJobs";
 import Condadates from "./dashboard/company/Condadates";
 import Dashboard from "./dashboard/company/CompanyDashboard";
 import Footer from "./Components/footer";
@@ -87,7 +87,9 @@ const App = () => {
             <Route exact path="company" element={!currentUser ? ( <Login /> ) : (  <CompanyDashboardLayout/>)}>
                 <Route path="" element={<Dashboard />}/>          
                 <Route path="post" element={<CreateJob />}/>          
-                <Route path="profile" element={<ProfileEdit />}/>          
+                <Route path="profile" element={<ProfileEdit />}/> 
+
+                <Route path="jobs/:id" element={<CreateJob />}/>          
                 <Route path="jobs" element={<ManageJobs />}/>          
                 <Route path="condadates" element={<Condadates />}/>
             </Route>
@@ -101,7 +103,7 @@ const App = () => {
                 <Route path="switch" element={<CondadateApplications />}/>
             </Route>
           </Route>
-          <Route path="p/:id" element={!currentUser ? ( <Login /> ) : (  <CondidateProfile id={1}/>)} >
+          <Route path="p/:id" element={!currentUser ? ( <Login /> ) : (  <CondidateProfile/>)} >
           </Route>
 
           <Route path="/search" element={<Search />} />

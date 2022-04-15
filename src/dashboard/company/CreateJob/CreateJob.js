@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateJobForm from "./CreateJobForm";
+import { useParams } from "react-router-dom";
 const CreateJob = () => {
     // payment details
     // const [jobSalaryType, setJobSalaryType] = useState("");
@@ -82,13 +83,17 @@ const CreateJob = () => {
     // numberOfPeople: string;
     //submit job 
 
+    //get job id from useParams
+
+        const params = useParams();
 
 
     return (
+
         <div>
             <h1>Create Job Offer</h1>
                 <p className="pxp-text-light">Edit your company profile page info.</p>
-                <CreateJobForm id={3} />
+                <CreateJobForm id={params.id} />
         </div>
     );
 };

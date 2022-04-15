@@ -1,6 +1,7 @@
-import statisticsService from "../../services/statistics.service";
+import statisticsService from "../../../services/statistics.service";
 import { useEffect, useState } from "react";
-import jobService from "../../services/job.service";
+import jobService from "../../../services/job.service";
+import { Link } from "react-router-dom";
 const ManageJobs = (props) => {
 
     const [jobsStatistics, setjobsStatistics] = useState({
@@ -8,10 +9,10 @@ const ManageJobs = (props) => {
         total_applications: 0,
       });
       const [jobs, setjobs] = useState([]);
-
+      const [pages, setPages] = useState([{index:1,active:true}]);
       useEffect(() => {
         requestjobsStatisticsData();
-        requestJobsData();
+        requestJobsData(1);
       }, []);
 
       async function requestjobsStatisticsData() {
@@ -20,6 +21,16 @@ const ManageJobs = (props) => {
               (response) => {
                   console.log(response);
                   setjobsStatistics(response.data);
+                  //set a page to each 10 jobs
+                  
+                const numberOfPages = Math.ceil(response.data.total_jobs/10);
+                let apages = [];
+                for(let i=0; i<numberOfPages; i++){
+                    apages.push({index:i+1,active:i===0});
+                }
+                setPages(apages);   
+                console.log(apages);
+
               },
               (error) => {
                 console.log(error);
@@ -31,12 +42,13 @@ const ManageJobs = (props) => {
         }
       }
     
-        async function requestJobsData() {
+        async function requestJobsData(page) {
             try {
-                await jobService.getmyJobs({start: 0}).then(
+                await jobService.getmyJobs({limit: 10,page}).then(
                     (response) => {
                         console.log(response);
                         setjobs(response.data);
+                        
                     },
                     (error) => {
                         console.log(error);
@@ -47,7 +59,7 @@ const ManageJobs = (props) => {
                 console.log(error);
             }
         }
-
+        let i =1;
     return (
         <div >
                 <h1>Manage Jobs</h1>
@@ -116,7 +128,11 @@ const ManageJobs = (props) => {
                                 <td>
                                     <div className="pxp-dashboard-table-options">
                                         <ul className="list-unstyled">
-                                            <li><button title="Edit"><span className="fa fa-pencil"></span></button></li>
+                                            <li><Link to={`${id}`} className="pxp-link-primary"><button 
+                                            title="Edit"><span className="fa fa-pencil"></span></button></Link>
+                                                {/* <button 
+                                            title="Edit"><span className="fa fa-pencil"></span></button> */}
+                                            </li>
                                             <li><button title="Preview"><span className="fa fa-eye"></span></button></li>
                                             <li><button title="Delete"><span className="fa fa-trash-o"></span></button></li>
                                         </ul>
@@ -133,16 +149,21 @@ const ManageJobs = (props) => {
                             <div className="col-auto">
                                 <nav className="mt-3 mt-sm-0" aria-label="Jobs list pagination">
                                     <ul className="pagination pxp-pagination">
-                                        <li className="page-item active" aria-current="page">
-                                            <span className="page-link">1</span>
-                                        </li>
-                                        <li className="page-item"><a className="page-link" href="/">2</a></li>
-                                        <li className="page-item"><a className="page-link" href="/">3</a></li>
+                                        {
+                                            pages.map((page,index)=> {
+                                                return (
+                                                    <li key={index}
+                                                    //add class active if the page is active
+                                                    className={page.active? "page-item active" : "page-item"}
+                                                    onClick={()=>{requestJobsData(page.index)}}
+                                                    aria-current="page">
+                                                    <span className="page-link">{page.index}</span>
+                                                    </li>
+                                                );
+                                            })
+                                        }
                                     </ul>
                                 </nav>
-                            </div>
-                            <div className="col-auto">
-                                <a href="/" className="btn rounded-pill pxp-section-cta mt-3 mt-sm-0">Show me more<span className="fa fa-angle-right"></span></a>
                             </div>
                         </div>
                     </div>

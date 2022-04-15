@@ -15,7 +15,8 @@ class Search extends Component {
     this.state = {
       loading: true,
       jobId: 1,
-      start: 0,
+      limit: 10,
+      page: 1,
       jobs: [],
       error: null,
     };
@@ -26,7 +27,7 @@ class Search extends Component {
     this.setState({
       loading: true,
     });
-    // e.start= this.state.start;
+    e.limit= this.state.limit;
     console.log(e);
       try {
         await jobService.getJobs(e).then(

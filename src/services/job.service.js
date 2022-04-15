@@ -10,25 +10,27 @@ const addJob = (job) => {
     return axios.post(API_URL, job, { headers: authHeader() });
 };
 
-const getJobs = ({search,location,categorie,filters,start}) => {
+const getJobs = ({search,location,categorie,filters,limit,page}) => {
     //add params ro axios get request
     const params = new URLSearchParams();
     if(search) params.append("search", search);
     if(location) params.append("location", location);
     if(categorie) params.append("categorie", categorie);
     if(filters) params.append("filters", filters);
-    if(start) params.append("start", start);
+    if(limit) params.append("limit", limit);
+    if(page) params.append("page", page);
     return axios.get(API_URL+ "/all",{ headers: authHeader(),params });
 };
 
-const getmyJobs = ({search,location,categorie,filters,start}) => {
+const getmyJobs = ({search,location,categorie,filters,limit,page}) => {
     //add params ro axios get request
     const params = new URLSearchParams();
     if(search) params.append("search", search);
     if(location) params.append("location", location);
     if(categorie) params.append("categorie", categorie);
     if(filters) params.append("filters", filters);
-    if(start) params.append("start", start);
+    if(limit) params.append("limit", limit);
+    if(page) params.append("page", page);
     return axios.get(API_URL+ "",{ headers: authHeader(),params });
 };
 
@@ -37,13 +39,6 @@ const getJobById = (id) => {
     return axios.get(API_URL + "/" + id, { headers: authHeader() });
 };
 
-const getAllPublicJobs = () => {
-    return axios.get(API_URL + "/public");
-};
-
-const getAllPrivateJobs = () => {
-    return axios.get(API_URL + "/private", { headers: authHeader() });
-};
 
 const updateJobById = (id, job) => {
     return axios.patch(API_URL + "/" + id, job, { headers: authHeader() });
@@ -53,8 +48,6 @@ const jobService = {
     addJob,
     getJobs,
     getmyJobs,
-    getAllPublicJobs,
-    getAllPrivateJobs,
     getJobById,
     updateJobById,
 };
