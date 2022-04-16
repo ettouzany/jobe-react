@@ -31,6 +31,7 @@ import CondadateDashboard from "./dashboard/condidate/CondadateDashboard";
 import condadateFavourites from "./dashboard/condidate/CondadateFavourites";
 import CondadateApplications from "./dashboard/condidate/CondadateApplications";
 import CondadateProfileEdit from "./dashboard/condidate/profile/CondidateProfileEdit";
+import ManageApplications from "./dashboard/company/ManageApplications/ManageApplications";
 
 const App = () => {
 
@@ -91,7 +92,7 @@ const App = () => {
 
                 <Route path="jobs/:id" element={<CreateJob />}/>          
                 <Route path="jobs" element={<ManageJobs />}/>          
-                <Route path="condadates" element={<Condadates />}/>
+                <Route path="condadates" element={<ManageApplications />}/>
             </Route>
             <Route path="" element={!currentUser ? ( <Login /> ) : (  <CondadateDashboardLayout/>)}>
                 <Route path="" element={<CondadateDashboard />}/>
