@@ -4,12 +4,11 @@ import applicationService from "../../../services/application.service";
 import { Link } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal'
 import ApplicationDetails from "./ApplicationDetails";
+import draftToHtml from "draftjs-to-html";
+
 const ManageApplications = (props) => {
 
-    const [applicationsStatistics, setapplicationsStatistics] = useState({
-        total_jobs: 0,
-        total_applications: 0,
-      });
+    const [applicationsStatistics, setapplicationsStatistics] = useState(0);
       const [applications, setapplications] = useState([]);
       const [pages, setPages] = useState([]);
       const [activePage, setActivePage] = useState(1);
@@ -26,7 +25,6 @@ const ManageApplications = (props) => {
         const handleShowPreview = (id) => setPreview(id);
 
       useEffect(() => {
-        requestapplicationsStatisticsData();
         requestApplicationsData(1);
       }, []);
 
@@ -58,12 +56,11 @@ const ManageApplications = (props) => {
     
         async function requestApplicationsData(page) {
             try {
-                await applicationService.getApplications({limit: 10,page,search,status:searchStatus}).then(
+                await applicationService.getJobCreatorApplications({limit: 10,page,search,status:searchStatus}).then(
                     (response) => {
-                        console.log(response);
-                        setapplications(response.data);
-                        
-                    },
+                        setapplications(response.data[0]);
+                        setapplicationsStatistics(response.data[1]);
+                    }, 
                     (error) => {
                         console.log(error);
                     }
@@ -147,7 +144,7 @@ const ManageApplications = (props) => {
                         </div>
                         <div className="col-auto order-1 order-sm-2">
                             <div className="pxp-company-dashboard-applications-search mb-3">
-                                <div className="pxp-company-dashboard-applications-search-results me-3">{applicationsStatistics.total_applications} applications</div>
+                                <div className="pxp-company-dashboard-applications-search-results me-3">{applicationsStatistics} applications</div>
                                 <div className="pxp-company-dashboard-applications-search-search-form">
                                     <div className="input-group">
                                         <span className="input-group-text"><span className="fa fa-search"></span></span>
@@ -188,23 +185,23 @@ const ManageApplications = (props) => {
                             { applications.map((application) => {
                         const {
                           id,
-                          applicationTitle,
                           status,
-                            date,
-                          job
+                          date,
+                          job,
+                          user
                           //applicationDescription,userId
                         } = application;
                         return (
                             <tr key={id}>
                             <td><input type="checkbox" className="form-check-input"/></td>
                             <td style={{width: "3%"}}>
-                                <div className="pxp-company-dashboard-candidate-avatar pxp-cover" style={{backgroundImage: "url(images/avatar-1.jpg)"}}></div>
+                                <div className="pxp-company-dashboard-candidate-avatar pxp-cover" style={{backgroundImage: `url(${user.photo})`}}></div>
                             </td>
                             <td>
-                                <a href="/">
-                                    <div className="pxp-company-dashboard-job-title">Scott Goodwin</div>
-                                    <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>San Francisco, CA</div>
-                                </a>
+                                <Link to={`/p/${user.id}`}>
+                                    <div className="pxp-company-dashboard-job-title">{user.first_name} {user.last_name}</div>
+                                    <div className="pxp-company-dashboard-job-location"><span className="fa fa-globe me-1"></span>{user.city}, {user.country}</div>
+                                </Link>
                             </td>
                             <td><div className="pxp-company-dashboard-job-category">{job.jobTitle}</div></td>
                             <td><div className="pxp-company-dashboard-job-status"><span className="badge rounded-pill bg-success">{status}</span></div></td>
@@ -214,7 +211,10 @@ const ManageApplications = (props) => {
                             <td>
                                 <div className="pxp-dashboard-table-options">
                                     <ul className="list-unstyled">
-                                        <li><button title="View profile"><span className="fa fa-eye"></span></button></li>
+                                        <li><button 
+                                        type="button"
+                                        onClick={()=>{handleShowPreview(id)}}
+                                        title="View profile"><span className="fa fa-eye"></span></button></li>
                                         <li><button title="Send message"><span className="fa fa-envelope-o"></span></button></li>
                                         <li><button title="Approve"><span className="fa fa-check"></span></button></li>
                                         <li><button title="Reject"><span className="fa fa-ban"></span></button></li>

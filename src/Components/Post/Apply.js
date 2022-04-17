@@ -50,17 +50,17 @@ const Apply = ({jobId}) => {
             <div className="modal-body">
             
                     <div className='container'>
-                    <div className="mb-3">
-                        <h5 className="modal-title text-center my-4" id="signinModal">Cover Letter</h5>
-                        <Editor
-                            
-                            wrapperClassName="form-control p-0 overflow-hidden richeditorhight"
-                            editorClassName="p-3"
-                            toolbarClassName="toolbar-class"
-                            editorState={editorState}
-                            onEditorStateChange={onEditorStateChange}
-                            />
-                    </div>
+                        <div className="mb-3">
+                            <h5 className="modal-title text-center my-4" id="signinModal">Cover Letter</h5>
+                            <Editor
+                                
+                                wrapperClassName="form-control p-0 overflow-hidden richeditorhight"
+                                editorClassName="p-3"
+                                toolbarClassName="toolbar-class"
+                                editorState={editorState}
+                                onEditorStateChange={onEditorStateChange}
+                                />
+                        </div>
 
                         <div className="pxp-user-modal-fig text-center">
                             {/* <!-- <img src="./Jobster - Home v1_files/signin-fig.png" alt="Sign in"> --> */}

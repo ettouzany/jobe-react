@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth/auth-header";
 
-const API_URL = "https://joba-be.herokuapp.com/jobs";
+const API_URL = "https://joba.onrender.com/jobs";
 
 const getAllPublicPosts = () => {
     return axios.get(API_URL + "/public");

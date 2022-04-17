@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://joba-be.herokuapp.com/auth";
+const API_URL = "https://joba.onrender.com/auth";
 
 const signup = (email, password) => {
     return axios

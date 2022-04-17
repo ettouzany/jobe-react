@@ -28,16 +28,16 @@ const CompanyDashboardLayout = (props) => {
                 <div className="pxp-dashboard-side-label mt-3 mt-lg-4">Insights</div>
                 <ul className="list-unstyled">
                     <li>
-                        <a href="company-dashboard-inbox.html" className="d-flex justify-content-between align-items-center">
-                            <div><span className="fa fa-envelope-o"></span>Inbox</div>
+                        <NavLink className={({ isActive }) => (isActive ? 'pxp-active d-flex justify-content-between align-items-center' : "d-flex justify-content-between align-items-center")} to="inbox">
+                        <div><span className="fa fa-envelope-o"></span>Inbox</div>
                             <span className="badge rounded-pill">14</span>
-                        </a>
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="company-dashboard-notifications.html" className="d-flex justify-content-between align-items-center">
-                            <div><span className="fa fa-bell-o"></span>Notifications</div>
-                            <span className="badge rounded-pill">5</span>
-                        </a>
+                        <NavLink className={({ isActive }) => (isActive ? 'pxp-active d-flex justify-content-between align-items-center' : "d-flex justify-content-between align-items-center")} to="notifications">
+                        <div><span className="fa fa-bell-o"></span>Notifications</div>
+                            <span className="badge rounded-pill">14</span>
+                        </NavLink>
                     </li>
                 </ul>
             </nav>

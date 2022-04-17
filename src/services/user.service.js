@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth/auth-header";
 
-const API_URL = "https://joba-be.herokuapp.com";
+const API_URL = "https://joba.onrender.com";
 
 
 const setIsCompanyAndStatus = (isCompany, status) => {

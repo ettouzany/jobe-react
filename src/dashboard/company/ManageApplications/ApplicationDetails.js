@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import jobService from "../../../services/job.service";
+import applicationService from "../../../services/application.service";
 import Spinner from "react-bootstrap/Spinner";
 //convertFromRaw
 import { EditorState, convertToRaw,convertFromRaw } from "draft-js";
@@ -7,23 +7,22 @@ import draftToHtml from "draftjs-to-html";
 
 
 const ApplicationDetails = ({id}) => {
-  const [job, setJob] = useState();
+  const [application, setapplication] = useState();
   const [loading, setLoading] = useState(true);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   useEffect(() => {
-    requestJobData();
+    requestapplicationData();
     setLoading(true);
   }, [id]);
 
-  async function requestJobData() {
+  async function requestapplicationData() {
     try {
-      await jobService.getJobById(id).then(
+      await applicationService.getApplicationById(id).then(
           (response) => {
-              setJob(response.data);
+              setapplication(response.data);
               setLoading(false);
-              setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(response.data.jobDescription))));
-
+              setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(response.data.letter))));
           },
           (error) => {
             console.log(error);
@@ -40,27 +39,24 @@ const ApplicationDetails = ({id}) => {
   return (
     loading==false ? (
       <div className="tab-pane active">
-      <div
-        className="pxp-jobs-tab-pane-cover pxp-cover"
-        style={{
-          backgroundImage:
-            "url(https://pixelprime.co/themes/jobster/images/office-1.jpg)",
-        }}
-      ></div>
-      <div
-        className="pxp-jobs-tab-pane-logo"
-        style={{
-          backgroundImage:
-            "url(https://pixelprime.co/themes/jobster/images/company-logo-1.png)",
-        }}
-      ></div>
-      <div className="pxp-jobs-tab-pane-content">
-        
+        <div className="pxp-single-candidate-hero pxp-cover pxp-boxed" style={{backgroundImage :"url(images/candidate-cover-1.jpg)",height: "312px"}}>
+            <div className="pxp-hero-opacity"></div>
+            <div className="pxp-single-candidate-hero-caption">
+                <div className="pxp-single-candidate-hero-content d-block text-center">
+                    <div className="pxp-single-candidate-hero-avatar d-inline-block" style={{backgroundImage: `url(${application.user.photo})`}}></div>
+                    <div className="pxp-single-candidate-hero-name ms-0 mt-3">
+                        <h1>{application.user.first_name} {application.user.last_name}</h1>
+                        <div className="pxp-single-candidate-hero-title">{application.user.title}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="p-3 pxp-single-candidate-content">
+          <h2>Cover Letter</h2>
+          <div dangerouslySetInnerHTML={{ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) }} />
+
+        </div>
       </div>
-      <button className="btn rounded-pill pxp-jobs-tab-pane-close-btn d-inline-block d-lg-none">
-        <span className="fa fa-angle-left"></span> Back
-      </button>
-    </div>
     ):(
       //still loading
       <div className="tab-pane active" >
