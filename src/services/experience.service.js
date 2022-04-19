@@ -1,5 +1,5 @@
 import axios from "axios"
-const API_URL = "https://joba.onrender.com/experiences";
+const API_URL = "http://localhost:3000/experiences";
 import authHeader from "./auth/auth-header";
 
 
@@ -8,18 +8,18 @@ const addExperience = (experience) => {
 }
 
 const updateExperience = (experience) => {
-    return axios.patch(API_URL+"/"+experience.id, experience, { headers: authHeader() });
+    return axios.patch(API_URL + "/" + experience.id, experience, { headers: authHeader() });
 }
 
-const getExperiences = ({start}) => {
+const getExperiences = ({ start }) => {
     //add params ro axios get request
     const params = new URLSearchParams();
-    if(start) params.append("start", start);
-    return axios.get(API_URL+ "",{ headers: authHeader(),params });
+    if (start) params.append("start", start);
+    return axios.get(API_URL + "", { headers: authHeader(), params });
 }
 
 const deleteExperience = (id) => {
-    return axios.delete(API_URL+"/"+id, { headers: authHeader() });
+    return axios.delete(API_URL + "/" + id, { headers: authHeader() });
 }
 
 const experienceService = {

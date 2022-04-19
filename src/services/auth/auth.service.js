@@ -1,6 +1,7 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
-const API_URL = "https://joba.onrender.com/auth";
+const API_URL = "http://localhost:3000/auth";
 
 const signup = (email, password) => {
     return axios
@@ -50,6 +51,34 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
+//get user id from token
+const getUserId = () => {
+    const user = getCurrentUser().token;
+    if (user) {
+        //jwt_decode
+        const decoded = jwt_decode(user);
+        console.log(decoded);
+        return decoded.id;
+    }
+    return null;
+};
+
+//refresh token
+const refreshToken = () => {
+    const user = getCurrentUser();
+    if (user) {
+        return axios
+            .post(API_URL + "/refresh", {
+                token: user.token,
+            })
+            .then((response) => {
+                if (response.data.token) {
+                    localStorage.setItem("user", JSON.stringify(response.data));
+                }
+                return response.data;
+            });
+    }
+}
 
 const authService = {
     loginGoogle,
@@ -57,6 +86,8 @@ const authService = {
     login,
     logout,
     getCurrentUser,
+    refreshToken,
+    getUserId
 };
 
 export default authService;

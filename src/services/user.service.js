@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth/auth-header";
 
-const API_URL = "https://joba.onrender.com";
+const API_URL = "http://localhost:3000";
 
 
 const setIsCompanyAndStatus = (isCompany, status) => {
@@ -12,7 +12,7 @@ const getUserFullData = () => {
 };
 
 const getUserFullDataById = (id) => {
-    return axios.get(API_URL + "/users/"+id, { headers: authHeader() });
+    return axios.get(API_URL + "/users/" + id, { headers: authHeader() });
 };
 //update user
 const updateUser = (user) => {

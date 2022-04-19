@@ -1,5 +1,5 @@
 import axios from "axios"
-const API_URL = "https://joba.onrender.com/userskills";
+const API_URL = "http://localhost:3000/userskills";
 import authHeader from "./auth/auth-header";
 
 
@@ -8,18 +8,18 @@ const addSkill = (skill) => {
 }
 
 const updateSkill = (skill) => {
-    return axios.patch(API_URL+"/"+skill.id, skill, { headers: authHeader() });
+    return axios.patch(API_URL + "/" + skill.id, skill, { headers: authHeader() });
 }
 
-const getSkills = ({start}) => {
+const getSkills = ({ start }) => {
     //add params ro axios get request
     const params = new URLSearchParams();
-    if(start) params.append("start", start);
-    return axios.get(API_URL+ "",{ headers: authHeader(),params });
+    if (start) params.append("start", start);
+    return axios.get(API_URL + "", { headers: authHeader(), params });
 }
 
 const deleteSkill = (id) => {
-    return axios.delete(API_URL+"/"+id, { headers: authHeader() });
+    return axios.delete(API_URL + "/" + id, { headers: authHeader() });
 }
 
 const skillService = {
