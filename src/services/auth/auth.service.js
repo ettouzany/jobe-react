@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-
+import userImage from '../../assets/user.svg';
 const API_URL = "http://localhost:3000/auth";
 
 const signup = (email, password) => {
@@ -26,6 +26,9 @@ const login = (username, password) => {
         })
         .then((response) => {
             if (response.data.token) {
+                if (!response.data.photo) {
+                    response.data.photo = userImage
+                }
                 localStorage.setItem("user", JSON.stringify(response.data));
             }
             return response.data;
@@ -37,6 +40,7 @@ const loginGoogle = (token) => {
         .post(API_URL + "/google", { token })
         .then((response) => {
             if (response.data.token) {
+
                 localStorage.setItem("user", JSON.stringify(response.data));
             }
             return response.data;

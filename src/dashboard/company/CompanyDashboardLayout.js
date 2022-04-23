@@ -1,17 +1,33 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
 import UserMenu from "../../Components/TopRightMenu/UserMenu";
 import authService from "../../services/auth/auth.service";
-
+import { useEffect, useState } from "react";
+import messageService from "../../services/messages.service";
+import notificationService from "../../services/notifications.service";
 const CompanyDashboardLayout = (props) => {
 
+    const [messages, setMessages] = useState(0);
+    const [notifications, setNotifications] = useState(0);
 
+
+    useEffect(() => {
+        const fetchMessages = async () => {
+            const { data } = await messageService.getUnreadMessagesCount();
+            setMessages(data);
+        };
+        const fetchNotifications = async () => {
+            const { data } = await notificationService.getUreadedNotificationsCount();
+            setNotifications(data);
+        };
+        fetchMessages();
+        fetchNotifications();
+    }, []);
     return (
         <div style={{ backgroundColor: "var(--pxpMainColorLight)" }}>
             <div className="pxp-dashboard-side-panel d-none d-lg-block">
                 <div className="pxp-logo">
-                    <Link to="/" className="pxp-animate"><span style={{ color: "var(--pxpMainColor)" }}>j</span>obrah</Link>
+                    <Link to="/" className="pxp-animate"><span style={{ color: "var(--pxpMainColor)" }}>Der</span>Work</Link>
                 </div>
 
                 <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">
@@ -30,13 +46,13 @@ const CompanyDashboardLayout = (props) => {
                         <li>
                             <NavLink className={({ isActive }) => (isActive ? 'pxp-active d-flex justify-content-between align-items-center' : "d-flex justify-content-between align-items-center")} to="inbox">
                                 <div><span className="fa fa-envelope-o"></span>Inbox</div>
-                                <span className="badge rounded-pill">14</span>
+                                <span className="badge rounded-pill">{messages}</span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink className={({ isActive }) => (isActive ? 'pxp-active d-flex justify-content-between align-items-center' : "d-flex justify-content-between align-items-center")} to="notifications">
                                 <div><span className="fa fa-bell-o"></span>Notifications</div>
-                                <span className="badge rounded-pill">14</span>
+                                <span className="badge rounded-pill">{notifications}</span>
                             </NavLink>
                         </li>
                     </ul>
@@ -44,7 +60,7 @@ const CompanyDashboardLayout = (props) => {
 
                 <nav className="pxp-dashboard-side-user-nav-container">
                     <div className="pxp-dashboard-side-user-nav">
-                        <UserMenu user={authService.getCurrentUser()} logoutCallback={() => authService.logout()} />
+                        <UserMenu hide={true} />
                     </div>
                 </nav>
             </div>

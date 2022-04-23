@@ -2,9 +2,9 @@ import bootstrap from "bootstrap/dist/js/bootstrap.min.js";
 
 import jQuery from "jquery/dist/jquery.min.js";
 import { render } from "react-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import AuthService from "./services/auth/auth.service";
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { BrowserRouter, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { StrictMode } from "react";
@@ -19,11 +19,9 @@ import CreateJob from "./dashboard/company/CreateJob/CreateJob";
 import Modal from 'react-bootstrap/Modal'
 import ProfileEdit from "./dashboard/company/ProfileEdit";
 import ManageJobs from "./dashboard/company/ManageJobs/ManageJobs";
-import Condadates from "./dashboard/company/Condadates";
 import Dashboard from "./dashboard/company/CompanyDashboard";
 import Footer from "./Components/footer";
 import CondidateProfile from "./Components/profile/CondidateProfile.";
-import userService from "./services/user.service";
 import { Outlet } from "react-router-dom";
 import CompanyDashboardLayout from "./dashboard/company/CompanyDashboardLayout";
 import CondadateDashboardLayout from "./dashboard/condidate/CondadateDashboardLayout";
@@ -35,40 +33,22 @@ import ManageApplications from "./dashboard/company/ManageApplications/ManageApp
 import Inbox from "./dashboard/company/Inbox/Inbox";
 import Notifications from "./dashboard/company/Notifications/Notifications";
 import authService from "./services/auth/auth.service";
+import Switch from "./dashboard/condidate/switch/Switch";
 
 const App = () => {
 
-    const navigate = useNavigate();
     const location = useLocation();
-    const [show, setShow] = useState(false);
-    const [questionnaire, setQuestionnaire] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const user = authService.getCurrentUser();
 
 
 
-
-    const setUserStatus = (isCompany) => {
-        userService.setIsCompanyAndStatus(isCompany, "active").then(
-            (response) => {
-                console.log(response);
-                let user = AuthService.getCurrentUser();
-                user.status = "active";
-                localStorage.setItem("user", JSON.stringify(user));
-                setCurrentUser(user);
-                setQuestionnaire(false);
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
-    }
 
 
     return (
         <div>
-            {location.pathname.search('/dashboard') ? <Menu loginCallback={handleShow} /> : null}
+            {user && user.status == "new" ? <LoginForm /> : null}
+            {location.pathname.search('/dashboard') ? <Menu /> : null}
             <Routes>
                 <Route path="dashboard" element={!authService.getCurrentUser() ? (<Login />) : (<Outlet />)} >
                     <Route exact path="company" element={!authService.getCurrentUser() ? (<Login />) : (<CompanyDashboardLayout />)}>
@@ -83,14 +63,17 @@ const App = () => {
                         <Route path="inbox/:id" element={<Inbox />} />
                         <Route path="notifications" element={<Notifications />} />
                     </Route>
-                    <Route path="" element={!authService.getCurrentUser() ? (<Login />) : (<CondadateDashboardLayout />)}>
-                        <Route path="" element={<CondadateDashboard />} />
-                        <Route path="post" element={<CreateJob />} />
+                    <Route path="" element={!authService.getCurrentUser() ? (<Login />) : (user && user.company ? <CompanyDashboardLayout /> : <CondadateDashboardLayout />)}>
+                        <Route path="" element={user && user.company ? <Dashboard /> : <CondadateDashboard />} />
+                        <Route path="post" element={user && user.company ? <CreateJob /> : <Navigate to="../switch" replace />} />
                         <Route path="profile" element={<CondadateProfileEdit />} />
                         <Route path="applications" element={<CondadateApplications />} />
                         <Route path="favourites" element={<condadateFavourites />} />
                         <Route path="password" element={<CondadateApplications />} />
-                        <Route path="switch" element={<CondadateApplications />} />
+                        <Route path="switch" element={<Switch />} />
+                        <Route path="inbox" element={<Inbox />} />
+                        <Route path="inbox/:id" element={<Inbox />} />
+                        <Route path="notifications" element={<Notifications />} />
                     </Route>
                 </Route>
                 <Route path="p/:id" element={!authService.getCurrentUser() ? (<Login />) : (<CondidateProfile />)} >
@@ -104,36 +87,8 @@ const App = () => {
 
             </Routes>
 
-            <Modal centered={true} show={show} onHide={handleClose} className="modal fade pxp-user-modal" id="pxp-signin-modal">
-                <Modal.Header closeButton>
-                </Modal.Header>
-                <div className="modal-body">
-                    <div className="pxp-user-modal-fig text-center">
-                        {/* <!-- <img src="./Jobster - Home v1_files/signin-fig.png" alt="Sign in"> --> */}
-                    </div>
-                    <h5 className="modal-title text-center mt-4" id="signinModal">Welcome back!</h5>
-                    <LoginForm />
-                </div>
-            </Modal>
-            <Modal fullscreen={true} show={questionnaire} onHide={handleClose} className="modal fade pxp-user-modal" id="pxp-signin-modal">
-                {/* <Modal.Header closeButton>
-        </Modal.Header> */}
-                <div className="modal-body">
-                    <div className="pxp-user-modal-fig text-center">
-                        {/* <!-- <img src="./Jobster - Home v1_files/signin-fig.png" alt="Sign in"> --> */}
-                    </div>
-                    <h5 className="modal-title text-center mt-4" id="signinModal">Welcome back!</h5>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <button className="btn btn-primary btn-block" onClick={() => setUserStatus(true)}>I am a company</button>
-                        </div>
-                        <div className="col-md-6">
-                            <button className="btn btn-primary btn-block" onClick={() => setUserStatus(false)}>I am a condadate</button>
-                        </div>
-                    </div>
 
-                </div>
-            </Modal>
+
             {location.pathname.search('/dashboard') ? <Footer /> : null}
 
         </div>

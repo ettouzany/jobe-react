@@ -2,7 +2,7 @@
 import messageService from "../../../services/messages.service";
 import { useState } from "react";
 
-const SendMessage = ({ id }) => {
+const SendMessage = ({ chatId, userId, messageHandler }) => {
 
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -10,7 +10,8 @@ const SendMessage = ({ id }) => {
     //handleSendMessage
     const handleSendMessage = async () => {
         setLoading(true);
-        const { data } = await messageService.sendMessage(message, id);
+        messageHandler(message);
+        // const { data } = await messageService.sendMessage(message, userId, chatId);
     }
 
     return (

@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth/auth.service";
+import ChatsTable from "./notifications/ChatsTable";
 import NotificationsTable from "./notifications/notificationsTable";
 
-const UserMenu = () => {
+const UserMenu = ({ hide }) => {
 
     const user = authService.getCurrentUser();
 
@@ -17,8 +18,9 @@ const UserMenu = () => {
 
 
         <nav className="pxp-user-nav pxp-on-light">
-            <a href="company-dashboard-new-job.html" className="btn rounded-pill pxp-nav-btn">Post a Job</a>
-            <NotificationsTable />
+            <Link to={"/dashboard/post"} className="btn rounded-pill pxp-nav-btn" hidden={hide}>Post a Job</Link>
+            <div hidden={hide}><NotificationsTable /></div>
+            <div hidden={hide}><ChatsTable /></div>
 
             <div className="dropdown pxp-user-nav-dropdown">
                 <a href="index.html" className="dropdown-toggle" data-bs-toggle="dropdown">
@@ -26,7 +28,7 @@ const UserMenu = () => {
                     <div className="pxp-user-nav-name d-none d-md-block">{user.firstName}</div>
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
-                    <li><Link to={user.company ? "/dashboard/company/" : "/dashboard/"} className="dropdown-item" >Dashboard</Link></li>
+                    <li><Link to={"/dashboard/"} className="dropdown-item" >Dashboard</Link></li>
                     <li><Link to={"/dashboard/profile"} className="dropdown-item" >Edit profile</Link></li>
                     <li onClick={logout}><a className="dropdown-item"  >Logout</a></li>
                 </ul>

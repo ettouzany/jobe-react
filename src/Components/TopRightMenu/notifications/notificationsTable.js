@@ -43,7 +43,7 @@ const NotificationsTable = () => {
                         <Notification key={notification.id} notification={notification} />
                     ))}
                 <li><hr className="dropdown-divider" /></li>
-                <li><Link className="dropdown-item pxp-link" to="/dashboard/company/notifications">Read All</Link></li>
+                <li><Link className="dropdown-item pxp-link" to="/dashboard/notifications">Read All</Link></li>
             </ul>
         </div>
 

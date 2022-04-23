@@ -2,31 +2,35 @@ import axios from "axios";
 import authHeader from "./auth/auth-header";
 
 const API_URL = "http://localhost:3000/messages";
+const API_URL_CHAT = "http://localhost:3000/chats";
 
 
-const getmessages = () => {
+const getchat = () => {
     //add params ro axios get request
-    return axios.get(API_URL, { headers: authHeader() });
+    return axios.get(API_URL_CHAT, { headers: authHeader() });
 };
 
 const getMessagesByChatId = (chatId) => {
     //add params ro axios get request
-    return axios.get(API_URL + "/chat/" + chatId, { headers: authHeader() });
+    return axios.get(API_URL_CHAT + '/' + chatId, { headers: authHeader() });
 }
 
-const sendMessage = (message, userId) => {
+const sendMessage = (message, userId, chatId) => {
 
-    return axios.post(API_URL, { message, userId }, { headers: authHeader() });
+    return axios.post(API_URL, { message, userId, chatId }, { headers: authHeader() });
 }
 
+const getUnreadMessagesCount = () => {
+    return axios.post(API_URL_CHAT + '/unread', {}, { headers: authHeader() });
+}
 
 
 
 const messageService = {
-    getmessages,
+    getchat,
     sendMessage,
     getMessagesByChatId,
-    
+    getUnreadMessagesCount
 };
 
 export default messageService;

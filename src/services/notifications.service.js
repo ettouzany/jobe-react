@@ -16,12 +16,14 @@ const getnotifications = ({ search, filters, limit, page }) => {
 };
 
 
-
+const getUreadedNotificationsCount = () => {
+    return axios.get(API_URL + "/count", { headers: authHeader() });
+}
 
 
 const notificationService = {
     getnotifications,
-
+    getUreadedNotificationsCount
 };
 
 export default notificationService;

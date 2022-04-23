@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import authService from "../services/auth/auth.service";
 import UserMenu from "./TopRightMenu/UserMenu";
+import Sign from "./TopRightMenu/Sign";
 const Menu = (props) => {
   return (
     <header className="pxp-header fixed-top">
@@ -9,7 +10,7 @@ const Menu = (props) => {
           <div className="pxp-logo-nav-container">
             <div className="pxp-logo">
               <a href="/" className="pxp-animate">
-                <span style={{ color: "var(--pxpMainColor)" }}>j</span>obrah
+                <span style={{ color: "var(--pxpMainColor)" }}>Der</span>Work
               </a>
             </div>
             <div className="pxp-nav-trigger navbar d-xl-none flex-fill">
@@ -74,22 +75,14 @@ const Menu = (props) => {
           </div>
           <nav className="pxp-user-nav pxp-on-light">
 
-            <Link to="dashboard/post"><span className="btn rounded-pill pxp-nav-btn">
+            {/* <Link to="dashboard/post"><span className="btn rounded-pill pxp-nav-btn">
               Post a Job
             </span>
-            </Link>
+            </Link> */}
 
             {
               !authService.getCurrentUser() ?
-                <a
-
-                  className="btn rounded-pill pxp-nav-btn pxp-user-nav-trigger pxp-on-light"
-                  data-bs-toggle="modal"
-                  onClick={props.loginCallback}
-                  role="button"
-                >
-                  Sign in / Login
-                </a>
+                <Sign />
                 :
                 <UserMenu />
             }
@@ -99,6 +92,7 @@ const Menu = (props) => {
         </div>
 
       </div>
+
     </header>
   );
 };
