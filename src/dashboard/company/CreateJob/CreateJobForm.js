@@ -4,6 +4,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
+import categorieService from "../../../services/categories.service";
 
 
 
@@ -12,7 +13,7 @@ const CreateJobForm = ({ id }) => {
     const [jobTitle, setJobTitle] = useState("");
     const [jobLocation, setJobLocation] = useState("");
     const [jobDescription, setJobDescription] = useState("");
-    const [jobCategory, setJobCategory] = useState("");
+    const [categorieId, setcategorieId] = useState("");
     const [jobMinYearsOfExperience, setJobMinYearsOfExperience] = useState("");
     const [jobCareerLevel, setJobCareerLevel] = useState("");
     const [jobType, setJobType] = useState("");
@@ -24,6 +25,7 @@ const CreateJobForm = ({ id }) => {
     const [numberOfPeople, setNumberOfPeople] = useState(10);
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [categories, SetCategories] = useState([]);
 
     useEffect(() => {
         if (id) {
@@ -31,7 +33,7 @@ const CreateJobForm = ({ id }) => {
                 setJobTitle(res.data.jobTitle);
                 setJobLocation(res.data.jobLocation);
                 setJobDescription(res.data.jobDescription);
-                setJobCategory(res.data.jobCategory);
+                setcategorieId(res.data.categorieId);
                 setJobMinYearsOfExperience(res.data.jobMinYearsOfExperience);
                 setJobCareerLevel(res.data.jobCareerLevel);
                 setJobType(res.data.jobType);
@@ -45,9 +47,10 @@ const CreateJobForm = ({ id }) => {
                 setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.jobDescription))));
 
             });
-
-
         }
+        categorieService.getCategories().then(res => {
+            SetCategories(res.data);
+        });
     }, [id]);
 
     const handleJobSubmit = async (e) => {
@@ -59,7 +62,7 @@ const CreateJobForm = ({ id }) => {
                 jobDescription,
                 jobLocation,
                 jobMinYearsOfExperience,
-                jobCategory,
+                categorieId,
                 jobCareerLevel,
                 jobType,
                 jobSalaryType,
@@ -111,23 +114,14 @@ const CreateJobForm = ({ id }) => {
                     <div className="mb-3">
                         <label htmlFor="pxp-company-job-category" className="form-label">Category</label>
                         <select
-                            id="jobCategory"
-                            value={jobCategory}
-                            onChange={(e) => setJobCategory(e.target.value)}
-                            onBlur={(e) => setJobCategory(e.target.value)}
+                            id="categorieId"
+                            value={categorieId}
+                            onChange={(e) => setcategorieId(e.target.value)}
+                            onBlur={(e) => setcategorieId(e.target.value)}
                             className="form-control">
-                            <option>Select a category</option>
-                            <option>Marketing &amp; Communication</option>
-                            <option>Software Engineering</option>
-                            <option>Project Management</option>
-                            <option>Finance</option>
-                            <option>Retail</option>
-                            <option>Sales</option>
-                            <option>Manufacturing</option>
-                            <option>IT</option>
-                            <option>Business Development</option>
-                            <option>Human Resources</option>
-                            <option>Customer Service</option>
+                            {
+                                categories.map(c => <option key={c.id} value={c.id}>{c.label}</option>)
+                            }
                         </select>
                     </div>
                 </div>

@@ -66,6 +66,10 @@ const App = () => {
                     <Route path="" element={!authService.getCurrentUser() ? (<Login />) : (user && user.company ? <CompanyDashboardLayout /> : <CondadateDashboardLayout />)}>
                         <Route path="" element={user && user.company ? <Dashboard /> : <CondadateDashboard />} />
                         <Route path="post" element={user && user.company ? <CreateJob /> : <Navigate to="../switch" replace />} />
+                        <Route path="jobs/:id" element={user && user.company ? <CreateJob /> : <Navigate to="../switch" replace />} />
+                        <Route path="jobs" element={user && user.company ? <ManageJobs /> : <Navigate to="../switch" replace />} />
+                        <Route path="condadates" element={user && user.company ? <ManageApplications /> : <Navigate to="../switch" replace />} />
+
                         <Route path="profile" element={<CondadateProfileEdit />} />
                         <Route path="applications" element={<CondadateApplications />} />
                         <Route path="favourites" element={<condadateFavourites />} />

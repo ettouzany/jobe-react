@@ -35,7 +35,7 @@ const CondadateProfileEdit = () => {
                 //update user image in local storage
                 const user = JSON.parse(localStorage.getItem("user"));
                 user.photo = res.data.photo;
-                localStorage.setItem("user", JSON.stringify(user ));
+                localStorage.setItem("user", JSON.stringify(user));
             })
         }
     }

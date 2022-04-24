@@ -31,12 +31,38 @@ const NameTittleForm = ({ user, handleUserChange }) => {
                         </div>
                         <div className="col-12">
                             <div className="mb-3">
-                                <label htmlFor="pxp-candidate-title" className="form-label">Title</label>
+                                <label htmlFor="title" className="form-label">Title</label>
                                 <input
                                     id="title"
                                     name="title"
                                     onChange={(e) => handleUserChange(e)}
                                     value={user.title}
+
+                                    type="text" className="form-control" placeholder="E.g. Web Designer" />
+                            </div>
+                        </div>
+
+                        <div className="col-12">
+                            <div className="mb-3">
+                                <label htmlFor="city" className="form-label">City</label>
+                                <input
+                                    id="city"
+                                    name="city"
+                                    onChange={(e) => handleUserChange(e)}
+                                    value={user.city}
+
+                                    type="text" className="form-control" placeholder="E.g. Web Designer" />
+                            </div>
+                        </div>
+
+                        <div className="col-12">
+                            <div className="mb-3">
+                                <label htmlFor="country" className="form-label">Country</label>
+                                <input
+                                    id="country"
+                                    name="country"
+                                    onChange={(e) => handleUserChange(e)}
+                                    value={user.country}
 
                                     type="text" className="form-control" placeholder="E.g. Web Designer" />
                             </div>

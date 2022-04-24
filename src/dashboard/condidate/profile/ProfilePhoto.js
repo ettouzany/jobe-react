@@ -4,7 +4,6 @@ import { useState } from "react";
 
 
 const ProfilePhoto = ({ user, handleNewPhoto }) => {
-
   const [croppie, setCroppie] = useState(null)
   const [data, setData] = useState(null)
 

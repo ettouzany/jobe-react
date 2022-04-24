@@ -14,8 +14,15 @@ const Step2 = ({
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         userService.getUserFullData().then(user => {
-            setUser(user.data);
-            setLoading(false);
+            userService.getUserLocation().then(location => {
+                const a = user.data;
+                a.city = location.data.city;
+                a.country = location.data.country;
+                a.countryCode = location.data.countryCode;
+                setUser(a);
+                setLoading(false);
+            })
+
         })
     }, []);
     const handleNewPhoto = (ablob) => {
@@ -41,9 +48,9 @@ const Step2 = ({
                 setUser(user.data);
                 let auser = authService.getCurrentUser();
                 auser.photo = user.data.photo;
-                auser.companyname = user.data.companyname;
+                auser.companyName = user.data.companyname;
                 localStorage.setItem("user", JSON.stringify(auser));
-                handelNext();
+                handleSkip();
             })
         else
             userService.updateUserNameImage(user).then(user => {
@@ -70,20 +77,22 @@ const Step2 = ({
                             {user.isCompany ? <NameIndustryForm user={user} handleUserChange={handleUserChange} /> :
                                 <NameTittleForm user={user} handleUserChange={handleUserChange} />}
                         </div>
+                        <div className='row '>
+                            <div className='col-6 '>
+                                <button className='btn rounded-pill pxp-subsection-cta m-2 ' style={{ float: "right" }} color="primary" variant="contained" type="button" onClick={handelPrev} >
+                                    Previus
+                                </button>
+                            </div>
+                            <div className='col-6 '>
+                                <button className='btn rounded-pill pxp-section-cta m-2' color="primary" variant="contained" type="button" onClick={handleSubmit}>
+                                    {user.isCompany ? (<span>Finish</span>) : (<span>Next</span>)}
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
             }
-            <div className='row '>
-                <div className='col-6 '>
-                    <button className='btn rounded-pill pxp-subsection-cta m-2 ' style={{ float: "right" }} color="primary" variant="contained" type="button" onClick={handelPrev} >
-                        Previus
-                    </button>
-                </div>
-                <div className='col-6 '>
-                    <button className='btn rounded-pill pxp-section-cta m-2' color="primary" variant="contained" type="button" onClick={handleSubmit}>
-                        Next
-                    </button>
-                </div>
-            </div>
+
         </div>
     )
 }

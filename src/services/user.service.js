@@ -39,6 +39,9 @@ const updateCompanyNameImage = (user) => {
     filedata.append('photo', user.photo);
     filedata.append('companyname', user.companyname);
     filedata.append('industry', user.industry);
+    filedata.append('city', user.city);
+    filedata.append('country', user.country);
+    filedata.append('countryCode', user.countryCode);
     return axios.patch(API_URL + "/users/companyname", filedata, { headers: authHeader() });
 };
 
@@ -47,15 +50,22 @@ const updateUserNameImage = (user) => {
     filedata.append('photo', user.photo);
     filedata.append('first_name', user.first_name);
     filedata.append('last_name', user.last_name);
-    filedata.append('industry', user.title);
+    filedata.append('title', user.title);
+    filedata.append('city', user.city);
+    filedata.append('country', user.country);
+    filedata.append('countryCode', user.countryCode);
     return axios.patch(API_URL + "/users/usertitle", filedata, { headers: authHeader() });
 };
+
+const getUserLocation = () => {
+    return axios.get("http://ip-api.com/json");
+}
 const userService = {
     updateUser,
     UpdateCompany,
     updateCompanyNameImage,
     updateUserNameImage,
-
+    getUserLocation,
     setIsCompanyAndStatus,
     getUserFullData,
     getUserFullDataById,

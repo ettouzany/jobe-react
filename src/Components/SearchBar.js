@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import categorieService from "../services/categories.service";
 
 // const CATEGORIES = ["Business Development", "Construction", "Customer Service", "Education", "Engineering", "Finance", "Healthcare", "Human Resources", "Information Technology", "Legal", "Manufacturing", "Marketing", "Operations", "Retail", "Sales", "Support", "Technical Support", "Other"];
 
@@ -9,13 +10,15 @@ const SearchBar = (props) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    // requestCats();
+    categorieService.getCategories().then(res => {
+      setCategories(res.data);
+    });
   }, []);
 
-  const handleSearchSubmit = (e)=> {
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log(search, location, category);
-    props.searchCallback({search, location, category});
+    props.searchCallback({ search, location, category });
   };
 
   // async function requestCats() {
@@ -72,11 +75,10 @@ const SearchBar = (props) => {
               <option value="" key="">
                 All categories
               </option>
-              
-              {categories? categories.map((category) => {
+              {categories ? categories.map((category) => {
                 return (
-                  <option key={category} value={category}>
-                    {category}
+                  <option key={category.id} value={category.id}>
+                    {category.label}
                   </option>
                 );
               }) : null}
