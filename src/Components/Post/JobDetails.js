@@ -52,7 +52,7 @@ const JobDetails = ({ id }) => {
                   `url(${job.user.cover})`,
               }}
             ></div>
-            :null
+            : null
         }
         <div
           className="pxp-jobs-tab-pane-logo"
@@ -68,7 +68,7 @@ const JobDetails = ({ id }) => {
               <div className="pxp-jobs-tab-pane-company-location">
                 by
                 <Link
-                  to={`/p/${job.userId}`}
+                  to={`/${job.userId}`}
                   className="pxp-jobs-tab-pane-company m-1"
                 >
                   {job.user.companyname}

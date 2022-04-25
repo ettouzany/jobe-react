@@ -52,7 +52,7 @@ const App = () => {
     //             state_cookie_domain: "localhost",
     //             cancel_on_tap_outside: true,
 
-        
+
     //         },
     //     }
     // );
@@ -96,14 +96,15 @@ const App = () => {
                         <Route path="notifications" element={<Notifications />} />
                     </Route>
                 </Route>
-                <Route path="p/:id" element={!authService.getCurrentUser() ? (<Login />) : (<CondidateProfile />)} >
-                </Route>
+
 
                 <Route path="/search" element={<Search />} />
                 <Route path="/companies" element={<Companies />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={!authService.getCurrentUser() ? (<SignUp />) : (<Navigate to="/" replace />)} />
                 <Route path="/login" element={!authService.getCurrentUser() ? (<Login />) : (<Navigate to="/" replace />)} />
+                <Route path="/:id" element={<CondidateProfile />} >
+                </Route>
                 <Route path="/" element={<Index />} />
 
             </Routes>
