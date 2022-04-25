@@ -34,6 +34,7 @@ import Inbox from "./dashboard/company/Inbox/Inbox";
 import Notifications from "./dashboard/company/Notifications/Notifications";
 import authService from "./services/auth/auth.service";
 import Switch from "./dashboard/condidate/switch/Switch";
+import Companies from "./pages/conpanies/Companies";
 
 const App = () => {
 
@@ -41,11 +42,26 @@ const App = () => {
 
     const user = authService.getCurrentUser();
 
+    // useGoogleOneTapLogin(
+    //     {
+    //         onError: error => console.log(error),
+    //         onSuccess: googleUser => console.log(googleUser),
+    //         googleAccountConfigs: {
+    //             client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    //             prompt_parent_id: "google-login-button",
+    //             state_cookie_domain: "localhost",
+    //             cancel_on_tap_outside: true,
+
+        
+    //         },
+    //     }
+    // );
 
 
 
 
     return (
+
         <div>
             {user && user.status == "new" ? <LoginForm /> : null}
             {location.pathname.search('/dashboard') ? <Menu /> : null}
@@ -84,6 +100,7 @@ const App = () => {
                 </Route>
 
                 <Route path="/search" element={<Search />} />
+                <Route path="/companies" element={<Companies />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signup" element={!authService.getCurrentUser() ? (<SignUp />) : (<Navigate to="/" replace />)} />
                 <Route path="/login" element={!authService.getCurrentUser() ? (<Login />) : (<Navigate to="/" replace />)} />

@@ -70,6 +70,10 @@ const Menu = (props) => {
                   <Link to="/search">Find Jobs</Link>
                   {/* <a href="/search"  className="dropdown-toggle" data-bs-toggle="dropdown">Find Jobs</a> */}
                 </li>
+                <li>
+                  <Link to="/companies">Companies</Link>
+                  {/* <a href="/search"  className="dropdown-toggle" data-bs-toggle="dropdown">Find Jobs</a> */}
+                </li>
               </ul>
             </nav>
           </div>

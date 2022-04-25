@@ -8,7 +8,11 @@ const HeaderProfile = ({ user }) => {
                 <div className="pxp-single-candidate-hero-content d-block text-center">
                     <div className="pxp-single-candidate-hero-avatar d-inline-block" style={{backgroundImage: `url(${user.photo})`}}></div>
                     <div className="pxp-single-candidate-hero-name ms-0 mt-3">
-                        <h1>{user.first_name} {user.last_name}</h1>
+                        {
+                            user.isCompany ?
+                            <h1>{user.companyname}</h1>:
+                            <h1>{user.first_name} {user.last_name}</h1>
+                            }
                         <div className="pxp-single-candidate-hero-title">{user.title}</div>
                     </div>
                 </div>

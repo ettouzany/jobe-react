@@ -6,12 +6,12 @@ import GoogleButton from 'react-google-button';
 import SignUpStepper from "../../pages/signin/component/SignUpStepper";
 import Modal from 'react-bootstrap/Modal';
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useState(authService.getCurrentUser());
-
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -47,8 +47,6 @@ const LoginForm = (props) => {
     } catch (err) {
       console.log(err);
     }
-
-
   }
 
   const [show, setShow] = useState(false);

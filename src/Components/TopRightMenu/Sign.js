@@ -1,12 +1,45 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import LoginForm from '../auth/LoginForm';
+import { useGoogleOneTapLogin } from "react-google-one-tap-login";
+import { useNavigate } from "react-router-dom";
+import authService from "../../services/auth/auth.service";
 
 const Sign = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const navigate = useNavigate();
+
+
+
+    const handleLoginGoogle = async (googleData) => {
+        console.log(googleData);
+        try {
+          await authService.loginGoogle(googleData.credential).then(
+            (data) => {
+              navigate("/");
+              // setUser(data);
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+    useGoogleOneTapLogin({
+        onError: error => console.log(error),
+        // onSuccess: response => handleLoginGoogle(response),
+
+        googleAccountConfigs: {
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        callback: data=> handleLoginGoogle(data)
+        },
+    });
 
     return (
         <div>

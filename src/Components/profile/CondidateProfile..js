@@ -71,13 +71,24 @@ export class CandidateProfile extends Component {
                                     <HeaderProfile  user={this.state.user}/>
                                     <div className="row mt-4 mt-lg-5">
                                             <div className="col-lg-7 col-xxl-8">
-                                              <UserInfo user={this.state.user}/>
-
-                                              <CompanyInfo company={this.state.user}/>
+                                              
+                                              
+                                              {
+                                                this.state.user.isCompany ?
+                                                <CompanyInfo company={this.state.user}/>
+                                                :
+                                                <UserInfo user={this.state.user}/>
+                                                
+                                              }
                                             </div>
                                             <div className="col-lg-5 col-xxl-4">
-                                              <CompanyContact company={this.state.user}/>
-                                              <UserContact user={this.state.user}/>
+                                              {
+                                                this.state.user.isCompany ?
+                                                <CompanyContact company={this.state.user}/>
+                                                :
+                                                <UserContact user={this.state.user}/>
+                                                
+                                              }
                                               <ContactForm user={this.state.user}/>
                                             </div>
                                         </div>

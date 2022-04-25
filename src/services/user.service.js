@@ -60,6 +60,17 @@ const updateUserNameImage = (user) => {
 const getUserLocation = () => {
     return axios.get("http://ip-api.com/json");
 }
+const getCompanies = ({ search, location, category, filters, limit, page }) => {
+    //add params ro axios get request
+    const params = new URLSearchParams();
+    if (search) params.append("search", search);
+    if (location) params.append("location", location);
+    if (category) params.append("categorie", category);
+    if (filters) params.append("filters", filters);
+    if (limit) params.append("limit", +limit);
+    if (page) params.append("page", +page);
+    return axios.get(API_URL + "/users/companies", { headers: authHeader() , params });
+};
 const userService = {
     updateUser,
     UpdateCompany,
@@ -69,8 +80,7 @@ const userService = {
     setIsCompanyAndStatus,
     getUserFullData,
     getUserFullDataById,
-
-
+    getCompanies
 };
 
 export default userService;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LoginForm from "./Components/auth/LoginForm";
+
 class Login extends Component {
     constructor() {
         super();
@@ -11,10 +12,13 @@ class Login extends Component {
 
 
 
+
     render() {
         return (
             //div.container
+            
             <div className="container" style={{ minHeight: "calc(100vh - 100px)" }}>
+
                 <div className="row align-items-center justify-content-center my-auto d-flex position-absolute h-100">
                     <div className="col-md-6">
                         <div className="pxp-login-form p-5 m-5">
