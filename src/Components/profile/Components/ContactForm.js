@@ -2,7 +2,7 @@ import { useState } from "react";
 import messageService from "../../../services/messages.service";
 import { useNavigate } from "react-router-dom";
 
-const ContactForm = ({ id }) => {
+const ContactForm = ({ id,name }) => {
     const [message, setMessage] = useState();
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const ContactForm = ({ id }) => {
 
     return (
         <div className="pxp-single-candidate-side-panel mt-4 mt-lg-5">
-            <h3>Contact Rebecca</h3>
+            <h3>Contact {name}</h3>
             <form className="mt-4" onSubmit={handleSubmit}>
                 {/* <div className="mb-3">
                     <label htmlFor="contact-candidate-name" className="form-label">Name</label>

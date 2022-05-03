@@ -57,7 +57,8 @@ const getCurrentUser = () => {
 
 //get user id from token
 const getUserId = () => {
-    const user = getCurrentUser().token;
+
+    const user = getCurrentUser()?.token;
     if (user) {
         //jwt_decode
         const decoded = jwt_decode(user);

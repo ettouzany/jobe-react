@@ -1,5 +1,4 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
-
 .profile-pic {
     color: transparent;
     transition: all 0.3s ease;
@@ -8,6 +7,14 @@
     align-items: center;
     position: relative;
     transition: all 0.3s ease;
+}
+
+#myVideo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .profile-pic .profile-pic,
@@ -75,9 +82,6 @@
     padding: 5px 12px;
 }
 
-
-
-
 .richeditorheight {
     min-height: 340px;
 }
@@ -119,7 +123,6 @@
     width: 100%;
     height: 4px;
     box-shadow: 0 4px 3px 1px #00000012;
-
 }
 
 .stepper .stepper-header .stepper-progress .fill {
@@ -130,6 +133,7 @@
     margin: 0;
     padding: 0;
 }
+
 
 /*
 Template Name: Jobster
@@ -1271,34 +1275,29 @@ a:hover {
         opacity: 0;
         visibility: hidden;
     }
-
     3%,
     20% {
         transform: translateY(100%);
         opacity: 1;
         visibility: visible;
     }
-
     23%,
     40% {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
     }
-
     43%,
     60% {
         transform: translateY(-100%);
         opacity: 1;
         visibility: visible;
     }
-
     63% {
         transform: translateY(-200%);
         opacity: 0;
         visibility: visible;
     }
-
     100% {
         transform: translateY(-300%);
         opacity: 0;
@@ -6763,15 +6762,12 @@ ol.pxp-comments-list {
         margin-left: 0;
         margin-right: 0;
     }
-
     .pxp-hero-boxed-info-list-container {
         left: 0;
     }
-
     .pxp-hero-boxed-info-card-small {
         top: 14%;
     }
-
     .pxp-hero-boxed-icon-circle-2 {
         bottom: 140px;
         right: 200px;
@@ -6782,38 +6778,30 @@ ol.pxp-comments-list {
     .pxp-hero-center-carousel {
         width: 43%;
     }
-
     .pxp-hero-stats-item:nth-child(1) {
         right: 16%;
     }
-
     .pxp-hero-stats-item:nth-child(2) {
         right: 19%;
     }
-
     .pxp-hero-stats-item:nth-child(3) {
         right: 22%;
     }
-
     .pxp-hero-boxed-content {
         margin-left: -80px;
         margin-right: -80px;
     }
-
     .pxp-hero-boxed-icon-circles {
         display: none;
     }
-
     .pxp-info-fig {
         padding-bottom: 60px;
         padding-right: 120px;
     }
-
     .pxp-info-fig-image,
     .pxp-info-fig::before {
         height: 500px;
     }
-
     .pxp-info-fig::before {
         left: 60px;
         right: 60px;
@@ -6824,31 +6812,26 @@ ol.pxp-comments-list {
     .pxp-pl-80 {
         padding-left: 0;
     }
-
     .pxp-hero h1 {
         font-size: 64px;
         line-height: 72px;
         letter-spacing: -2px;
     }
-
     .pxp-hero-card,
     .pxp-hero-card-dark,
     .pxp-hero-card-light {
         height: 46vh;
         min-height: 460px;
     }
-
     .pxp-hero-right-bg-card {
         width: 56%;
     }
-
     .pxp-dashboard-stats-card-icon {
         width: 80px;
         height: 80px;
         border-radius: 20px;
         font-size: 36px;
     }
-
     .pxp-dashboard-stats-card-info-number {
         font-size: 36px;
         line-height: 36px;
@@ -6861,30 +6844,24 @@ ol.pxp-comments-list {
         margin-right: 0;
         padding: 60px;
     }
-
     .pxp-hero-boxed-icon-circles {
         display: block;
     }
-
     .pxp-hero-boxed-info-cards {
         display: none;
     }
-
     .pxp-dashboard-stats-card-icon {
         width: 70px;
         height: 70px;
         border-radius: 10px;
         font-size: 28px;
     }
-
     .pxp-dashboard-stats-card {
         padding: 20px;
     }
-
     .pxp-dashboard-stats-card-info {
         padding-left: 10px;
     }
-
     .pxp-dashboard-stats-card-info-number {
         font-size: 28px;
         line-height: 28px;
@@ -6895,67 +6872,55 @@ ol.pxp-comments-list {
     .pxp-hero-boxed-icon-circles {
         display: none;
     }
-
     .pxp-search-container {
         width: 50%;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-1 {
         width: 80px;
         height: 80px;
         left: 5%;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-2 {
         width: 90px;
         height: 90px;
         left: 12%;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-3 {
         width: 160px;
         height: 160px;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-4 {
         width: 80px;
         height: 80px;
         top: 280px;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-5 {
         width: 60px;
         height: 60px;
         left: 13%;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-6 {
         width: 100px;
         height: 100px;
         right: 10%;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-7 {
         width: 70px;
         height: 70px;
         right: 5%;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-8 {
         width: 160px;
         height: 160px;
     }
-
     .pxp-testimonials-1-circles-item.pxp-item-10 {
         width: 90px;
         height: 90px;
         right: 10%;
     }
-
     .pxp-jobs-list-side-filter.pxp-with-details .pxp-list-side-filter-panel {
         display: none;
     }
-
     .pxp-dashboard-inbox-messages-container {
         position: fixed;
         top: 0;
@@ -6968,20 +6933,16 @@ ol.pxp-comments-list {
         height: auto;
         border-radius: 0;
     }
-
     .pxp-dashboard-inbox-messages-container.pxp-show {
         display: block;
     }
-
     .pxp-dashboard-inbox-list {
         height: auto;
         overflow-y: visible;
     }
-
     .pxp-dashboard-inbox-list ul li.pxp-active .pxp-dashboard-inbox-list-item {
         background-color: #fff;
     }
-
     .pxp-dashboard-inbox-messages-close-btn {
         background-color: #fff;
         color: var(--pxpTextColor);
@@ -6992,12 +6953,10 @@ ol.pxp-comments-list {
         transition-property: color, background-color;
         margin-left: 20px;
     }
-
     .pxp-dashboard-inbox-messages-close-btn:hover {
         background-color: var(--pxpTextColor);
         color: #fff;
     }
-
     .pxp-dashboard-inbox-list-item {
         padding: 0 0 30px 0;
     }
@@ -7007,82 +6966,65 @@ ol.pxp-comments-list {
     .pxp-hero-right-bg-card {
         display: none;
     }
-
     .pxp-user-nav-trigger.pxp-on-light {
         color: var(--pxpTextColor);
         border: 1px solid var(--pxpTextColor);
     }
-
     .pxp-user-nav-trigger:hover {
         background-color: var(--pxpTextColor);
         color: #fff;
     }
-
     .pxp-hero {
         height: auto !important;
         min-height: auto;
     }
-
     .pxp-hero-caption {
         position: relative;
         top: auto;
         transform: none;
         margin-top: 140px;
     }
-
     .pxp-hero-bg .pxp-hero-caption {
         padding-bottom: 60px;
     }
-
     .pxp-hero-logos-carousel-container {
         position: static;
         padding-bottom: 60px;
     }
-
     .pxp-hero-center-carousel {
         width: 52%;
     }
-
     .pxp-hero-stats-item:nth-child(1) {
         right: 10%;
     }
-
     .pxp-hero-stats-item:nth-child(2) {
         right: 13%;
     }
-
     .pxp-hero-stats-item:nth-child(3) {
         right: 16%;
     }
-
     .pxp-hero-searches-container.pxp-smaller {
         width: 100%;
     }
-
     .pxp-search-container {
         width: 100%;
         order: 3;
     }
-
     .pxp-section-h2,
     .pxp-page-header-simple h1,
     .pxp-blog-hero h1 {
         font-size: 36px;
         letter-spacing: -1px;
     }
-
     .pxp-posts-card-2-fig {
         width: 260px;
     }
-
     .pxp-posts-card-2-fig .pxp-cover {
         width: 260px;
     }
-
     .pxp-posts-card-2-summary {
         display: none;
     }
-
     .pxp-page-image-hero h1 {
         font-size: 46px;
     }
@@ -7096,54 +7038,43 @@ ol.pxp-comments-list {
         line-height: 56px;
         letter-spacing: -2px;
     }
-
     .pxp-hero-form-round.pxp-large {
         height: auto;
         padding: 20px;
     }
-
     .pxp-hero-form-round.pxp-large form {
         height: auto;
     }
-
     .pxp-hero-form-round.pxp-large form .pxp-has-left-border {
         border-left: 0 none;
     }
-
     .pxp-hero-form-round.pxp-large form button {
         width: 100%;
         margin-right: 0;
     }
-
     .pxp-section-h2,
     .pxp-page-header-simple h1,
     .pxp-blog-hero h1 {
         font-size: calc(1.325rem + .9vw);
         letter-spacing: -1px;
     }
-
     .pxp-promo-img {
         border-radius: 30px;
         padding-left: 40px;
     }
-
     .pxp-promo-img.pb-100 {
         padding-bottom: 60px;
     }
-
     .pxp-promo-img.pt-100 {
         padding-top: 60px;
     }
-
     .pxp-info-caption-list,
     .pxp-info-caption-cta {
         margin-top: 40px;
     }
-
     .pxp-list-side-filter-panel {
         display: none;
     }
-
     .pxp-jobs-tab-content {
         position: fixed;
         top: 0;
@@ -7154,29 +7085,23 @@ ol.pxp-comments-list {
         overflow-y: auto;
         display: none;
     }
-
     .pxp-jobs-tab-content.pxp-show {
         display: block;
     }
-
     .pxp-jobs-tab-content .tab-pane {
         border-radius: 0;
     }
-
     .pxp-jobs-tab-pane-cover {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
-
     .pxp-jobs-card-4.active {
         background-color: #fff;
         border-color: var(--pxpLightGrayColor);
     }
-
     .pxp-jobs-card-4.active .pxp-jobs-card-4-company-logo {
         border: 0 none;
     }
-
     .pxp-jobs-card-4.active .pxp-jobs-card-4-title,
     .pxp-jobs-card-4.active .pxp-jobs-card-4-location,
     .pxp-jobs-card-4.active .pxp-jobs-card-4-type,
@@ -7184,7 +7109,6 @@ ol.pxp-comments-list {
     .pxp-jobs-card-4.active .pxp-jobs-card-4-date {
         color: var(--pxpTextColor);
     }
-
     .pxp-jobs-tab-pane-close-btn {
         position: fixed;
         top: 20px;
@@ -7198,24 +7122,19 @@ ol.pxp-comments-list {
         transition: var(--pxpHoverTransition);
         transition-property: color, background-color;
     }
-
     .pxp-jobs-tab-pane-close-btn:hover {
         background-color: var(--pxpTextColor);
         color: #fff;
     }
-
     .pxp-single-job-content h1 {
         font-size: 28px;
     }
-
     .pxp-dashboard-content {
         margin: 80px 0.75rem 0 0.75rem;
     }
-
     .pxp-dashboard-content-details {
         margin-right: 0;
     }
-
     .pxp-dashboard-content-header {
         display: flex;
         align-items: center;
@@ -7229,44 +7148,35 @@ ol.pxp-comments-list {
         background-color: var(--pxpMainColorLight);
         z-index: 1030;
     }
-
     .pxp-dashboard-content-header.pxp-is-candidate {
         background-color: var(--pxpSecondaryColorLight);
     }
-
     .pxp-dashboard-content-details h1 {
         font-size: 28px;
         letter-spacing: -1px;
     }
-
     .pxp-posts-card-2 {
         flex-direction: column;
         height: auto;
     }
-
     .pxp-posts-card-2-fig,
     .pxp-posts-card-2-fig .pxp-cover {
         width: 100%;
         margin: 0;
     }
-
     .pxp-posts-card-2-summary {
         display: block;
     }
-
     .pxp-hero-subtitle {
         font-size: 16px;
     }
-
     .pxp-single-blog-content h2 {
         font-size: 20px;
     }
-
     .pxp-page-image-hero h1 {
         font-size: calc(1.625rem + .9vw);
         letter-spacing: -1px;
     }
-
     .pxp-footer-social ul li {
         margin-left: 0;
         margin-right: 34px;
@@ -7277,144 +7187,112 @@ ol.pxp-comments-list {
     .mt-100 {
         margin-top: 60px;
     }
-
     .pxp-hero-form-round.pxp-bigger {
         height: auto;
         padding: 20px;
     }
-
     .pxp-hero-form-round.pxp-bigger form {
         height: auto;
     }
-
     .pxp-hero-form-round.pxp-bigger form .pxp-has-left-border {
         border-left: 0 none;
     }
-
     .pxp-hero-form-round.pxp-bigger form .form-control,
     .pxp-hero-form-round.pxp-bigger form .form-select {
         padding-left: 0;
         padding-right: 0;
     }
-
     .pxp-hero-form-round.pxp-bigger .form-floating>label {
         padding-left: 0;
     }
-
     .pxp-hero-form-round.pxp-bigger form button {
         width: 100%;
         margin-right: 0;
     }
-
     .pxp-hero-boxed-content {
         padding: 40px;
         border-radius: 30px;
     }
-
     .pxp-hero h1 {
         font-size: 36px;
         line-height: 44px;
         letter-spacing: -1px;
     }
-
     .pxp-hero-caption {
         margin-top: 120px;
     }
-
     .pxp-testimonials-1-carousel-container {
         position: relative;
     }
-
     .pxp-testimonials-1-carousel-container,
     .pxp-testimonials-1-carousel-container>.row {
         height: auto;
     }
-
     .pxp-jobs-card-3 {
         padding: 20px;
     }
-
     .pxp-single-job-cover {
         height: 300px;
     }
-
     .pxp-single-job-cover-logo {
         width: 80px;
         height: 80px;
     }
-
     .pxp-single-company-hero-logo {
         width: 80px;
         height: 80px;
     }
-
     .pxp-single-company-hero,
     .pxp-page-image-hero {
         height: 380px;
     }
-
     .pxp-single-company-hero-title h1 {
         font-size: 28px;
     }
-
     .pxp-single-company-content h2 {
         font-size: 22px;
     }
-
     .pxp-subsection-h2 {
         font-size: 22px;
     }
-
     .pxp-dashboard-content-details h2 {
         font-size: 22px;
     }
-
     .pxp-dashboard-content-details {
         padding: 30px;
     }
-
     .pxp-company-dashboard-messages-item-avatar {
         width: 40px;
         height: 40px;
     }
-
     .pxp-dashboard-inbox-messages-header {
         padding: 20px;
     }
-
     .pxp-dashboard-inbox-messages-content {
         padding: 130px 20px;
     }
-
     .pxp-dashboard-inbox-messages-footer {
         padding: 20px;
     }
-
     .pxp-single-candidate-hero-avatar {
         width: 80px;
         height: 80px;
     }
-
     .pxp-single-candidate-hero {
         height: 380px;
     }
-
     .pxp-single-candidate-hero-name h1 {
         font-size: 28px;
     }
-
     .pxp-single-candidate-content h2 {
         font-size: 22px;
     }
-
     .pxp-dashboard-chart-container {
         padding: 20px;
     }
-
     .pb-100 {
         padding-bottom: 60px;
     }
-
     .pt-100 {
         padding-top: 60px;
     }
@@ -7424,307 +7302,238 @@ ol.pxp-comments-list {
     .pxp-logo>a {
         font-size: 20px;
     }
-
     .pxp-nav-trigger {
         flex: 0 !important;
     }
-
     .pxp-hero-form-round {
         height: auto;
         padding: 20px;
     }
-
     .pxp-hero-form-round form {
         height: auto;
     }
-
     .pxp-hero-form-round form .pxp-has-left-border {
         border-left: 0 none;
     }
-
     .pxp-hero-form-round form .form-control,
     .pxp-hero-form-round form .form-select {
         padding-left: 0;
         padding-right: 0;
     }
-
     .pxp-hero-form-round.pxp-large .form-control,
     .pxp-hero-form-round.pxp-large .form-select {
         padding: .375rem .75rem;
     }
-
     .pxp-hero-form-round form button {
         width: 100%;
     }
-
     .pxp-header-right {
         display: none;
     }
-
     .pxp-hero-boxed-content {
         padding: 20px;
     }
-
     .pxp-info-stats {
         display: none;
     }
-
     .pxp-info-fig-image,
     .pxp-info-fig::before {
         height: 400px;
     }
-
     .pxp-info-fig {
         padding-bottom: 20px;
         padding-right: 20px;
     }
-
     .pxp-info-fig::before {
         left: 20px;
         right: 0;
     }
-
     .pxp-dashboard-content-details {
         padding: 20px;
     }
-
     .pxp-nav-trigger {
         margin-left: 20px;
     }
-
     .pxp-user-nav .pxp-nav-btn {
         display: none;
     }
-
     .pxp-companies-list-top .form-select,
     .pxp-jobs-list-top .form-select,
     .pxp-candidates-list-top .form-select {
         padding-left: 0;
     }
-
     .pxp-companies-card-1.pxp-has-border {
         padding: 20px;
     }
-
     .pxp-hero-form-round {
         border-radius: 30px;
     }
-
     .pxp-companies-list-top h2,
     .pxp-jobs-list-top h2,
     .pxp-candidates-list-top h2 {
         font-size: 20px;
     }
-
     .pxp-companies-card-1-bottom {
         margin-top: 20px;
     }
-
     .pxp-jobs-card-1,
     .pxp-jobs-card-2,
     .pxp-jobs-card-3 {
         padding: 20px;
     }
-
     .pxp-jobs-card-1-company-logo,
     .pxp-jobs-card-2-company-logo,
     .pxp-jobs-card-3-company-logo {
         width: 60px;
         height: 60px;
     }
-
     .pxp-promo-img {
         padding-left: 40px;
         padding-right: 40px;
     }
-
     .pxp-promo-img.pt-100 {
         padding-top: 40px;
     }
-
     .pxp-promo-img.pb-100 {
         padding-bottom: 40px;
     }
-
     .pxp-companies-card-1-company-logo {
         width: 60px;
         height: 60px;
     }
-
     .pxp-posts-card-1-info {
         padding: 20px;
     }
-
     .pxp-posts-card-1-content {
         padding: 20px 20px 0;
     }
-
     .pxp-posts-card-1-cta {
         padding: 0 20px 20px;
     }
-
     .pxp-posts-card-1-bottom {
         margin-top: 20px;
     }
-
     .pxp-cities-card-2-info {
         padding: 20px;
     }
-
     .pxp-candiadates-card-1 {
         padding: 20px;
     }
-
     .pxp-candiadates-card-1-name,
     .pxp-candiadates-card-1-location,
     .pxp-candiadates-card-1-bottom {
         margin-top: 20px;
     }
-
     .pxp-plans-card-1 {
         padding: 20px;
     }
-
     .pxp-plans-card-1-list,
     .pxp-plans-card-1-bottom {
         margin-top: 30px;
     }
-
     .pxp-plans-card-1-price {
         margin-top: 10px;
     }
-
     .pxp-list-side-filter-header-label {
         font-size: 18px;
     }
-
     .pxp-jobs-list-side-filter h3 {
         font-size: 16px;
     }
-
     .pxp-jobs-list-side-filter {
         padding: 20px;
     }
-
     .pxp-jobs-card-2-top {
         display: block;
     }
-
     .pxp-jobs-card-2-info {
         margin-left: 0;
         margin-top: 10px;
     }
-
     .pxp-jobs-card-2-bottom {
         display: block;
     }
-
     .pxp-jobs-card-4 {
         padding: 20px;
     }
-
     .pxp-jobs-card-4-company-top {
         display: block;
     }
-
     .pxp-jobs-card-4-info {
         padding-left: 0;
         margin-top: 10px;
     }
-
     .pxp-jobs-tab-pane-logo {
         width: 80px;
         height: 80px;
         margin-top: -40px;
     }
-
     .pxp-jobs-tab-pane-content h3 {
         font-size: 22px;
     }
-
     .pxp-single-job-cover-logo {
         margin-top: -40px;
         margin-left: 40px;
     }
-
     .pxp-single-job-content h1 {
         font-size: 22px;
     }
-
     .pxp-companies-list-side-filter {
         padding: 20px;
     }
-
     .pxp-companies-list-side-filter h3 {
         font-size: 16px;
     }
-
     .pxp-single-company-hero-content {
         display: block;
     }
-
     .pxp-single-company-hero-title {
         margin-left: 0;
         margin-top: 10px;
     }
-
     .pxp-single-company-hero-caption {
         bottom: 40px;
     }
-
     .pxp-single-company-side-panel {
         padding: 20px;
     }
-
     .pxp-single-job-side-panel {
         padding: 20px;
     }
-
     .pxp-candidates-list-side-filter {
         padding: 20px;
     }
-
     .pxp-candidates-list-side-filter h3 {
         font-size: 16px;
     }
-
     .pxp-single-candidate-hero-content {
         display: block;
     }
-
     .pxp-single-candidate-hero-name {
         margin-left: 0;
         margin-top: 10px;
     }
-
     .pxp-single-candidate-hero-caption {
         bottom: 40px;
     }
-
     .pxp-single-candidate-side-panel {
         padding: 20px;
     }
-
     .pxp-single-candidate-hero.pxp-boxed .pxp-single-candidate-hero-caption {
         right: 30px;
     }
-
     .pxp-featured-posts-item-summary {
         display: none;
     }
-
     .pxp-featured-posts-item-title {
         font-size: 22px;
     }
-
     .pxp-blogs-list-side-panel {
         padding: 20px;
     }
-
     .pxp-hero h1 {
         font-size: 24px;
     }
-
     .pxp-categories-card-3-text {
         padding: 10px 20px;
     }

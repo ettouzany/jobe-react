@@ -50,7 +50,7 @@ export class CandidateProfile extends Component {
 
   componentDidMount() {
     this.getUser();
-    this.setState({ me: authService.getCurrentUser() });
+    this.setState({ me: authService.getUserId() });
   }
 
   getUser() {
@@ -94,7 +94,8 @@ export class CandidateProfile extends Component {
                                 <UserContact user={this.state.user} />
 
                             }
-                            {this.state.me ? <ContactForm id={this.state.user.id} /> : null}
+                            {this.state.me && this.state.me !== this.state.user.id
+                             ? <ContactForm id={this.state.user.id} name={this.state.user.isCompany ?this.state.user.companyname:this.state.user.first_name} /> : null}
 
                           </div>
                         </div>
