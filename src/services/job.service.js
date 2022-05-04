@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios/axios.global";
 import authHeader from "./auth/auth-header";
 
 const API_URL = "http://localhost:3000/jobs";
@@ -52,6 +52,9 @@ const changeStatus = (ids, status) => {
 const deleteJobById = (id) => {
     return axios.delete(API_URL + "/" + id, { headers: authHeader() });
 };
+
+
+
 const jobService = {
     addJob,
     getJobs,
