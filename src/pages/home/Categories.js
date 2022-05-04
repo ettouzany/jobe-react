@@ -51,9 +51,9 @@ const CategoriesSection = () => {
                     }
                 </div>
 
-                <div className="mt-4 mt-md-5 text-center pxp-animate-in pxp-animate-in-top pxp-in">
+                {/* <div className="mt-4 mt-md-5 text-center pxp-animate-in pxp-animate-in-top pxp-in">
                     <a href="jobs-list-1.html" className="btn rounded-pill pxp-section-cta">All Categories<span className="fa fa-angle-right"></span></a>
-                </div>
+                </div> */}
             </div>
         </section>
         )

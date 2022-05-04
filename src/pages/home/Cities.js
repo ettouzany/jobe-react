@@ -27,7 +27,7 @@ const Cities = () => {
             const url = "https://gist.githubusercontent.com/ettouzany/8501191b645efd88a5916752174b88ec/raw/7c2683afb8a0370baf8388fbaf93e68ef4d9c192/Morocco%2520Cities%2520Database";
             const output = await fetch(url);
             const data = (await output.json());
-            var promises = (await Promise.all(data.map(async (city) => {
+            var promises = (await Promise.all(data.slice(0, 12).map(async (city) => {
                 return {
                     name: city.city,
                     jobs: 200,
@@ -36,7 +36,7 @@ const Cities = () => {
                 }
             }))).sort((a, b) => {
                 return b.population - a.population
-            }).slice(0, 12);
+            });
 
             console.log(promises);
             setCities(promises);
@@ -89,9 +89,9 @@ const Cities = () => {
                     }
                 </div>
 
-                <div className="mt-4 mt-md-5 pxp-animate-in pxp-animate-in-top pxp-in">
+                {/* <div className="mt-4 mt-md-5 pxp-animate-in pxp-animate-in-top pxp-in">
                     <a href="jobs-list-1.html" className="btn rounded-pill pxp-section-cta">All Cities<span className="fa fa-angle-right"></span></a>
-                </div>
+                </div> */}
             </div>
         </section>
     )

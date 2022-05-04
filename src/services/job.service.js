@@ -22,6 +22,14 @@ const getJobs = ({ search, location, category, filters, limit, page }) => {
     return axios.get(API_URL + "/all", { headers: authHeader(), params });
 };
 
+const getLandingJobs = () => {
+    //add params ro axios get request
+    const params = new URLSearchParams();
+    params.append("limit", 8);
+    params.append("page", 1);
+    return axios.get(API_URL + "/all", { headers: authHeader(), params });
+};
+
 const getmyJobs = ({ search, location, categorie, filters, limit, page, status }) => {
     //add params ro axios get request
     const params = new URLSearchParams();
@@ -62,7 +70,8 @@ const jobService = {
     getJobById,
     updateJobById,
     changeStatus,
-    deleteJobById
+    deleteJobById,
+    getLandingJobs
 };
 
 export default jobService;
