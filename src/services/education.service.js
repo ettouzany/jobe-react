@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "./axios/axios.global"
 const API_URL = "http://localhost:3000/educations";
 import authHeader from "./auth/auth-header";
 

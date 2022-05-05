@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./../axios/axios.global";
 import jwt_decode from "jwt-decode";
 import userImage from '../../assets/user.svg';
 const API_URL = "http://localhost:3000/auth";
