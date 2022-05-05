@@ -69,21 +69,21 @@ const getUserId = () => {
 };
 
 //refresh token
-const refreshToken = () => {
-    const user = getCurrentUser();
-    if (user) {
-        return axios
-            .post(API_URL + "/refresh", {
-                token: user.token,
-            })
-            .then((response) => {
-                if (response.data.token) {
-                    localStorage.setItem("user", JSON.stringify(response.data));
-                }
-                return response.data;
-            });
-    }
-}
+// const refreshToken = () => {
+//     const user = getCurrentUser();
+//     if (user) {
+//         return axios
+//             .post(API_URL + "/refresh", {
+//                 token: user.token,
+//             })
+//             .then((response) => {
+//                 if (response.data.token) {
+//                     localStorage.setItem("user", JSON.stringify(response.data));
+//                 }
+//                 return response.data;
+//             });
+//     }
+// }
 
 const authService = {
     loginGoogle,
@@ -91,7 +91,7 @@ const authService = {
     login,
     logout,
     getCurrentUser,
-    refreshToken,
+    // refreshToken,
     getUserId
 };
 

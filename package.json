@@ -7,7 +7,8 @@
         "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
         "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
         "dev": "parcel src/index.html",
-        "json-server": "json-server --watch db.json"
+        "json-server": "json-server --watch db.json",
+        "build": "parcel build src/index.html"
     },
     "author": "Brian Holt <btholt+citrv6@gmail.com>",
     "license": "Apache-2.0",
