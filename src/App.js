@@ -1,5 +1,4 @@
 import bootstrap from "bootstrap/dist/js/bootstrap.min.js";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import jQuery from "jquery/dist/jquery.min.js";
 import { render } from "react-dom";
@@ -65,7 +64,10 @@ const App = () => {
 
         <div>
             {user && user.status == "new" ? <LoginForm /> : null}
-            {location.pathname.search('/dashboard') ? <Menu /> : null}
+            {location.pathname.search('/dashboard') ? <Menu 
+                //if i'm in root path
+                mode={location.pathname === '/'}
+            /> : null}
             <Routes>
                 <Route path="dashboard" element={!authService.getCurrentUser() ? (<Login />) : (<Outlet />)} >
                     <Route exact path="company" element={!authService.getCurrentUser() ? (<Login />) : (<CompanyDashboardLayout />)}>
@@ -86,8 +88,7 @@ const App = () => {
                         <Route path="jobs/:id" element={user && user.company ? <CreateJob /> : <Navigate to="../switch" replace />} />
                         <Route path="jobs" element={user && user.company ? <ManageJobs /> : <Navigate to="../switch" replace />} />
                         <Route path="condadates" element={user && user.company ? <ManageApplications /> : <Navigate to="../switch" replace />} />
-
-                        <Route path="profile" element={<CondadateProfileEdit />} />
+                        <Route path="profile" element={<CondadateProfileEdit /> } />
                         <Route path="applications" element={<CondadateApplications />} />
                         <Route path="favourites" element={<condadateFavourites />} />
                         <Route path="password" element={<CondadateApplications />} />

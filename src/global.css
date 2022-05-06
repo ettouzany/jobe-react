@@ -1,4 +1,4 @@
-/* @import "bootstrap/dist/css/bootstrap.min.css"; */
+@import "bootstrap.min.css";
 .profile-pic {
     color: transparent;
     transition: all 0.3s ease;
@@ -137,11 +137,11 @@
 
 /*
 Template Name: Jobster
-Template URI: http://pixelprime.co/themes/jobster
+Template URI: http://derwork.com/themes/jobster
 Description: Job Board HTML Template
 Version: 1.0
 Author: Pixel Prime
-Author URI: https://pixelprime.co/
+Author URI: https://derwork.com/
 */
 
 

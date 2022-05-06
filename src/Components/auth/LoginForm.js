@@ -106,7 +106,7 @@ const LoginForm = () => {
 
         </div>
         <div className="mt-4 text-center pxp-modal-small">
-          <a href="https://pixelprime.co/themes/jobster/sign-in.html#" className="pxp-modal-link">Forgot password</a>
+          <a href="https://derwork.com/themes/jobster/sign-in.html#" className="pxp-modal-link">Forgot password</a>
         </div>
         <div className="mt-4 text-center pxp-modal-small">
           New to Jobster? <a role="button" className="" data-bs-target="#pxp-signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Create an account</a>

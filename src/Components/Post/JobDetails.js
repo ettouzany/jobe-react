@@ -7,12 +7,14 @@ import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import JobLabel from "./JobDetailsElements/JobLabel";
 import { Link } from "react-router-dom";
-
+import authService from "../../services/auth/auth.service";
 
 const JobDetails = ({ id }) => {
   const [job, setJob] = useState();
   const [loading, setLoading] = useState(true);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [user, setUser] = useState(authService.getCurrentUser());
+  const [userId, setUserId] = useState(authService.getUserId());
 
   useEffect(() => {
     requestJobData();
@@ -75,7 +77,7 @@ const JobDetails = ({ id }) => {
                 </Link>
                 in
                 <a
-                  href="https://pixelprime.co/themes/jobster/jobs-list-1.html"
+                  href="https://derwork.com/themes/jobster/jobs-list-1.html"
                   className="pxp-jobs-tab-pane-location"
                 >
                   {job.jobCity}
@@ -104,7 +106,7 @@ const JobDetails = ({ id }) => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://pixelprime.co/themes/jobster/jobs-list-10.html#"
+                        href="https://derwork.com/themes/jobster/jobs-list-10.html#"
                       >
                         <span className="fa fa-facebook"></span> Facebook
                       </a>
@@ -112,7 +114,7 @@ const JobDetails = ({ id }) => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://pixelprime.co/themes/jobster/jobs-list-10.html#"
+                        href="https://derwork.com/themes/jobster/jobs-list-10.html#"
                       >
                         <span className="fa fa-twitter"></span> Twitter
                       </a>
@@ -120,7 +122,7 @@ const JobDetails = ({ id }) => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://pixelprime.co/themes/jobster/jobs-list-10.html#"
+                        href="https://derwork.com/themes/jobster/jobs-list-10.html#"
                       >
                         <span className="fa fa-pinterest"></span> Pinterest
                       </a>
@@ -128,14 +130,24 @@ const JobDetails = ({ id }) => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://pixelprime.co/themes/jobster/jobs-list-10.html#"
+                        href="https://derwork.com/themes/jobster/jobs-list-10.html#"
                       >
                         <span className="fa fa-linkedin"></span> LinkedIn
                       </a>
                     </li>
                   </ul>
                 </div>
-                <Apply jobId={id} />
+                {
+                user && user.company ?
+                userId == job.userId ?
+                  <div >
+                    <Link to={`/dashboard/jobs/${id}`} className="btn rounded-pill pxp-section-cta ms-3">Edit</Link>
+                  </div>
+                  : null
+                : <div className="ms-3">
+                  <Apply jobId={id} />
+                </div>
+              }
               </div>
             </div>
           </div>
@@ -143,7 +155,7 @@ const JobDetails = ({ id }) => {
           <div className="row mt-4 justify-content-between align-items-center">
             <div className="col-6">
               <a
-                href="https://pixelprime.co/themes/jobster/jobs-list-1.html"
+                href="https://derwork.com/themes/jobster/jobs-list-1.html"
                 className="pxp-jobs-tab-pane-category"
               >
                 <div className="pxp-jobs-tab-pane-category-icon">
@@ -162,7 +174,7 @@ const JobDetails = ({ id }) => {
           </div>
 
           <div className="row mt-4 mt-lg-5 align-items-center">
-            <JobLabel title="Experience" value={job.jobMinYearsOfExperience} />
+            <JobLabel title="Experience" value={job.jobMinYearsOfExperience + " years"} />
             <JobLabel title="Work Level" value={job.jobCareerLevel} />
             <JobLabel title="Employment Type" value={job.jobType} />
             <JobLabel title="Salary" value={job.jobSalary} />
@@ -172,7 +184,15 @@ const JobDetails = ({ id }) => {
             <div dangerouslySetInnerHTML={{ __html: draftToHtml(convertToRaw(editorState.getCurrentContent())) }} />
             <div className="mt-4 mt-lg-5">
 
-              <Apply jobId={id} />
+              {
+                user &&  user.company ?
+                userId == job.userId ?
+                  <div >
+                    <Link to={`/dashboard/jobs/${id}`} className="btn rounded-pill pxp-section-cta">Edit</Link>
+                  </div>
+                  : null
+                : <Apply jobId={id} />
+              }
             </div>
           </div>
         </div>

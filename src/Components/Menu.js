@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import authService from "../services/auth/auth.service";
 import UserMenu from "./TopRightMenu/UserMenu";
 import Sign from "./TopRightMenu/Sign";
-const Menu = (props) => {
+const Menu = ({mode}) => {
   return (
     <header className="pxp-header fixed-top">
       <div className="pxp-container">
@@ -13,7 +13,7 @@ const Menu = (props) => {
                 <span style={{ color: "var(--pxpMainColor)" }}>Der</span>Work
               </a>
             </div>
-            <div className="pxp-nav-trigger navbar d-xl-none flex-fill">
+            <div className={mode?"pxp-nav-trigger  navbar d-xl-none flex-fill pxp-light":"pxp-nav-trigger  navbar d-xl-none flex-fill"}>
               <a
                 role="button"
                 href="/"
@@ -60,7 +60,7 @@ const Menu = (props) => {
                 </div>
               </div>
             </div>
-            <nav className="pxp-nav dropdown-hover-all d-none d-xl-block">
+            <nav className={mode?"pxp-nav dropdown-hover-all d-none d-xl-block pxp-light":"pxp-nav dropdown-hover-all d-none d-xl-block"}>
               <ul>
                 <li>
                   <Link to="/">Home</Link>

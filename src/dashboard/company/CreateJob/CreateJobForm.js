@@ -5,6 +5,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import categorieService from "../../../services/categories.service";
+import { Spinner } from "react-bootstrap";
 
 
 
@@ -26,6 +27,11 @@ const CreateJobForm = ({ id }) => {
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const [categories, SetCategories] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+    const [sending, setSending] = useState(false);
+    const [error, setError] = useState(false);
+
 
     useEffect(() => {
         if (id) {
@@ -55,6 +61,7 @@ const CreateJobForm = ({ id }) => {
 
     const handleJobSubmit = async (e) => {
         e.preventDefault();
+        setSending(true);
         try {
             const job = {
 
@@ -75,10 +82,30 @@ const CreateJobForm = ({ id }) => {
 
             }
             if (id) {
-                await jobService.updateJobById(id, job);
+                await jobService.updateJobById(id, job).then(
+                    (response) => {
+                        setSending(false);
+                        setError(false);
+                        // window.location.href = "/jobs";
+                    },
+                    (error) => {
+                        setSending(false);
+                        setError(true);
+                    }
+                );
             }
             else {
-                await jobService.addJob(job);
+                await jobService.addJob(job).then(
+                    (response) => {
+                        setSending(false);
+                        setError(false);
+                        // window.location.href = "/jobs";
+                    },
+                    (error) => {
+                        setSending(false);
+                        setError(true);
+                    }
+                );
             }
         } catch (err) {
             console.log(err);
@@ -219,7 +246,20 @@ const CreateJobForm = ({ id }) => {
 
 
             <div className="mt-4 mt-lg-5">
-                <button className="btn rounded-pill pxp-section-cta" type="submit" >Publish Job</button>
+                <button className="btn rounded-pill pxp-section-cta" type="submit" >
+                    {
+                        error == false ?
+                        sending ? <Spinner animation="border" size="sm" />
+                        : <i className="fa fa-check"></i>
+                        : <i className="fa fa-warning"></i>
+
+                    }
+                    <span className="ml-3">
+                    {
+                        id ? 'Update' : 'Publish Job'
+                    }
+                    </span>
+                    </button>
                 <button
                     style={{ border: '1px solid var(--pxpTextColor)', color: 'var(--pxpTextColor)', marginLeft: '10px' }}
                     className="btn rounded-pill pxp-section-cta pxp-user-nav-trigger pxp-on-light mx-3 " type="submit" >Preview</button>

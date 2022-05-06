@@ -8,7 +8,7 @@ const CompanyContact = ({company}) => {
             </div>
             <div className="mt-4">
                 <div className="pxp-single-company-side-info-label pxp-text-light">Company size</div>
-                <div className="pxp-single-company-side-info-data">{company.zise}</div>
+                <div className="pxp-single-company-side-info-data">{company.size}</div>
             </div>
             <div className="mt-4">
                 <div className="pxp-single-company-side-info-label pxp-text-light">Founded in</div>
@@ -24,7 +24,7 @@ const CompanyContact = ({company}) => {
             </div>
             <div className="mt-4">
                 <div className="pxp-single-company-side-info-label pxp-text-light">Location</div>
-                <div className="pxp-single-company-side-info-data">{company.city} {company.country}</div>
+                <div className="pxp-single-company-side-info-data">{company.city}, {company.countryCode}</div>
             </div>
             <div className="mt-4">
                 <div className="pxp-single-company-side-info-label pxp-text-light">Website</div>

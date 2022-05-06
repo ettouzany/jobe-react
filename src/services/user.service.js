@@ -30,8 +30,22 @@ const updateUser = (user) => {
     return axios.patch(API_URL + "/users/user", filedata, { headers: authHeader() });
 };
 
-const UpdateCompany = (company) => {
-    return axios.patch(API_URL + "/users/company" + company.id, company, { headers: authHeader() });
+const UpdateCompany = (user) => {
+    const filedata = new FormData();
+    filedata.append('photo', user.photo);
+    filedata.append('companyname', user.companyname);
+    filedata.append('industry', user.industry);
+    filedata.append('city', user.city);
+    filedata.append('country', user.country);
+    filedata.append('countryCode', user.countryCode);
+    filedata.append('description', user.description);
+    filedata.append('website', user.website);
+    filedata.append('size', user.size);
+    filedata.append('email', user.email);
+    filedata.append('fix', user.fix);
+    filedata.append('address', user.address);
+    filedata.append('founded', user.founded);
+    return axios.patch(API_URL + "/users/company",filedata, { headers: authHeader() });
 };
 
 const updateCompanyNameImage = (user) => {

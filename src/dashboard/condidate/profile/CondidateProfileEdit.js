@@ -6,15 +6,18 @@ import Experience from "./Experience";
 import Skill from "./Skill";
 import InformationForm from "./forms/InformationForm";
 import ProfilePhoto from "./ProfilePhoto";
+import CompanyInformationForm from "./forms/company/CompanyInformationForm";
+import { Spinner } from "react-bootstrap";
 
 const CondadateProfileEdit = () => {
 
     const [user, setUser] = React.useState();
+    const [loading, setLoading] = React.useState(true);
+    const [sending, setSending] = React.useState(false);
+    const [error, setError] = React.useState(false);
     React.useEffect(() => {
         userService.getUserFullData().then(user => {
-
-            console.log(user.data)
-
+            // console.log(user.data)
             setUser(user.data);
         })
     }, [])
@@ -28,15 +31,42 @@ const CondadateProfileEdit = () => {
     //submit form
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSending(true);
         //check the form id
         if (e.target.id === "form1") {
             console.log(user)
-            userService.updateUser(user).then(res => {
-                //update user image in local storage
-                const user = JSON.parse(localStorage.getItem("user"));
-                user.photo = res.data.photo;
-                localStorage.setItem("user", JSON.stringify(user));
-            })
+            if(user.isCompany)
+            {
+                userService.UpdateCompany(user).then(res => {
+                    //update user image in local storage
+                    const user = JSON.parse(localStorage.getItem("user"));
+                    user.photo = res.data.photo;
+                    user.companyName = res.data.companyname;
+                    localStorage.setItem("user", JSON.stringify(user));
+                    setSending(false);
+                },
+                err => {
+                    setSending(false);
+                    setError(true);
+                }
+                
+                )
+            } else {
+                userService.updateUser(user).then(res => {
+                    //update user image in local storage
+                    const user = JSON.parse(localStorage.getItem("user"));
+                    user.photo = res.data.photo;
+                    user.firstName = res.data.first_name;
+                    user.lastName = res.data.last_name;
+                    localStorage.setItem("user", JSON.stringify(user));
+                    setSending(false);
+                }
+                , err => {
+                    setSending(false);
+                    setError(true);
+                }
+                )
+            }
         }
     }
 
@@ -64,8 +94,34 @@ const CondadateProfileEdit = () => {
             <p className="pxp-text-light">Edit your candidate profile page info.</p>
             {
                 user ? (
+                    user.isCompany ? (
+                        <form onSubmit={handleSubmit} id="form1">
 
-                    <form onSubmit={handleSubmit} id="form1">
+                        <ProfilePhoto user={user} handleNewPhoto={handleNewPhoto} />
+                        <CompanyInformationForm user={user} handleUserChange={handleUserChange} />
+
+                        {/* <Skill ss={user.userSkills} />
+                        <Experience es={user.experiences} />
+                        <Education es={user.educations} /> */}
+
+                        <div className="mt-4 mt-lg-5">
+                            <button className="btn rounded-pill pxp-section-cta">
+                                
+                                {
+                                        error == false ?
+                                        sending ? <Spinner animation="border" size="sm" />
+                                        : <i className="fa fa-check"></i>
+                                        : <i className="fa fa-warning"></i>
+
+                                    }
+                                    <span className="ml-3">
+                                        Save Profile
+                                    </span>
+                                </button>
+                        </div>
+                    </form>
+                    ) : (
+                        <form onSubmit={handleSubmit} id="form1">
 
                         <ProfilePhoto user={user} handleNewPhoto={handleNewPhoto} />
                         <InformationForm user={user} handleUserChange={handleUserChange} />
@@ -75,11 +131,24 @@ const CondadateProfileEdit = () => {
                         <Education es={user.educations} />
 
                         <div className="mt-4 mt-lg-5">
-                            <button className="btn rounded-pill pxp-section-cta">Save Profile</button>
+                            <button className="btn rounded-pill pxp-section-cta">
+                                
+                                {
+                                        error == false ?
+                                        sending ? <Spinner animation="border" size="sm" />
+                                        : <i className="fa fa-check"></i>
+                                        : <i className="fa fa-warning"></i>
+
+                                    }
+                                    <span className="ml-3">
+                                        Save Profile
+                                    </span>
+                                </button>
                         </div>
                     </form>
+                        )
                 ) : (
-                    <p>Loading...</p>
+                        <div>Loading...</div>
                 )
             }
 
