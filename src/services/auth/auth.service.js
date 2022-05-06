@@ -1,7 +1,7 @@
 import axios from "./../axios/axios.global";
 import jwt_decode from "jwt-decode";
 import userImage from '../../assets/user.svg';
-const API_URL = "http://localhost:3000/auth";
+const API_URL = process.env.REACT_APP_API_URL + "/auth";
 
 const signup = (email, password) => {
     return axios

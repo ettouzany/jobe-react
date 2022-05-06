@@ -1,5 +1,5 @@
 import axios from "./axios/axios.global"
-const API_URL = "http://localhost:3000/educations";
+const API_URL = process.env.REACT_APP_API_URL + "/educations";
 import authHeader from "./auth/auth-header";
 
 

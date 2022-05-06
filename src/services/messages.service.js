@@ -1,8 +1,8 @@
 import axios from "./axios/axios.global";
 import authHeader from "./auth/auth-header";
 
-const API_URL = "http://localhost:3000/messages";
-const API_URL_CHAT = "http://localhost:3000/chats";
+const API_URL = process.env.REACT_APP_API_URL + "/messages";
+const API_URL_CHAT = process.env.REACT_APP_API_URL + "/chats";
 
 
 const getchat = () => {
