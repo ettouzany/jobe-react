@@ -5,6 +5,8 @@ import userService from "../../../../services/user.service";
 import authService from "../../../../services/auth/auth.service";
 import { useState } from "react";
 import ProfilePhoto from "../../../../dashboard/condidate/profile/ProfilePhoto";
+import { Spinner } from "react-bootstrap";
+
 const Step2 = ({
     handelNext,
     handelPrev,
@@ -12,7 +14,10 @@ const Step2 = ({
 }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
+    const [sending, setSending] = useState(false);
+    const [error, setError] = useState(false);
     useEffect(() => {
+        
         userService.getUserFullData().then(user => {
             userService.getUserLocation().then(location => {
                 const a = user.data;
@@ -43,15 +48,23 @@ const Step2 = ({
         setUser({ ...user, [e.target.name]: e.target.value })
     }
     const handleSubmit = () => {
+        setSending(true);
+
         if (user.isCompany)
             userService.updateCompanyNameImage(user).then(user => {
+                setSending(false);
                 setUser(user.data);
                 let auser = authService.getCurrentUser();
                 auser.photo = user.data.photo;
                 auser.companyName = user.data.companyname;
                 localStorage.setItem("user", JSON.stringify(auser));
                 handleSkip();
-            })
+            }, err => {
+                setSending(false);
+                setError(true);
+            }
+            
+            )
         else
             userService.updateUserNameImage(user).then(user => {
 
@@ -69,7 +82,11 @@ const Step2 = ({
         <div>
             {
                 loading ?
-                    <div>loading</div>
+                <div className="tab-pane active" >
+                <div className="d-flex justify-content-center   h-100  align-items-center" style={{ minHeight: "360px" }}>
+                  <Spinner animation="grow" />
+                </div>
+              </div>
                     :
                     <div className="mt-5 p-3">
                         <ProfilePhoto user={user} handleNewPhoto={handleNewPhoto} />
@@ -85,7 +102,18 @@ const Step2 = ({
                             </div>
                             <div className='col-6 '>
                                 <button className='btn rounded-pill pxp-section-cta m-2' color="primary" variant="contained" type="button" onClick={handleSubmit}>
-                                    {user.isCompany ? (<span>Finish</span>) : (<span>Next</span>)}
+                                {
+                                    error == false ?
+                                    sending ? <Spinner animation="border" size="sm" />
+                                    : <i className="fa fa-check"></i>
+                                    : <i className="fa fa-warning"></i>
+
+                                }
+                                    
+                                    {user.isCompany ? (<span>Finish</span>) : (
+                                    
+                                    <span>Next</span>
+                                    )}
                                 </button>
                             </div>
                         </div>

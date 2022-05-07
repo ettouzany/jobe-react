@@ -26,7 +26,7 @@ import { Outlet } from "react-router-dom";
 import CompanyDashboardLayout from "./dashboard/company/CompanyDashboardLayout";
 import CondadateDashboardLayout from "./dashboard/condidate/CondadateDashboardLayout";
 import CondadateDashboard from "./dashboard/condidate/CondadateDashboard";
-import condadateFavourites from "./dashboard/condidate/CondadateFavourites";
+import CondadateFavourites from "./dashboard/condidate/CondadateFavourites";
 import CondadateApplications from "./dashboard/condidate/CondadateApplications";
 import CondadateProfileEdit from "./dashboard/condidate/profile/CondidateProfileEdit";
 import ManageApplications from "./dashboard/company/ManageApplications/ManageApplications";
@@ -90,7 +90,7 @@ const App = () => {
                         <Route path="condadates" element={user && user.company ? <ManageApplications /> : <Navigate to="../switch" replace />} />
                         <Route path="profile" element={<CondadateProfileEdit /> } />
                         <Route path="applications" element={<CondadateApplications />} />
-                        <Route path="favourites" element={<condadateFavourites />} />
+                        <Route path="favourites" element={<CondadateFavourites />} />
                         <Route path="password" element={<CondadateApplications />} />
                         <Route path="switch" element={<Switch />} />
                         <Route path="inbox" element={<Inbox />} />

@@ -63,7 +63,7 @@ const Apply = ({ jobId }) => {
                             </div>
 
                             <div className="pxp-user-modal-fig text-center">
-                                {/* <!-- <img src="./Jobster - Home v1_files/signin-fig.png" alt="Sign in"> --> */}
+                                {/* <!-- <img src="./DerWork - Home v1_files/signin-fig.png" alt="Sign in"> --> */}
                             </div>
 
                         </div>

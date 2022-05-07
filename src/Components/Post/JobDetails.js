@@ -8,6 +8,7 @@ import draftToHtml from "draftjs-to-html";
 import JobLabel from "./JobDetailsElements/JobLabel";
 import { Link } from "react-router-dom";
 import authService from "../../services/auth/auth.service";
+import Like from "./Like";
 
 const JobDetails = ({ id }) => {
   const [job, setJob] = useState();
@@ -77,7 +78,7 @@ const JobDetails = ({ id }) => {
                 </Link>
                 in
                 <a
-                  href="https://derwork.com/themes/jobster/jobs-list-1.html"
+                  href="https://derwork.com/themes/derwork/jobs-list-1.html"
                   className="pxp-jobs-tab-pane-location"
                 >
                   {job.jobCity}
@@ -86,9 +87,7 @@ const JobDetails = ({ id }) => {
             </div>
             <div className="col-xl-auto">
               <div className="pxp-jobs-tab-pane-options mt-4 mt-xl-0">
-                <button className="btn pxp-jobs-tab-pane-save-btn">
-                  <span className="fa fa-heart-o"></span>
-                </button>
+                <Like jobId={job.id} liked={user && job.likers} />
                 <div className="dropdown ms-2">
                   <button
                     className="btn pxp-jobs-tab-pane-share-btn dropdown-toggle"
@@ -106,7 +105,7 @@ const JobDetails = ({ id }) => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://derwork.com/themes/jobster/jobs-list-10.html#"
+                        href="https://derwork.com/themes/derwork/jobs-list-10.html#"
                       >
                         <span className="fa fa-facebook"></span> Facebook
                       </a>
@@ -114,7 +113,7 @@ const JobDetails = ({ id }) => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://derwork.com/themes/jobster/jobs-list-10.html#"
+                        href="https://derwork.com/themes/derwork/jobs-list-10.html#"
                       >
                         <span className="fa fa-twitter"></span> Twitter
                       </a>
@@ -122,7 +121,7 @@ const JobDetails = ({ id }) => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://derwork.com/themes/jobster/jobs-list-10.html#"
+                        href="https://derwork.com/themes/derwork/jobs-list-10.html#"
                       >
                         <span className="fa fa-pinterest"></span> Pinterest
                       </a>
@@ -130,7 +129,7 @@ const JobDetails = ({ id }) => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="https://derwork.com/themes/jobster/jobs-list-10.html#"
+                        href="https://derwork.com/themes/derwork/jobs-list-10.html#"
                       >
                         <span className="fa fa-linkedin"></span> LinkedIn
                       </a>
@@ -155,7 +154,7 @@ const JobDetails = ({ id }) => {
           <div className="row mt-4 justify-content-between align-items-center">
             <div className="col-6">
               <a
-                href="https://derwork.com/themes/jobster/jobs-list-1.html"
+                href="https://derwork.com/themes/derwork/jobs-list-1.html"
                 className="pxp-jobs-tab-pane-category"
               >
                 <div className="pxp-jobs-tab-pane-category-icon">

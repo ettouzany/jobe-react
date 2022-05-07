@@ -10,7 +10,10 @@ const signup = (email, password) => {
             password,
         })
         .then((response) => {
-            if (response.data.accessToken) {
+            if (response.data.token) {
+                if (!response.data.photo) {
+                    response.data.photo = userImage
+                }
                 localStorage.setItem("user", JSON.stringify(response.data));
             }
 
@@ -40,7 +43,6 @@ const loginGoogle = (token) => {
         .post(API_URL + "/google", { token })
         .then((response) => {
             if (response.data.token) {
-
                 localStorage.setItem("user", JSON.stringify(response.data));
             }
             return response.data;

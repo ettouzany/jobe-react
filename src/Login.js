@@ -1,16 +1,23 @@
 import React, { Component } from "react";
 import LoginForm from "./Components/auth/LoginForm";
+import RegisterForm from "./Components/auth/RegisterForm";
 
 class Login extends Component {
     constructor() {
         super();
         this.state = {
             loading: true,
+            register: false,
         };
     }
 
 
 
+    registerHandler = () => {
+        this.setState({
+            register: !this.state.register
+        })        
+    };
 
 
     render() {
@@ -31,7 +38,12 @@ class Login extends Component {
                     </div>
                     <div className="col-md-6">
                         <div className="pxp-user-modal p-5 m-5">
-                            <LoginForm />
+                            {
+                                this.state.register ==false ?
+                                    <LoginForm registerHandler={this.registerHandler} />
+                                    :
+                                    <RegisterForm registerHandler={this.registerHandler}/>
+                            }
                         </div>
                     </div>
                 </div>

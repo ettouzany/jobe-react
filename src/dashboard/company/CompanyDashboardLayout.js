@@ -116,7 +116,7 @@ const CompanyDashboardLayout = (props) => {
                 </div>
 
                 <footer>
-                    <div className="pxp-footer-copyright pxp-text-light">© 2021 Jobster. All Right Reserved.</div>
+                    <div className="pxp-footer-copyright pxp-text-light">© 2021 DerWork. All Right Reserved.</div>
                 </footer>
             </div>
 

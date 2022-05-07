@@ -61,7 +61,13 @@ const deleteJobById = (id) => {
     return axios.delete(API_URL + "/" + id, { headers: authHeader() });
 };
 
+const addToFavourites = (id) => {
+    return axios.post(API_URL + "/favorites/" + id,null, { headers: authHeader() });
+}
 
+const getFavoriteJobs = () => {
+    return axios.get(API_URL + "/favorites", { headers: authHeader() });
+}
 
 const jobService = {
     addJob,
@@ -71,7 +77,9 @@ const jobService = {
     updateJobById,
     changeStatus,
     deleteJobById,
-    getLandingJobs
+    getLandingJobs,
+    addToFavourites,
+    getFavoriteJobs
 };
 
 export default jobService;

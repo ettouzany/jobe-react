@@ -116,7 +116,7 @@ class Index extends Component {
   //             <div className="pxp-jobs-card-1 pxp-has-shadow">
   //               <div className="pxp-jobs-card-1-top">
   //                 <a
-  //                   href="https://pixelprime.co/themes/jobster/jobs-list-1.html"
+  //                   href="https://pixelprime.co/themes/derwork/jobs-list-1.html"
   //                   className="pxp-jobs-card-1-category"
   //                 >
   //                   <div className="pxp-jobs-card-1-category-icon">
@@ -127,14 +127,14 @@ class Index extends Component {
   //                   </div>
   //                 </a>
   //                 <a
-  //                   href="https://pixelprime.co/themes/jobster/single-job-1.html"
+  //                   href="https://pixelprime.co/themes/derwork/single-job-1.html"
   //                   className="pxp-jobs-card-1-title"
   //                 >
   //                   Senior Editor
   //                 </a>
   //                 <div className="pxp-jobs-card-1-details">
   //                   <a
-  //                     href="https://pixelprime.co/themes/jobster/jobs-list-1.html"
+  //                     href="https://pixelprime.co/themes/derwork/jobs-list-1.html"
   //                     className="pxp-jobs-card-1-location"
   //                   >
   //                     <span className="fa fa-globe"></span>San Francisco, CA
@@ -148,13 +148,13 @@ class Index extends Component {
   //                     3 days ago by
   //                   </div>
   //                   <a
-  //                     href="https://pixelprime.co/themes/jobster/single-company-1.html"
+  //                     href="https://pixelprime.co/themes/derwork/single-company-1.html"
   //                     className="pxp-jobs-card-1-company"
   //                   >
   //                     Artistre Studio
   //                   </a>
   //                 </div>
-  //                 {/* <a href="https://pixelprime.co/themes/jobster/single-company-1.html" className="pxp-jobs-card-1-company-logo" 
+  //                 {/* <a href="https://pixelprime.co/themes/derwork/single-company-1.html" className="pxp-jobs-card-1-company-logo" 
   //                           style="background-image: url(./assets/images/company-logo-4.png);" href="" ></a> */}
   //               </div>
   //             </div>
@@ -163,7 +163,7 @@ class Index extends Component {
 
   //         <div className="mt-4 mt-md-5 text-center pxp-animate-in pxp-animate-in-top">
   //           <a
-  //             href="https://pixelprime.co/themes/jobster/jobs-list-1.html"
+  //             href="https://pixelprime.co/themes/derwork/jobs-list-1.html"
   //             className="btn rounded-pill pxp-section-cta"
   //           >
   //             All Job Offers<span className="fa fa-angle-right"></span>

@@ -10,7 +10,7 @@ const Footer = ()=>{
                     <div className="row">
                         <div className="col-lg-6 col-xl-5 col-xxl-4 mb-4">
                             <div className="pxp-footer-logo">
-                                <a href="index.html" className="pxp-animate"><span style={{color: "var(--pxpMainColor)"}}>j</span>obrah</a>
+                                <a href="index.html" className="pxp-animate"><span style={{color: "var(--pxpMainColor)"}}>Der</span>Work</a>
                             </div>
                             <div className="pxp-footer-section mt-3 mt-md-4">
                                 <h3>Call us</h3>
@@ -20,7 +20,7 @@ const Footer = ()=>{
                                 <div className="pxp-footer-text">
                                     90 Fifth Avenue, 3rd Floor<br/>
                                     San Francisco, CA 1980<br/>
-                                    office@jobster.com
+                                    office@derwork.com
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ const Footer = ()=>{
                 <div className="pxp-container">
                     <div className="row justify-content-between align-items-center">
                         <div className="col-lg-auto">
-                            <div className="pxp-footer-copyright pxp-text-light">© 2021 Jobster. All Right Reserved.</div>
+                            <div className="pxp-footer-copyright pxp-text-light">© 2021 DerWork. All Right Reserved.</div>
                         </div>
                         <div className="col-lg-auto">
                             <div className="pxp-footer-social mt-3 mt-lg-0">

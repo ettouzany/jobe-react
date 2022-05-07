@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import LoginForm from '../auth/LoginForm';
+import RegisterForm from '../auth/RegisterForm';
 import { useGoogleOneTapLogin } from "react-google-one-tap-login";
 import { useNavigate } from "react-router-dom";
 import authService from "../../services/auth/auth.service";
 
 const Sign = () => {
     const [show, setShow] = useState(false);
-
+    const [register, setRegister] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
@@ -41,6 +42,13 @@ const Sign = () => {
         },
     });
 
+    const registerHandler = () => {
+      setRegister(
+          !register
+          )        
+      };
+
+
     return (
         <div>
             <a
@@ -57,10 +65,15 @@ const Sign = () => {
                 </Modal.Header>
                 <div className="modal-body">
                     <div className="pxp-user-modal-fig text-center">
-                        {/* <!-- <img src="./Jobster - Home v1_files/signin-fig.png" alt="Sign in"> --> */}
+                        {/* <!-- <img src="./DerWork - Home v1_files/signin-fig.png" alt="Sign in"> --> */}
                     </div>
-                    <h5 className="modal-title text-center mt-4" id="signinModal">Welcome back!</h5>
-                    <LoginForm />
+                    
+                    {
+                                register ==false ?
+                                    <LoginForm registerHandler={registerHandler} />
+                                    :
+                                    <RegisterForm registerHandler={registerHandler}/>
+                            }
                 </div>
             </Modal>
 

@@ -1,12 +1,18 @@
 
 import authService from "../../../../services/auth/auth.service";
 import userService from "../../../../services/user.service";
+import { Spinner } from "react-bootstrap";
+import {useState} from 'react'
 const Step1 = ({
     handelNext,
     handelPrev,
 }) => {
+    const [sendingCompany, setSendingCompany] = useState(false);
+    const [sendingUser, setSendingUser] = useState(false);
 
     const setUserStatus = (isCompany) => {
+        setSendingCompany(isCompany);
+        setSendingUser(!isCompany);
         userService.setIsCompanyAndStatus(isCompany, "active").then(
             (response) => {
                 console.log(response);
@@ -36,7 +42,11 @@ const Step1 = ({
                         </div>
                         <p className="mb-3"> Find jobs available on our platform. Apply to Customer Service Representative, Crew Member, House Cleaner and more!
                         </p>
-                        <button className="btn btn-primary btn-block btn-lg b-32 actions">Select <i className="bi bi-arrow-right"></i>
+                        <button className="btn btn-primary btn-block btn-lg b-32 actions">
+                            {
+                                sendingUser ? <Spinner animation="border" size="sm" /> : <span>Select <i className="fa fa-arrow-right"></i></span>
+                            }
+                            
                         </button>
                     </button>
                 </div>
@@ -53,7 +63,11 @@ const Step1 = ({
 
                             Start by Searching 37.5 Million CVs for FREE
                         </p>
-                        <button className="btn btn-primary btn-block btn-lg b-32 actions">Select <i className="bi bi-arrow-right"></i>
+                        <button className="btn btn-primary btn-block btn-lg b-32 actions">
+                            {
+                                sendingCompany ? <Spinner animation="border" size="sm" /> : <span>Select <i className="fa fa-arrow-right"></i></span>
+                            }
+                            
                         </button>
                     </button>
                 </div>
