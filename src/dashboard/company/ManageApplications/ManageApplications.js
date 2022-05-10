@@ -128,7 +128,7 @@ const ManageApplications = (props) => {
             <div className="mt-4 mt-lg-5">
                 <div className="row justify-content-between align-content-center">
                     <div className="col-auto order-2 order-sm-1">
-                        <div className="pxp-company-dashboard-applications-bulk-actions mb-3">
+                        <div className="pxp-company-dashboard-jobs-bulk-actions mb-3">
                             <select
                                 onChange={(e) => setStatus(e.target.value)}
                                 onBlur={(e) => setStatus(e.target.value)}
@@ -142,9 +142,9 @@ const ManageApplications = (props) => {
                         </div>
                     </div>
                     <div className="col-auto order-1 order-sm-2">
-                        <div className="pxp-company-dashboard-applications-search mb-3">
-                            <div className="pxp-company-dashboard-applications-search-results me-3">{applicationsStatistics} applications</div>
-                            <div className="pxp-company-dashboard-applications-search-search-form">
+                        <div className="pxp-company-dashboard-jobs-search mb-3">
+                            <div className="pxp-company-dashboard-jobs-search-results me-3">{applicationsStatistics} applications</div>
+                            <div className="pxp-company-dashboard-jobs-search-search-form">
                                 <div className="input-group">
                                     <span className="input-group-text"><span className="fa fa-search"></span></span>
                                     <input

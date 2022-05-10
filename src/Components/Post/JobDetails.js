@@ -152,7 +152,9 @@ const JobDetails = ({ id }) => {
           </div>
 
           <div className="row mt-4 justify-content-between align-items-center">
-            <div className="col-6">
+            {
+              job.categorie ?
+              <div className="col-6">
               <a
                 href="https://derwork.com/themes/derwork/jobs-list-1.html"
                 className="pxp-jobs-tab-pane-category"
@@ -165,6 +167,8 @@ const JobDetails = ({ id }) => {
                 </div>
               </a>
             </div>
+            : null
+            }
             <div className="col-auto">
               <div className="pxp-jobs-tab-pane-date pxp-text-light">
                 4 days ago

@@ -4,6 +4,7 @@ import jobService from "../../../services/job.service";
 import { Link } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal'
 import JobDetails from "../../../Components/Post/JobDetails";
+import PageSelect from "../../../Components/PageSelect";
 const ManageJobs = (props) => {
 
     const [jobsStatistics, setjobsStatistics] = useState({
@@ -17,6 +18,8 @@ const ManageJobs = (props) => {
       const [status, setStatus] = useState("new");
       const [search, setSearch] = useState("");
       const [searchStatus, setSearchStatus] = useState("");
+      const [loading, setLoading] = useState(true);
+      const [reload, setReload] = useState(false);
       //modal open and close
         const [show, setShow] = useState(false);
         const handleClose = () => setShow(false);
@@ -26,6 +29,7 @@ const ManageJobs = (props) => {
         const handleShowPreview = (id) => setPreview(id);
 
       useEffect(() => {
+    
         requestjobsStatisticsData();
         requestJobsData(1);
       }, []);
@@ -39,11 +43,11 @@ const ManageJobs = (props) => {
                   //set a page to each 10 jobs
                   
                 const numberOfPages = Math.ceil(response.data.total_jobs/10);
-                const pages = [];
-                for (let index = 1; index <= numberOfPages; index++) {
-                    pages.push(index);
-                }
-                setPages(pages);
+                // const pages = [];
+                // for (let index = 1; index <= numberOfPages; index++) {
+                //     pages.push(index);
+                // }
+                // setPages(numberOfPages);
 
               },
               (error) => {
@@ -56,13 +60,36 @@ const ManageJobs = (props) => {
         }
       }
     
-        async function requestJobsData(page) {
+        // async function requestJobsData(page) {
+        //     try {
+        //         await jobService.getmyJobs({limit: 10,page,search,status:searchStatus}).then(
+        //             (response) => {
+        //                 console.log(response);
+        //                 setjobs(response.data[0]);
+                        
+        //             },
+        //             (error) => {
+        //                 console.log(error);
+        //             }
+        //         );
+        //     }
+        //     catch (error) {
+        //         console.log(error);
+        //     }
+        // }
+        const requestJobsData =async  (page)=> {
+            setActivePage(page);
+            setReload(true);
             try {
                 await jobService.getmyJobs({limit: 10,page,search,status:searchStatus}).then(
                     (response) => {
                         console.log(response);
-                        setjobs(response.data);
-                        
+
+                        setjobs(response.data[0]);
+                        const numberOfPages = Math.ceil(response.data[1]/10);
+                        setPages(numberOfPages);
+                        setLoading(false);
+                        setReload(false);
                     },
                     (error) => {
                         console.log(error);
@@ -173,7 +200,16 @@ const ManageJobs = (props) => {
                         </div>
                     </div>
                     <div className="table-responsive">
-                        <table className="table table-hover align-middle">
+                        {
+                            loading ?
+                            <div className="text-center w-100  py-5">
+                                <div className="spinner-border" role="status">
+                                    <span className="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                                :
+                                <div>
+                                    <table className="table table-hover align-middle">
                             <thead>
                                 <tr>
                                     <th className="pxp-is-checkbox"  style={{width:"1%"}}><input type="checkbox" className="form-check-input"/></th>
@@ -186,7 +222,15 @@ const ManageJobs = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                            { jobs.map((application) => {
+                            { 
+                            reload ?
+                            <div className="text-center w-100  py-5" style={{displat:"table-caption"}}>
+                                <div className="spinner-border" role="status">
+                                    <span className="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            :
+                            jobs.map((application) => {
                         const {
                           id,
                           jobTitle,
@@ -237,7 +281,7 @@ const ManageJobs = (props) => {
 
                         <div className="row mt-4 mt-lg-5 w-100 justify-content-between align-items-center">
                             <div className="col-auto">
-                                <nav className="mt-3 mt-sm-0" aria-label="Jobs list pagination">
+                                {/* <nav className="mt-3 mt-sm-0" aria-label="Jobs list pagination">
                                     <ul className="pagination pxp-pagination">
                                         {
                                             pages.length>1?
@@ -253,9 +297,12 @@ const ManageJobs = (props) => {
                                             }):null
                                         }
                                     </ul>
-                                </nav>
+                                </nav> */}
+                                <PageSelect pages={pages} active={activePage} handleClick={requestJobsData}/>
                             </div>
                         </div>
+                                    </div>
+                        }
                     </div>
                 </div>
                 <Modal centered={true} show={show} onHide={handleClose} >

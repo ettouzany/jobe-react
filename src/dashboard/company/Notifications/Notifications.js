@@ -1,30 +1,53 @@
 import { useEffect, useState } from "react";
 import Notification from "./notification";
 import notificationService from "../../../services/notifications.service";
+import PageSelect from "../../../Components/PageSelect";
 
 const Notifications = () => {
 
     const [notifications, setNotifications] = useState([]);
     //loadin
     const [loading, setLoading] = useState(true);
+    const [reloading, setReloading] = useState(false);
     //count
     const [count, setCount] = useState(0);
+    const [pages, setPages] = useState([]);
+    const [activePage, setActivePage] = useState(1);
+
+    const fetchNotifications = async (page) => {
+        setReloading(true);
+        notificationService.getnotifications({
+            search: "",
+            filters: "",
+            limit: 10,
+            page: page,
+        }).then(res => {
+            setNotifications(res.data[0]);
+            setCount(res.data[1]);
+            const numberOfPages = Math.ceil(res.data[1]/10);
+            setPages(numberOfPages);
+            setLoading(false);
+            setReloading(false);
+        }
+        ).catch(err => {
+            setLoading(false);
+            setReloading(false);
+        }
+        );
+    }
+
+
+
 
     useEffect(() => {
-        const fetchNotifications = async () => {
-            const { data } = await notificationService.getnotifications({
-                search: "",
-                filters: "",
-                limit: "",
-                page: "",
-            });
-            console.log(data);
-            setNotifications(data[0]);
-            setLoading(false);
-            setCount(data[1]);
-        };
-        fetchNotifications();
+        
+        fetchNotifications(1);
     }, []);
+
+    const handleClickNotification = (page) => {
+        setActivePage(page);
+        fetchNotifications(page);
+    }
 
 
     return (
@@ -34,7 +57,11 @@ const Notifications = () => {
 
             {
                 loading ?
-                    <div>loading</div>
+                <div className="text-center w-100  py-5">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
                     :
                     (
                         <div className="mt-4 mt-lg-5">
@@ -42,6 +69,12 @@ const Notifications = () => {
                                 <table className="table table-hover align-middle">
                                     <tbody>
                                         {
+                                            reloading ?
+                                            <div className="text-center w-100  py-5">
+                                                <div className="spinner-border" role="status">
+                                                    <span className="sr-only">Loading...</span>
+                                                </div>
+                                            </div>:
                                             notifications.map(notification => (
                                                 <Notification key={notification.id} notification={notification} />
                                             ))
@@ -49,16 +82,10 @@ const Notifications = () => {
                                     </tbody>
                                 </table>
 
-                                <div className="col-auto">
-                                    <nav className="mt-3 mt-sm-0" aria-label="Notifications pagination">
-                                        <ul className="pagination pxp-pagination">
-                                            <li className="page-item active" aria-current="page">
-                                                <span className="page-link">1</span>
-                                            </li>
-                                            <li className="page-item"><a className="page-link" href="/">2</a></li>
-                                            <li className="page-item"><a className="page-link" href="/">3</a></li>
-                                        </ul>
-                                    </nav>
+                                <div className="row mt-4 mt-lg-5 w-100 justify-content-center align-items-center">
+                                    <div className="col-auto">
+                                        <PageSelect pages={pages} active={activePage} handleClick={handleClickNotification}/>
+                                    </div>
                                 </div>
                             </div>
                         </div>

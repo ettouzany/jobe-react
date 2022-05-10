@@ -10,6 +10,11 @@
     transition: all 0.3s ease;
 }
 
+#sticky{
+    position: sticky;
+    top: 164px;
+}
+
 #myVideo {
     position: absolute;
     right: 0;

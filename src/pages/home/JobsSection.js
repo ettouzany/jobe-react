@@ -10,7 +10,7 @@ const JobsSection = () => {
     useEffect(() => {
         jobService.getLandingJobs()
             .then(jobs => {
-                setJobs(jobs.data);
+                setJobs(jobs.data[0]);
                 setLoading(false);
             })
             .catch(error => {

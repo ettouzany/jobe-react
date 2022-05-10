@@ -1,15 +1,18 @@
 import { useState } from "react";
 import messageService from "../../../services/messages.service";
 import { useNavigate } from "react-router-dom";
-
+import Spinner from 'react-bootstrap/Spinner';
 const ContactForm = ({ id,name }) => {
     const [message, setMessage] = useState();
+    const [sendding, setSendding] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSendding(true);
         console.log(message);
         const { data } = await messageService.sendMessage(message, id, id);
+        setSendding(false);
         navigate("/dashboard/inbox");
     }
 
@@ -32,7 +35,29 @@ const ContactForm = ({ id,name }) => {
                         onChange={e => setMessage(e.target.value)}
                         className="form-control" id="contact-candidate-message" placeholder="Type your message here..."></textarea>
                 </div>
-                <button className="btn rounded-pill pxp-section-cta d-block" type="submit">Send Message</button>
+                {/* <button className="btn rounded-pill pxp-section-cta" type="submit" >
+                    {
+                        error == false ?
+                        sending ? <Spinner animation="border" size="sm" />
+                        : <i className="fa fa-check"></i>
+                        : <i className="fa fa-warning"></i>
+
+                    }
+                    <span className="ml-3">
+                    {
+                        id ? 'Update' : 'Publish Job'
+                    }
+                    </span>
+                    </button> */}
+                <button className="btn rounded-pill pxp-section-cta d-block" type="submit">
+                    {
+                        sendding ? <Spinner animation="border" size="sm" />
+                        : null
+                    }
+                    <span className="ml-3">
+                    Send Message
+                    </span>
+                    </button>
             </form>
         </div>
     )

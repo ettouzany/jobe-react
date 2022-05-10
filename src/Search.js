@@ -4,19 +4,22 @@ import Card from "./Components/Card";
 import Filtter from "./Components/Search/Filtter";
 import JobDetails from "./Components/Post/JobDetails";
 import jobService from "./services/job.service";
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from 'react-bootstrap/Spinner';
+import PageSelect from "./Components/PageSelect";
 class Search extends Component {
 
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.handleJobSearch = this.handleJobSearch.bind(this);
+    this.requestJobsData = this.requestJobsData.bind(this);
 
     this.state = {
       loading: true,
-      jobId: 1,
+      jobId: 0,
       limit: 10,
       page: 1,
+      pages: [],
       jobs: [],
       error: null,
     };
@@ -33,10 +36,16 @@ class Search extends Component {
       await jobService.getJobs(e).then(
         (response) => {
           console.log("os", response);
+          const numberOfPages = Math.ceil(response.data[1]/10);
+          
           this.setState({
             loading: false,
-            jobs: response.data,
-            jobId: response.data.length ? response.data[0].id : -1,
+            jobs: response.data[0],
+            pages: numberOfPages,
+          })
+          if(this.state.jobId === 0)
+          this.setState({
+            jobId: response.data[0].length ? response.data[0][0].id : -1,
           })
         },
         (error) => {
@@ -52,7 +61,13 @@ class Search extends Component {
 
 
   componentDidMount() {
-    this.handleJobSearch({ start: this.state.start, Search: null, Location: null, categorie: null, filters: null });
+    this.handleJobSearch({ page: this.state.page, Search: null, Location: null, categorie: null, filters: null });
+  }
+  requestJobsData(page) {
+    this.setState({
+      page: page,
+    });
+    this.handleJobSearch({ page: page, Search: null, Location: null, categorie: null, filters: null });
   }
 
   handleClick(id) {
@@ -61,7 +76,7 @@ class Search extends Component {
   }
   render() {
 
-    const { jobs, jobId, error } = this.state;
+    const { jobs, jobId, error, pages } = this.state;
 
     console.log(jobs);
     // const [jobId, setJobId] = useState("1");
@@ -77,7 +92,26 @@ class Search extends Component {
     //     console.log(data);
     //     setJobs(data);
     // }
+    // window.addEventListener('scroll', function (evt) {
 
+    //   // This value is your scroll distance from the top
+    //   var distance_from_top = document.documentElement.scrollTop;
+    //   console.log(document.documentElement.scrollTop);
+    
+    //   // The user has scrolled to the tippy top of the page. Set appropriate style.
+    //   if (distance_from_top === 400) {
+    //     //id sticky
+    //     // document.getElementById("sticky").style.position = "none";
+    //   }
+    
+    //   // The user has scrolled down the page.
+    //   if(distance_from_top > 0) {
+    //     document.getElementById("sticky").style.position = "fixed";
+    //     //top 
+    //     document.getElementById("sticky").style.top = "100px";
+    //   }
+    
+    // });
     return (
       <div>
         <React.Fragment></React.Fragment>
@@ -131,17 +165,27 @@ class Search extends Component {
                                   type={"type"}
                                   company={"company"}
                                   location={jobLocation}
-                                  active={id == jobs[0].id}
+                                  active={id == jobId}
                                 />
                               );
                             })}
+
+                          </div>
+                          <div className="row mt-4 mt-lg-5 w-100 justify-content-center align-items-center">
+                              <div className="col-auto">
+                                  <PageSelect pages={pages} active={this.state.page} handleClick={this.requestJobsData}/>
+                              </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="col-lg-7 col-xl-8 col-xxl-8">
-                      <div className="tab-content pxp-jobs-tab-content pxp-show">
-                        <JobDetails id={jobId} />
+                      <div id="sticky" className="tab-content pxp-jobs-tab-content pxp-show mt-5">
+                        {
+                          jobId > 0 ?
+                          <JobDetails id={jobId} />
+                          :null
+                        }
                       </div>
                     </div>
                   </div>

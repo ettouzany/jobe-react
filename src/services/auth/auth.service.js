@@ -1,6 +1,7 @@
 import axios from "./../axios/axios.global";
 import jwt_decode from "jwt-decode";
 import userImage from '../../assets/user.svg';
+import authHeader  from "./auth-header";
 const API_URL = process.env.REACT_APP_API_URL + "/auth";
 
 const signup = (email, password) => {
@@ -69,7 +70,9 @@ const getUserId = () => {
     }
     return null;
 };
-
+const changePassword = (password, newPassword) => {
+    return axios.post(API_URL + "/changePassword", { password, newPassword }, { headers: authHeader() });
+}
 //refresh token
 // const refreshToken = () => {
 //     const user = getCurrentUser();
@@ -94,7 +97,8 @@ const authService = {
     logout,
     getCurrentUser,
     // refreshToken,
-    getUserId
+    getUserId,
+    changePassword
 };
 
 export default authService;

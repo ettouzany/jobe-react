@@ -35,6 +35,7 @@ import Notifications from "./dashboard/company/Notifications/Notifications";
 import authService from "./services/auth/auth.service";
 import Switch from "./dashboard/condidate/switch/Switch";
 import Companies from "./pages/conpanies/Companies";
+import ChangePassword from "./dashboard/condidate/changePassword/ChangePassword";
 
 const App = () => {
 
@@ -91,7 +92,7 @@ const App = () => {
                         <Route path="profile" element={<CondadateProfileEdit /> } />
                         <Route path="applications" element={<CondadateApplications />} />
                         <Route path="favourites" element={<CondadateFavourites />} />
-                        <Route path="password" element={<CondadateApplications />} />
+                        <Route path="password" element={<ChangePassword />} />
                         <Route path="switch" element={<Switch />} />
                         <Route path="inbox" element={<Inbox />} />
                         <Route path="inbox/:id" element={<Inbox />} />

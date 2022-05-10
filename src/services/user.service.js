@@ -85,6 +85,8 @@ const getCompanies = ({ search, location, category, filters, limit, page }) => {
     if (page) params.append("page", +page);
     return axios.get(API_URL + "/users/companies", { headers: authHeader() , params });
 };
+
+
 const userService = {
     updateUser,
     UpdateCompany,
@@ -94,7 +96,8 @@ const userService = {
     setIsCompanyAndStatus,
     getUserFullData,
     getUserFullDataById,
-    getCompanies
+    getCompanies,
+    
 };
 
 export default userService;
