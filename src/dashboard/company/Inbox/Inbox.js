@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Chat from "./Chat";
 import ChatSelections from "./ChatSelections";
 import { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
 
 const Inbox = () => {
     //get id
@@ -10,6 +11,9 @@ const Inbox = () => {
     //calback func
     const handleActiveChat = (e) => {
         setActiveChat(e);
+    }
+    const clearChat = () => {
+        setActiveChat(null);
     }
 
 
@@ -23,7 +27,28 @@ const Inbox = () => {
                     <ChatSelections callback={handleActiveChat} />
                 </div>
                 <div className="col-xxl-8">
-                    {ActiveChat ? <Chat chat={ActiveChat} /> : <div>Select a chat</div>}
+                    {
+                    
+                    ActiveChat && window.innerWidth > 992 ? 
+                    <Chat chat={ActiveChat} callback={clearChat} /> 
+                    : 
+                    ActiveChat ?
+                    <Modal fullscreen={true} show={ActiveChat} onHide={() => setActiveChat(null)}>
+                            <Modal.Header closebutton>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Chat chat={ActiveChat} callback={clearChat} />
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <button onClick={() => setActiveChat(null)} 
+                              className="btn rounded-pill pxp-nav-btn">
+                                Close
+                              </button>
+                            </Modal.Footer>
+
+                          </Modal>
+                    :null
+                    }
                 </div>
             </div>
         </div>

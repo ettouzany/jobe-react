@@ -45,7 +45,7 @@ const JobDetails = ({ id }) => {
 
   return (
     loading == false ? (
-      <div className="tab-pane active">
+      <div className="tab-pane active mt-5">
         {
           job.user.cover ?
             <div
@@ -199,9 +199,6 @@ const JobDetails = ({ id }) => {
             </div>
           </div>
         </div>
-        <button className="btn rounded-pill pxp-jobs-tab-pane-close-btn d-inline-block d-lg-none">
-          <span className="fa fa-angle-left"></span> Back
-        </button>
       </div>
     ) : (
       //still loading

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Footer = ()=>{
@@ -30,11 +31,11 @@ const Footer = ()=>{
                                     <div className="pxp-footer-section">
                                         <h3>For Candidates</h3>
                                         <ul className="pxp-footer-list">
-                                            <li><a href="jobs-list-1.html">Find Jobs</a></li>
-                                            <li><a href="candidate-dashboard.html">Candidate Dashboard</a></li>
-                                            <li><a href="candidate-dashboard-applications.html">My Applications</a></li>
-                                            <li><a href="candidate-dashboard-fav-jobs.html">Favourite Jobs</a></li>
-                                            <li><a href="candidate-dashboard-inbox.html">My inbox</a></li>
+                                            <li><Link to="/search" >Find Jobs</Link></li>
+                                            <li><Link to="/companies" >Find Companies</Link></li>
+                                            <li><Link to="/resume" >Create Resume</Link></li>
+                                            <li><Link to="/login" >Login</Link></li>
+                                            <li><Link to="/register" >Register</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -42,11 +43,10 @@ const Footer = ()=>{
                                     <div className="pxp-footer-section">
                                         <h3>For Employers</h3>
                                         <ul className="pxp-footer-list">
-                                            <li><a href="candidates-list-1.html">Find Candidates</a></li>
-                                            <li><a href="company-dashboard.html">Company Dashboard</a></li>
-                                            <li><a href="company-dashboard-new-job.html">Post a Job</a></li>
-                                            <li><a href="company-dashboard-jobs.html">Manage Jobs</a></li>
-                                            <li><a href="company-dashboard-candidates.html">Candidates</a></li>
+                                            <li><Link to="/post-job" >Post a Job</Link></li>
+                                            <li><Link to="/companies" >Find Companies</Link></li>
+                                            <li><Link to="/login" >Login</Link></li>
+                                            <li><Link to="/register" >Register</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -54,10 +54,10 @@ const Footer = ()=>{
                                     <div className="pxp-footer-section">
                                         <h3>About Us</h3>
                                         <ul className="pxp-footer-list">
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="pricing.html">Pricing</a></li>
-                                            <li><a href="blog-list-1.html">Blog</a></li>
-                                            <li><a href="blog-list-1.html">Contact Us</a></li>
+                                            <li><Link to="/about" >About Us</Link></li>
+                                            <li><Link to="/contact" >Contact Us</Link></li>
+                                            <li><Link to="/privacy" >Privacy Policy</Link></li>
+                                            <li><Link to="/terms" >Terms & Conditions</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -65,10 +65,10 @@ const Footer = ()=>{
                                     <div className="pxp-footer-section">
                                         <h3>Helpful Resources</h3>
                                         <ul className="pxp-footer-list">
-                                            <li><a href="faqs.html">FAQs</a></li>
-                                            <li><a href="sign-in.html">Sign In</a></li>
-                                            <li><a href="sign-up.html">Sign Up</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
+                                            <li><Link to="/faq" >FAQ</Link></li>
+                                            <li><Link to="/blog" >Blog</Link></li>
+                                            <li><Link to="/careers" >Careers</Link></li>
+                                            <li><Link to="/support" >Support</Link></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -3,7 +3,7 @@ import messageService from "../../../services/messages.service";
 import Message from "./Message";
 import AuthService from "../../../services/auth/auth.service";
 import SendMessage from "./SendMessage";
-const Chat = ({ chat }) => {
+const Chat = ({ chat,callback }) => {
     console.log(chat);
     //get messages
     const [messages, setMessages] = useState([]);
@@ -21,6 +21,7 @@ const Chat = ({ chat }) => {
         };
         fetchMessages();
     }, [chat.chatId]);
+
 
 
     //scroll to bottom smoothly
@@ -73,7 +74,8 @@ const Chat = ({ chat }) => {
                             <div className="pxp-dashboard-inbox-list-item-options">
                                 <button title="Delete conversation"><span className="fa  fa-flag-o"></span></button>
                             </div>
-                            <button className="btn rounded-pill pxp-dashboard-inbox-messages-close-btn d-inline-block d-xxl-none"><span className="fa fa-angle-left"></span> Back</button>
+                            <button onClick={callback}
+                            className="btn rounded-pill pxp-dashboard-inbox-messages-close-btn d-inline-block d-xxl-none"><span className="fa fa-angle-left"></span> Back</button>
                         </div>
                     </div>
                     <div id="chat-container" className="pxp-dashboard-inbox-messages-content">

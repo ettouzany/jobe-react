@@ -6,6 +6,7 @@ import JobDetails from "./Components/Post/JobDetails";
 import jobService from "./services/job.service";
 import Spinner from 'react-bootstrap/Spinner';
 import PageSelect from "./Components/PageSelect";
+import { Modal } from "react-bootstrap";
 class Search extends Component {
 
   constructor() {
@@ -43,7 +44,7 @@ class Search extends Component {
             jobs: response.data[0],
             pages: numberOfPages,
           })
-          if(this.state.jobId === 0)
+          if(this.state.jobId === 0 && window.innerWidth > 992)
           this.setState({
             jobId: response.data[0].length ? response.data[0][0].id : -1,
           })
@@ -182,9 +183,25 @@ class Search extends Component {
                     <div className="col-lg-7 col-xl-8 col-xxl-8">
                       <div id="sticky" className="tab-content pxp-jobs-tab-content pxp-show mt-5">
                         {
-                          jobId > 0 ?
-                          <JobDetails id={jobId} />
-                          :null
+                          jobId > 0  && window.innerWidth > 992 ?
+                            <JobDetails id={jobId} />
+                          :
+                          <Modal fullscreen={true} show={jobId > 0} onHide={() => this.setState({ jobId: 0 })}>
+                            <Modal.Header closebutton>
+                            </Modal.Header>
+                            <Modal.Body>
+                            
+                            <JobDetails id={jobId} />
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <button onClick={() => this.setState({ jobId: 0 })} className="btn rounded-pill pxp-nav-btn">
+                                Close
+                              </button>
+                            </Modal.Footer>
+
+                          </Modal>
+
+
                         }
                       </div>
                     </div>

@@ -78,41 +78,42 @@ const Switch = () => {
 
 
     return (
-        <div className="pxp-dashboard-content-header">
-            <div className="pxp-dashboard-content-header-title">
+        <div >
                 <h1>Switch To Company</h1>
                 <p className="pxp-text-light">
                     Switch to your company account to manage your jobs and candidates.
                 </p>
-            </div>
             <div className="pxp-dashboard-content-header-form">
                 
 
-                <div className="col-md-5 m-auto">
-                <form onSubmit={handleSubmit} id="form1">
-                    <ProfilePhoto user={{photo:photo}} handleNewPhoto={handleNewPhoto}/>
-                    <div className="form-group mt-3">
-                        <label className="my-1" htmlFor="companyname">Company Name</label>
-                        <input type="text" className="form-control" id="companyname" placeholder="Company Name" onChange={(e) => setcompanyname(e.target.value)} />
-                    </div>
-                    <div className="form-group mt-3">
-                        <label className="my-1" htmlFor="industry">Industry</label>
-                        <input type="text" className="form-control" id="industry" placeholder="Industry" onChange={(e) => setIndustry(e.target.value)} />
-                    </div>
-                    <button type="submit" className="btn rounded-pill pxp-section-cta my-3 mx-auto d-block">
-                        {loading ? 'Loading...' : 'Switch'}    
-                    </button>
-                    <div className="mt-3">
-                        {
-                            errorMessage ? <div className="alert alert-danger">{errorMessage}</div> : null
-                        }
-                        {
-                            successMessage ? <div className="alert alert-success">{successMessage}</div> : null
-                        }
-                    </div>
-                </form>
-                    
-                </div>
+            <div className="card-body">
+                            <div className="col-md-5 m-auto">
+
+                            <form onSubmit={handleSubmit} id="form1">
+                                <ProfilePhoto user={{photo:photo}} handleNewPhoto={handleNewPhoto}/>
+                                <div className="form-group mt-3">
+                                    <label className="my-1" htmlFor="companyname">Company Name</label>
+                                    <input type="text" className="form-control" id="companyname" placeholder="Company Name" onChange={(e) => setcompanyname(e.target.value)} />
+                                </div>
+                                <div className="form-group mt-3">
+                                    <label className="my-1" htmlFor="industry">Industry</label>
+                                    <input type="text" className="form-control" id="industry" placeholder="Industry" onChange={(e) => setIndustry(e.target.value)} />
+                                </div>
+                                <button type="submit" className="btn rounded-pill pxp-section-cta my-3 mx-auto d-block">
+                                    {loading ? 'Loading...' : 'Switch'}    
+                                </button>
+                                <div className="mt-3">
+                                    {
+                                        errorMessage ? <div className="alert alert-danger">{errorMessage}</div> : null
+                                    }
+                                    {
+                                        successMessage ? <div className="alert alert-success">{successMessage}</div> : null
+                                    }
+                                </div>
+                            </form>
+                                
+                            </div>
+                        </div>
             </div>
         </div>
     )

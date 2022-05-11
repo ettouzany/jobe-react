@@ -3,6 +3,13 @@ import authService from "../services/auth/auth.service";
 import UserMenu from "./TopRightMenu/UserMenu";
 import Sign from "./TopRightMenu/Sign";
 const Menu = ({mode}) => {
+
+  const menus = [
+    {label: "Home", link: "/"},
+    {label: "Find Jobs", link: "/search"},
+    {label: "Companies", link: "/companies"},
+  ]
+
   return (
     <header className="pxp-header fixed-top">
       <div className="pxp-container">
@@ -37,7 +44,7 @@ const Menu = ({mode}) => {
                       obster
                     </a>
                   </div>
-                  <button
+                  <button id="MobileNav"
                     type="button"
                     className="btn-close text-reset"
                     data-bs-dismiss="offcanvas"
@@ -47,14 +54,17 @@ const Menu = ({mode}) => {
                 <div className="offcanvas-body">
                   <nav className="pxp-nav-mobile">
                     <ul className="navbar-nav justify-content-end flex-grow-1">
-                      {/* <li  className="nav-item dropdown">
-                                        <a role="button"  href="/" className="nav-link" data-bs-toggle="dropdown">Home</a>
-                                        
-                                    </li>
-                                    <li  className="nav-item dropdown">
-                                        <a role="button"  href="/search" className="nav-link" data-bs-toggle="dropdown">Find Jobs</a>
-                                       
-                                    </li> */}
+                      {menus.map((menu, index) => (
+                        <li key={index} className="nav-item dropdown">
+                          <Link to={menu.link} className="nav-link" onClick={() => {
+                            document.getElementById("MobileNav").click();
+                          }
+                          }>
+                            {menu.label}
+                          </Link>
+                        </li>
+                      ))}
+
                     </ul>
                   </nav>
                 </div>
@@ -62,18 +72,11 @@ const Menu = ({mode}) => {
             </div>
             <nav className={mode?"pxp-nav dropdown-hover-all d-none d-xl-block pxp-light":"pxp-nav dropdown-hover-all d-none d-xl-block"}>
               <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                  {/* <a href="/"   data-bs-toggle="dropdown">Home</a> */}
-                </li>
-                <li>
-                  <Link to="/search">Find Jobs</Link>
-                  {/* <a href="/search"  className="dropdown-toggle" data-bs-toggle="dropdown">Find Jobs</a> */}
-                </li>
-                <li>
-                  <Link to="/companies">Companies</Link>
-                  {/* <a href="/search"  className="dropdown-toggle" data-bs-toggle="dropdown">Find Jobs</a> */}
-                </li>
+                {menus.map((menu, index) => (
+                  <li key={index}>
+                    <Link to={menu.link}>{menu.label}</Link>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>

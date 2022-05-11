@@ -13,6 +13,7 @@ import ContactForm from "./Components/ContactForm";
 import UserContact from "./Components/UserContact";
 import authService from "../../services/auth/auth.service";
 import NotFound from "../../pages/404/NotFound";
+import { Spinner } from "react-bootstrap";
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -64,7 +65,12 @@ export class CandidateProfile extends Component {
 
   render() {
     return (
-      this.state.loading ? <div>Loading...</div> :
+      this.state.loading ? 
+      <div className="spinner-container d-flex justify-content-center align-items-center
+      " style={{ height: '100vh' }}>
+        <Spinner animation="border" variant="primary" />
+      </div>
+      :
         this.state.error ? <NotFound></NotFound> :
           (
             <div>

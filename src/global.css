@@ -103,10 +103,24 @@
     margin: 16px 0;
     width: 100% !important;
 }
-
 #pxp-apply-modal {
     width: 50% !important;
 }
+/* on small screen */
+@media (max-width: 1200px) {
+    #pxp-apply-modal {
+        width: 80% !important;
+    }
+}
+/* on mobile */
+@media (max-width: 767px) {
+    
+    #pxp-apply-modal {
+    width: 100% !important;
+    }
+}
+
+
 
 .my-modal {
     width: 800px;
@@ -6934,7 +6948,7 @@ ol.pxp-comments-list {
         bottom: 0;
         left: 0;
         z-index: 1030;
-        display: none;
+        /* display: none; */
         background-color: #fff;
         height: auto;
         border-radius: 0;

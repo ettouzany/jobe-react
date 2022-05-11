@@ -7,8 +7,26 @@ import messageService from "../../services/messages.service";
 import notificationService from "../../services/notifications.service";
 const CompanyDashboardLayout = (props) => {
 
+
+
+
     const [messages, setMessages] = useState(0);
     const [notifications, setNotifications] = useState(0);
+
+    const menu = [
+        { label: "Dashboard", link: "/dashboard/", icon: "fa fa-home", isActive: true },
+        { label: "Edit Profile", link: "/dashboard/profile", icon: "fa fa-pencil" },
+        { label: "New Job Offer", link: "/dashboard/post", icon: "fa fa-file-text-o" },
+        { label: "Manage Jobs", link: "/dashboard/jobs", icon: "fa fa-briefcase" },
+        { label: "Candidates", link: "/dashboard/condadates", icon: "fa fa-user" },
+    ];
+
+    const insights = [
+        { label: "Inbox", link: "/dashboard/inbox" , icon: "fa fa-envelope-o" , value: messages},
+        { label: "Notifications", link: "/dashboard/notifications" , icon: "fa fa-bell-o" , value: notifications},
+    ];
+
+
 
 
     useEffect(() => {
@@ -33,28 +51,34 @@ const CompanyDashboardLayout = (props) => {
                 <nav className="mt-3 mt-lg-4 d-flex justify-content-between flex-column pb-100">
                     <div className="pxp-dashboard-side-label">Admin tools</div>
                     <ul className="list-unstyled">
-                        <li> <NavLink to={"./"} className={({ isActive }) => (isActive ? 'pxp-active' : null) + " pxp-animate"} > <span className="fa fa-home"></span>Dashboard </NavLink> </li>
+                        {/* <li> <NavLink to={"/dashboard/"} className={({ isActive }) => (isActive ? 'pxp-active' : null) + " pxp-animate"} > <span className="fa fa-home"></span>Dashboard </NavLink> </li>
                         <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="profile" ><span className="fa fa-pencil"></span>Edit Profile</NavLink></li>
-                        <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="post"><span className="fa fa-file-text-o"></span>New Job Offer</NavLink></li>
-                        <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="jobs"><span className="fa fa-briefcase"></span>Manage Jobs</NavLink></li>
-                        <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="condadates"><span className="fa fa-user"></span>Candidates</NavLink></li>
-                        {/* <li><Link to="company-dashboard-subscriptions.html"><span className="fa fa-credit-card"></span>Subscriptions</Link></li>
-                    <li><Link to="company-dashboard-password.html"><span className="fa fa-lock"></span>Change Password</Link></li> */}
+                        <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="applications"><span className="fa fa-file-text"></span>Applications</NavLink></li>
+                        <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="favourites"><span className="fa fa-heart"></span>Favourites</NavLink></li>
+                        <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="password"><span className="fa fa-lock"></span>Change Password</NavLink></li>
+                        <li><NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to="switch"><span className="fa fa-briefcase"></span>Switch To Company</NavLink></li> */}
+                        {menu.map((item, index) => {
+                            return (
+                                <li key={index}>
+                                    <NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null + " pxp-animate")} to={item.link}>
+                                        <div><span className={item.icon}></span>{item.label}</div>
+                                    </NavLink>
+                                </li>
+                            );
+                        })}
                     </ul>
                     <div className="pxp-dashboard-side-label mt-3 mt-lg-4">Insights</div>
                     <ul className="list-unstyled">
-                        <li>
-                            <NavLink className={({ isActive }) => (isActive ? 'pxp-active d-flex justify-content-between align-items-center' : "d-flex justify-content-between align-items-center")} to="inbox">
-                                <div><span className="fa fa-envelope-o"></span>Inbox</div>
-                                <span className="badge rounded-pill">{messages}</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className={({ isActive }) => (isActive ? 'pxp-active d-flex justify-content-between align-items-center' : "d-flex justify-content-between align-items-center")} to="notifications">
-                                <div><span className="fa fa-bell-o"></span>Notifications</div>
-                                <span className="badge rounded-pill">{notifications}</span>
-                            </NavLink>
-                        </li>
+                    {insights.map((insight, index) => {
+                            return (
+                                <li key={index}>
+                                    <NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null) + " d-flex justify-content-between align-items-center"} to={insight.link}>
+                                        <div><span className={insight.icon}></span>{insight.label}</div>
+                                        <span className="badge rounded-pill">{insight.value}</span>
+                                    </NavLink>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </nav>
 
@@ -83,15 +107,17 @@ const CompanyDashboardLayout = (props) => {
                                 <nav className="pxp-nav-mobile">
                                     <ul className="navbar-nav justify-content-end flex-grow-1">
                                         <li className="pxp-dropdown-header">Admin tools</li>
-                                        <li className="nav-item"><a href="company-dashboard.html"><span className="fa fa-home"></span>Dashboard</a></li>
-                                        <li className="nav-item"><a href="company-dashboard-profile.html"><span className="fa fa-pencil"></span>Edit Profile</a></li>
-                                        <li className="nav-item"><a href="company-dashboard-new-job.html"><span className="fa fa-file-text-o"></span>New Job Offer</a></li>
-                                        <li className="nav-item"><a href="company-dashboard-jobs.html"><span className="fa fa-briefcase"></span>Manage Jobs</a></li>
-                                        <li className="nav-item"><a href="company-dashboard-candidates.html"><span className="fa fa-user-circle-o"></span>Candidates</a></li>
-                                        <li className="nav-item"><a href="company-dashboard-subscriptions.html"><span className="fa fa-credit-card"></span>Subscriptions</a></li>
-                                        <li className="nav-item"><a href="company-dashboard-password.html"><span className="fa fa-lock"></span>Change Password</a></li>
+                                        {menu.map((item, index) => {
+                                            return (
+                                                <li key={index} data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    <NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null)} to={item.link} >
+                                                        <div><span className={item.icon}></span>{item.label}</div>
+                                                    </NavLink>
+                                                </li>
+                                            );
+                                        })}
                                         <li className="pxp-dropdown-header mt-4">Insights</li>
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <a href="company-dashboard-inbox.html" className="d-flex justify-content-between align-items-center">
                                                 <div><span className="fa fa-envelope-o"></span>Inbox</div>
                                                 <span className="badge rounded-pill">14</span>
@@ -102,7 +128,17 @@ const CompanyDashboardLayout = (props) => {
                                                 <div><span className="fa fa-bell-o"></span>Notifications</div>
                                                 <span className="badge rounded-pill">5</span>
                                             </a>
-                                        </li>
+                                        </li> */}
+                                        {insights.map((insight, index) => {
+                                            return (
+                                                <li key={index} data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    <NavLink className={({ isActive }) => (isActive ? 'pxp-active' : null) + " d-flex justify-content-between align-items-center"} to={insight.link}>
+                                                        <div><span className={insight.icon}></span>{insight.label}</div>
+                                                        <span className="badge rounded-pill">{insight.value}</span>
+                                                    </NavLink>
+                                                </li>
+                                            );
+                                        })}
                                     </ul>
                                 </nav>
                             </div>
