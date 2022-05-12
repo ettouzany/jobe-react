@@ -1,8 +1,11 @@
 {
+    "homepage": "http://ettouzany.github.io/jobe-react",
     "name": "derwork",
     "version": "1.0.0",
     "description": "The Adopt Me pet adoption app",
     "scripts": {
+        "predeploy": "rm -rf dist && parcel build src/index.html --public-url 'http://ettouzany.github.io/jobe-react' && cp CNAME ./dist",
+        "deploy": "gh-pages -d build",
         "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
         "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
         "dev": "parcel src/index.html",
@@ -20,6 +23,7 @@
         "eslint-plugin-jsx-a11y": "^6.4.1",
         "eslint-plugin-react": "^7.22.0",
         "eslint-plugin-react-hooks": "^4.2.0",
+        "gh-pages": "^4.0.0",
         "parcel": "2.5.0",
         "prettier": "2.2.1",
         "process": "^0.11.10"
@@ -49,6 +53,4 @@
     "browserslist": [
         "last 2 Chrome versions"
     ]
-
-
 }

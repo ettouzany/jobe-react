@@ -36,7 +36,7 @@ import authService from "./services/auth/auth.service";
 import Switch from "./dashboard/condidate/switch/Switch";
 import Companies from "./pages/conpanies/Companies";
 import ChangePassword from "./dashboard/condidate/changePassword/ChangePassword";
-
+// require('dotenv').config({ path: '../.env.development' });
 const App = () => {
 
     const location = useLocation();
@@ -62,7 +62,9 @@ const App = () => {
 
 
     return (
-
+        //environment variable for netlify
+        
+        alert(process.env.REACT_APP_GOOGLE_CLIENT_ID),
         <div>
             {user && user.status == "new" ? <LoginForm /> : null}
             {location.pathname.search('/dashboard') ? <Menu 
