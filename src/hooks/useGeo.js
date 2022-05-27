@@ -37,7 +37,7 @@ const useGeo = () => {
         getCurrentCity();
     }, []);
 
-    return { _city: userLocation ? userLocation.city : '', _country: userLocation ? userLocation.country : '', countryCode: userLocation ? userLocation.countryCode : '' };
+    return { _city: userLocation ? userLocation.city : '', _country: userLocation ? userLocation.country : '', _countryCode: userLocation ? userLocation.countryCode : '' };
 }
 
 export default useGeo;

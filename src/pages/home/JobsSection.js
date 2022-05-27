@@ -15,15 +15,12 @@ const JobsSection = () => {
             })
             .catch(error => {
                 setError(error);
-                // setLoading(false);
             });
     }, []);
 
 
 
     return(
-        
-        // error ? <div>{error}</div> :
         <section className="mt-100">
             <div className="pxp-container">
                 <h2 className="pxp-section-h2">Featured Job Offers</h2>
@@ -68,10 +65,6 @@ const JobsSection = () => {
 
 
                 </div>
-
-                {/* <div className="mt-4 mt-md-5 pxp-animate-in pxp-animate-in-top pxp-in">
-                    <Link to="jobs-list-1.html" className="btn rounded-pill pxp-section-cta">All Job Offers<span className="fa fa-angle-right"></span></Link>
-                </div> */}
 
                 <div className="mt-4 mt-md-5 pxp-animate-in pxp-animate-in-top pxp-in">
                     <Link to="/search" className="btn rounded-pill pxp-section-cta">All Job Offers<span className="fa fa-angle-right"></span></Link>

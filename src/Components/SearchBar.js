@@ -12,9 +12,10 @@ const SearchBar = (props) => {
   const [city, setCity] = useState("");
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
+  const [countryCode, setCountryCode] = useState("");
   const [_show, set_Show] = useState(false);
   const [close, setClose] = useState(false);
-  const { _city, _country, countryCode } = useGeo();
+  const { _city, _country, _countryCode } = useGeo();
 
   const handleShow = () => set_Show(true);
   const handleClose = () => set_Show(false);
@@ -27,7 +28,7 @@ const SearchBar = (props) => {
     });
     setCity(_city);
     setCountry(_country);
-
+    setCountryCode(_countryCode);
     console.log(_city);
   }, [_city]);
 
@@ -39,7 +40,6 @@ const SearchBar = (props) => {
   };
 
   const get_flag = (countryCode) => {
-    // flagicons.lipis.dev
     return `https://flagicons.lipis.dev/flags/4x3/${countryCode.toLowerCase()}.svg`;
   };
 
@@ -60,7 +60,7 @@ const SearchBar = (props) => {
     if (_cities.length === 0 && loading == false) {
       setLoading(true);
       await axios.post(`https://countriesnow.space/api/v0.1/countries/cities`, {
-        country: _country,
+        country: country,
       }).then((res) => {
         setLoading(false);
         set_Cities(res.data.data);
@@ -113,12 +113,31 @@ const SearchBar = (props) => {
     );
     setCountries(filtered);
     if (value.length === 0) setCountries([]);
-    if (countries.find(country => country.toLowerCase() === value.toLowerCase())) {
+    if (countries.find(country => country.name.toLowerCase() === value.toLowerCase())) {
       setCountries([]);
       setShow(false);
     }
     setShow(true);
   }
+
+  const changeContry = (country) => {
+    setCountry(country.name);
+    setCountryCode(country.iso2);
+    handleClose();
+    set_Cities([]);
+    setCities([]);
+    setShow(false);
+    // https://countriesnow.space/api/v0.1/countries/capital
+
+     axios.post(`https://countriesnow.space/api/v0.1/countries/capital`, {
+        country: country.name,
+        }).then((res) => {
+            setCity(res.data.data.capital);
+            }
+        );
+        // onChangeCity();
+    }
+
 
 
 
@@ -145,7 +164,8 @@ const SearchBar = (props) => {
               {/* flag */}
               <button type="button"
                 onClick={handleShow}
-                className="btn btn-secondary btn-circle btn-sm d-block p-0" style={{ backgroundImage: `url(${get_flag(countryCode)})`, width: '32px', height: '32px', backgroundPosition: 'center' }}>
+                className="btn btn-secondary btn-circle btn-sm d-block p-0"
+                style={{ backgroundImage: `url(${get_flag(countryCode)})`, width: '32px', height: '32px', backgroundPosition: 'center' }}>
                 <span className="sr-only">{country}</span>
               </button>
 
@@ -206,27 +226,27 @@ const SearchBar = (props) => {
       <Modal show={_show} onHide={handleClose} className="modal fade pxp-user-modal" id="pxp-signin-modal">
         <Modal.Header closeButton>
           <Modal.Title>
+            <span style={{lineHeight: "3"}}>
             Change Country
+            </span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <input type="text" className="form-control" placeholder="Search" onChange={(e) => onChangeCountry(e.target.value)} value={country} />
-          <ul className="row">
+          <ul className="row p-0">
             {
               countries.map(({ name, iso2, iso3, flag }) => {
                 return (
-                  // <li key={iso2} className="list-group-item" key={iso2} onClick={() => onChangeCountry(name)} >
-                  //   <span type="button"
-                  //     className="btn btn-secondary btn-circle btn-sm d-block p-0" style={{ float: "left", backgroundImage: `url(${flag})`, width: '32px', height: '32px', backgroundPosition: 'center', backgroundSize: 'cover' }}>
-                  //   </span>
-                  //   <span className="p-1" style={{ display: "inline-table" }}>{name}</span>
-                  // </li>
-
-                  <div className="col-4" key={iso2}>
-                    <span
-                      onClick={() => onChangeCountry(name)} style={{ backgroundImage: `url(${flag})`, width: '32px', height: '32px', backgroundPosition: 'center' }}>
-                    </span>
-                    <span >{name}</span>
+                  <div className="col-4 "  key={iso2}>
+                    <button className="btn btn-secondary d-flex my-2 p-2" 
+                    onClick={() => {changeContry({name, iso2, iso3, flag})}}
+                    style={{lineHeight:"2", borderRadius:"100px"}} >
+                        <span className="d-block " 
+                        
+                        style={{borderRadius:"50%", backgroundImage: `url(${flag})`, width: '32px', height: '32px', backgroundPosition: 'center', backgroundSize :"contain" }}>
+                        </span>
+                        <span style={{margin:"0 8px"}}>{name}</span>
+                    </button>
 
                   </div>
                 )
