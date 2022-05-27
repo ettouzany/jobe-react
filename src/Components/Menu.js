@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import authService from "../services/auth/auth.service";
 import UserMenu from "./TopRightMenu/UserMenu";
 import Sign from "./TopRightMenu/Sign";
-const Menu = ({mode}) => {
+import logo from "../assets/logo.png"
+
+const Menu = ({ mode }) => {
 
   const menus = [
-    {label: "Home", link: "/"},
-    {label: "Find Jobs", link: "/search"},
-    {label: "Companies", link: "/companies"},
+    { label: "Home", link: "/" },
+    { label: "Find Jobs", link: "/search" },
+    { label: "Companies", link: "/companies" },
   ]
 
   return (
@@ -16,11 +18,13 @@ const Menu = ({mode}) => {
         <div className="pxp-header-container">
           <div className="pxp-logo-nav-container">
             <div className="pxp-logo">
-              <a href="/" className="pxp-animate">
+              {/* <a href="/" className="pxp-animate">
                 <span style={{ color: "var(--pxpMainColor)" }}>Der</span>Work
-              </a>
+              </a> */}
+              <img width={132} src={logo} alt="logo" h />
+
             </div>
-            <div className={mode?"pxp-nav-trigger  navbar d-xl-none flex-fill pxp-light":"pxp-nav-trigger  navbar d-xl-none flex-fill"}>
+            <div className={mode ? "pxp-nav-trigger  navbar d-xl-none flex-fill pxp-light" : "pxp-nav-trigger  navbar d-xl-none flex-fill"}>
               <a
                 role="button"
                 href="/"
@@ -70,7 +74,7 @@ const Menu = ({mode}) => {
                 </div>
               </div>
             </div>
-            <nav className={mode?"pxp-nav dropdown-hover-all d-none d-xl-block pxp-light":"pxp-nav dropdown-hover-all d-none d-xl-block"}>
+            <nav className={mode ? "pxp-nav dropdown-hover-all d-none d-xl-block pxp-light" : "pxp-nav dropdown-hover-all d-none d-xl-block"}>
               <ul>
                 {menus.map((menu, index) => (
                   <li key={index}>

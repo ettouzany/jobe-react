@@ -37,9 +37,11 @@ import Switch from "./dashboard/condidate/switch/Switch";
 import Companies from "./pages/conpanies/Companies";
 import ChangePassword from "./dashboard/condidate/changePassword/ChangePassword";
 // require('dotenv').config({ path: '../.env.development' });
+import useGeo from './hooks/useGeo'
 const App = () => {
 
     const location = useLocation();
+    const geo = useGeo();
 
     const user = authService.getCurrentUser();
 
@@ -63,11 +65,10 @@ const App = () => {
 
     return (
         //environment variable for netlify
-        
-        alert(process.env.REACT_APP_GOOGLE_CLIENT_ID),
+
         <div>
             {user && user.status == "new" ? <LoginForm /> : null}
-            {location.pathname.search('/dashboard') ? <Menu 
+            {location.pathname.search('/dashboard') ? <Menu
                 //if i'm in root path
                 mode={location.pathname === '/'}
             /> : null}
@@ -91,7 +92,7 @@ const App = () => {
                         <Route path="jobs/:id" element={user && user.company ? <CreateJob /> : <Navigate to="../switch" replace />} />
                         <Route path="jobs" element={user && user.company ? <ManageJobs /> : <Navigate to="../switch" replace />} />
                         <Route path="condadates" element={user && user.company ? <ManageApplications /> : <Navigate to="../switch" replace />} />
-                        <Route path="profile" element={<CondadateProfileEdit /> } />
+                        <Route path="profile" element={<CondadateProfileEdit />} />
                         <Route path="applications" element={<CondadateApplications />} />
                         <Route path="favourites" element={<CondadateFavourites />} />
                         <Route path="password" element={<ChangePassword />} />

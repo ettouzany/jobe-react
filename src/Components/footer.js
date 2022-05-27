@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png"
 
+const Footer = () => {
 
-const Footer = ()=>{
-   
-    return(
+    return (
         <footer className="pxp-main-footer mt-100">
-            
-            <div className="pxp-main-footer-top pt-100 pb-100" style={{backgroundColor: "var(--pxpMainColorLight)"}}>
+
+            <div className="pxp-main-footer-top pt-100 pb-100" style={{ backgroundColor: "var(--pxpMainColorLight)" }}>
                 <div className="pxp-container">
                     <div className="row">
                         <div className="col-lg-6 col-xl-5 col-xxl-4 mb-4">
                             <div className="pxp-footer-logo">
-                                <a href="index.html" className="pxp-animate"><span style={{color: "var(--pxpMainColor)"}}>Der</span>Work</a>
+                                {/* <a href="index.html" className="pxp-animate"><span style={{ color: "var(--pxpMainColor)" }}>Der</span>Work</a> */}
+                                <img src={logo} alt="logo" />
                             </div>
                             <div className="pxp-footer-section mt-3 mt-md-4">
                                 <h3>Call us</h3>
@@ -19,8 +20,8 @@ const Footer = ()=>{
                             </div>
                             <div className="mt-3 mt-md-4 pxp-footer-section">
                                 <div className="pxp-footer-text">
-                                    90 Fifth Avenue, 3rd Floor<br/>
-                                    San Francisco, CA 1980<br/>
+                                    90 Fifth Avenue, 3rd Floor<br />
+                                    San Francisco, CA 1980<br />
                                     office@derwork.com
                                 </div>
                             </div>
@@ -77,7 +78,7 @@ const Footer = ()=>{
                     </div>
                 </div>
             </div>
-            <div className="pxp-main-footer-bottom" style={{backgroundColor: "var(--pxpSecondaryColor)"}}>
+            <div className="pxp-main-footer-bottom" style={{ backgroundColor: "var(--pxpSecondaryColor)" }}>
                 <div className="pxp-container">
                     <div className="row justify-content-between align-items-center">
                         <div className="col-lg-auto">
