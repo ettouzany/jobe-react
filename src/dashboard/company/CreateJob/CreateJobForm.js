@@ -6,6 +6,8 @@ import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import categorieService from "../../../services/categories.service";
 import { Spinner } from "react-bootstrap";
+import LocationInput from "../../../Components/LocationInput";
+import useGeo from "../../../hooks/useGeo";
 
 
 
@@ -32,6 +34,12 @@ const CreateJobForm = ({ id }) => {
     const [sending, setSending] = useState(false);
     const [error, setError] = useState(false);
 
+    const [jobCountry, setJobCountry] = useState("");
+    const [jobCountryCode, setJobCountryCode] = useState("");
+    const [jobCity, setJobCity] = useState("");
+    const { _city, _country, _countryCode } = useGeo();
+
+
 
     useEffect(() => {
         if (id) {
@@ -49,15 +57,22 @@ const CreateJobForm = ({ id }) => {
                 setJobSalaryRangeTo(res.data.jobSalaryRangeTo);
                 setJobSalaryCurrency(res.data.jobSalaryCurrency);
                 setNumberOfPeople(res.data.numberOfPeople);
+                setJobCity(res.data.jobCity);
+                setJobCountry(res.data.jobCountry);
+                setJobCountryCode(res.data.jobCountryCode);
                 //initialize editor
                 setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.jobDescription))));
 
             });
+        } else {
+            setJobCity(_city);
+            setJobCountry(_country);
+            setJobCountryCode(_countryCode);
         }
         categorieService.getCategories().then(res => {
             SetCategories(res.data);
         });
-    }, [id]);
+    }, [id, _city]);
 
     const handleJobSubmit = async (e) => {
         e.preventDefault();
@@ -67,7 +82,9 @@ const CreateJobForm = ({ id }) => {
 
                 jobTitle,
                 jobDescription,
-                jobLocation,
+                jobCity,
+                jobCountry,
+                jobCountryCode,
                 jobMinYearsOfExperience,
                 categorieId,
                 jobCareerLevel,
@@ -132,10 +149,13 @@ const CreateJobForm = ({ id }) => {
                 </div>
                 <div className="col-md-6 col-xxl-3">
                     <label htmlFor="pxp-company-job-location" className="form-label">Location</label>
-                    <input
+                    {/* <input
                         value={jobLocation}
                         onChange={(e) => setJobLocation(e.target.value)}
-                        type="text" id="pxp-company-job-location" className="form-control" placeholder="E.g. San Francisco, CA" />
+                        type="text" id="pxp-company-job-location" className="form-control" placeholder="E.g. San Francisco, CA" /> */}
+                    {/* LocationInput = ({ callback_city, callback_country }) */}
+                    <LocationInput callback_city={(city) => setJobCity(city)} callback_country={(country) => setJobCountry(country)}
+                        callback_countryCode={(countryCode) => setJobCountryCode(countryCode)} city={jobCity} country={jobCountry} countryCode={jobCountryCode} />
                 </div>
                 <div className="col-md-6 col-xxl-3">
                     <div className="mb-3">
@@ -249,17 +269,17 @@ const CreateJobForm = ({ id }) => {
                 <button className="btn rounded-pill pxp-section-cta" type="submit" >
                     {
                         error == false ?
-                        sending ? <Spinner animation="border" size="sm" />
-                        : <i className="fa fa-check"></i>
-                        : <i className="fa fa-warning"></i>
+                            sending ? <Spinner animation="border" size="sm" />
+                                : <i className="fa fa-check"></i>
+                            : <i className="fa fa-warning"></i>
 
                     }
                     <span className="ml-3">
-                    {
-                        id ? 'Update' : 'Publish Job'
-                    }
+                        {
+                            id ? 'Update' : 'Publish Job'
+                        }
                     </span>
-                    </button>
+                </button>
                 <button
                     style={{ border: '1px solid var(--pxpTextColor)', color: 'var(--pxpTextColor)', marginLeft: '10px' }}
                     className="btn rounded-pill pxp-section-cta pxp-user-nav-trigger pxp-on-light mx-3 " type="submit" >Preview</button>
