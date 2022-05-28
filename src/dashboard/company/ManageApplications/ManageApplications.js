@@ -194,7 +194,7 @@ const ManageApplications = (props) => {
                                     <tr key={id}>
                                         <td><input type="checkbox" className="form-check-input" /></td>
                                         <td style={{ width: "3%" }}>
-                                            <div className="pxp-company-dashboard-candidate-avatar pxp-cover" style={{ backgroundImage: `url(${user.photo})` }}></div>
+                                            <div className="pxp-company-dashboard-candidate-avatar pxp-cover" style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL + user.photo})` }}></div>
                                         </td>
                                         <td>
                                             <Link to={`/${user.id}`}>

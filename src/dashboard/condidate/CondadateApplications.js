@@ -160,7 +160,7 @@ const CondadateApplications = ()  =>{
                                 </td>
                                 <td><div className="pxp-company-dashboard-job-category">
                                     <Link to={`/${job.userId}`} className="d-flex align-items-center">
-                                    <div className="pxp-company-dashboard-candidate-avatar pxp-cover" style={{ backgroundImage: `url(${job.user.photo})` }}></div>
+                                    <div className="pxp-company-dashboard-candidate-avatar pxp-cover" style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL + job.user.photo})` }}></div>
                                     <div className="pxp-company-dashboard-candidate-name m-3"> {job.user.companyname}</div>
                                     </Link>
                                 </div></td>

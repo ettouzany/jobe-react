@@ -10,13 +10,13 @@ const addJob = (job) => {
     return axios.post(API_URL, job, { headers: authHeader() });
 };
 
-const getJobs = ({ search, location, category, filters, limit, page }) => {
+const getJobs = ({ search, city, category, countryCode, limit, page }) => {
     //add params ro axios get request
     const params = new URLSearchParams();
     if (search) params.append("search", search);
-    if (location) params.append("location", location);
+    if (city) params.append("city", city);
     if (category) params.append("categorie", category);
-    if (filters) params.append("filters", filters);
+    if (countryCode) params.append("countryCode", countryCode);
     if (limit) params.append("limit", limit);
     if (page) params.append("page", page);
     return axios.get(API_URL + "/all", { headers: authHeader(), params });

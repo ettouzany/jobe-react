@@ -14,7 +14,7 @@ class Search extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleJobSearch = this.handleJobSearch.bind(this);
     this.requestJobsData = this.requestJobsData.bind(this);
-
+    this.getQueryParams = this.getQueryParams.bind(this);
     this.state = {
       loading: true,
       jobId: 0,
@@ -26,17 +26,27 @@ class Search extends Component {
     };
   }
 
+    //function to get querys params
+    getQueryParams(params) { 
+    let query = {};
+    for (let param of params) {
+    let [key, value] = param.split('=');
+    query[key] = value;
+    }
+    return query;
+    }
+
   //get jobs from the server
   async handleJobSearch(e) {
     this.setState({
       loading: true,
     });
     e.limit = this.state.limit;
+    e.page = this.state.page;
     console.log(e);
     try {
       await jobService.getJobs(e).then(
         (response) => {
-          console.log("os", response);
           const numberOfPages = Math.ceil(response.data[1]/10);
           
           this.setState({
@@ -62,7 +72,8 @@ class Search extends Component {
 
 
   componentDidMount() {
-    this.handleJobSearch({ page: this.state.page, Search: null, Location: null, categorie: null, filters: null });
+    const query = this.getQueryParams(window.location.search.slice(1).split('&'));
+    this.handleJobSearch({ page: this.state.page, search: query.search, city: query.city, categorie: query.categorie, countryCode: query.countryCode });
   }
   requestJobsData(page) {
     this.setState({
@@ -76,10 +87,9 @@ class Search extends Component {
     this.setState({ jobId: id });
   }
   render() {
-
     const { jobs, jobId, error, pages } = this.state;
-
-    console.log(jobs);
+    const query = this.getQueryParams(window.location.search.slice(1).split('&'));
+    console.log(query);
     // const [jobId, setJobId] = useState("1");
     // const [jobs, setJobs] = useState([]);
     // useEffect(() => {
@@ -124,7 +134,7 @@ class Search extends Component {
               Search your career opportunity through <strong>12,800</strong>{" "}
               jobs
             </div>
-            <SearchBar searchCallback={this.handleJobSearch} />
+            <SearchBar searchCallback={this.handleJobSearch} search={query.search} city={query.city} country={query.country} countryCode={query.countryCode} categorie={query.categorie} />
           </div>
         </section>
         <section>

@@ -38,12 +38,12 @@ const ChatSelections = ({ callback }) => {
                 {
                     userId: userId,
                     userName: user.firstName + " " + user.lastName,
-                    userPhoto: user.photo
+                    userPhoto: process.env.REACT_APP_API_URL + user.photo
                 },
                 {
                     userId: select.users_id,
                     userName: select.users_first_name + " " + select.users_last_name,
-                    userPhoto: select.users_photo
+                    userPhoto: process.env.REACT_APP_API_URL + select.users_photo
                 }
             ]
         }

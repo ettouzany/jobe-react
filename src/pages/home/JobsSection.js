@@ -56,7 +56,7 @@ const JobsSection = () => {
                         <div className="pxp-jobs-card-1-date pxp-text-light">3 days ago by</div>
                         <Link to={`/${job.id}`} className="pxp-jobs-card-1-company">google</Link>
                     </div>
-                    <Link to={`/${job.id}`} className="pxp-jobs-card-1-company-logo" style={{backgroundImage: `url(${job.user.photo})`}}></Link>
+                    <Link to={`/${job.id}`} className="pxp-jobs-card-1-company-logo" style={{backgroundImage: `url(${process.env.REACT_APP_API_URL + job.user.photo})`}}></Link>
                 </div>
             </div>
         </div>

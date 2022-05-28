@@ -43,7 +43,7 @@ const ApplicationDetails = ({id}) => {
             <div className="pxp-hero-opacity"></div>
             <div className="pxp-single-candidate-hero-caption">
                 <div className="pxp-single-candidate-hero-content d-block text-center">
-                    <div className="pxp-single-candidate-hero-avatar d-inline-block" style={{backgroundImage: `url(${application.user.photo})`}}></div>
+                    <div className="pxp-single-candidate-hero-avatar d-inline-block" style={{backgroundImage: `url(${process.env.REACT_APP_API_URL + application.user.photo})`}}></div>
                     <div className="pxp-single-candidate-hero-name ms-0 mt-3">
                         <h1>{application.user.first_name} {application.user.last_name}</h1>
                         <div className="pxp-single-candidate-hero-title">{application.user.title}</div>

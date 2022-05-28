@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-
+import SearchBar from "../../Components/SearchBar";
+import { useNavigate } from "react-router-dom";
 const HeaderSection = () => {
     //after loading component play the video
     useEffect(() => {
@@ -7,6 +8,10 @@ const HeaderSection = () => {
         const video = document.getElementById('myVideo');
         // video.play();
     }, []);
+    const navigate = useNavigate();
+    const handleJobSearch = (e) =>{
+        navigate(`/search?search=${e.search}&city=${e.city}&country=${e.country}&countryCode=${e.countryCode}&category=${e.category}`)
+    }
     return (
         <section className="pxp-hero pxp-hero-bg pxp-cover" style={{backgroundImage: "url(images/hero-bg-2.jpg)"}}>
             <video autoPlay muted loop id="myVideo">
@@ -20,8 +25,11 @@ const HeaderSection = () => {
                     <div className="row justify-content-center">
                         <div className="col-12 col-xl-9 col-xxl-8">
                             <h1 className="text-white text-center">Find the right job for you</h1>
-
-                            <div className="pxp-hero-form pxp-hero-form-round pxp-large mt-4 mt-lg-5">
+                            <div className=" pxp-large mt-4 mt-lg-5">
+                            <SearchBar searchCallback={handleJobSearch} />
+                            </div>
+                            
+                            {/* <div className="pxp-hero-form pxp-hero-form-round pxp-large mt-4 mt-lg-5">
                                 <form className="row gx-3 align-items-center" action="jobs-list-1.html">
                                     <div className="col-12 col-lg">
                                         <div className="input-group mb-3 mb-lg-0">
@@ -56,7 +64,7 @@ const HeaderSection = () => {
                                         <button>Find Jobs</button>
                                     </div>
                                 </form>
-                            </div>
+                            </div> */}
 
                             <div className="pxp-hero-subtitle text-white text-center mt-3 mt-lg-4">Search your career opportunity through <strong>12,800</strong> jobs</div>
                         </div>

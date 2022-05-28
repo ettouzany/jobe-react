@@ -9,7 +9,6 @@ const UserInfo = ({ user }) => {
                 <div className="pxp-single-candidate-skills">
                     <ul className="list-unstyled">
                         {
-                            
                             user.userSkills.map((skill,index)=>{
                                 return(
                                     <li key={index}>
@@ -17,7 +16,6 @@ const UserInfo = ({ user }) => {
                                 </li>)
                             })
                         }
-                        
                     </ul>
                 </div>
             </div>

@@ -24,7 +24,7 @@ const UserMenu = ({ hide }) => {
 
             <div className="dropdown pxp-user-nav-dropdown">
                 <a href="index.html" className="dropdown-toggle" data-bs-toggle="dropdown">
-                    <div className="pxp-user-nav-avatar pxp-cover" style={{ backgroundImage: `url(${user.photo})` }}></div>
+                    <div className="pxp-user-nav-avatar pxp-cover" style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL +user.photo})` }}></div>
                     <div className="pxp-user-nav-name d-none d-md-block">{user.company ? user.companyName : user.firstName}</div>
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">

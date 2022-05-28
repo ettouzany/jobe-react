@@ -125,7 +125,7 @@ const CondadateDashboard = () => {
                                 } = application;
                                 return (
                                     <tr key={id}>
-                                        <td style={{ width: "3%" }}><div className="pxp-company-dashboard-candidate-avatar pxp-cover" style={{ backgroundImage: `url(${user.photo})` }}></div></td>
+                                        <td style={{ width: "3%" }}><div className="pxp-company-dashboard-candidate-avatar pxp-cover" style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL + user.photo})` }}></div></td>
 
                                         <td style={{ width: "25%" }}><div className="pxp-company-dashboard-candidate-name">{user.first_name + " " + user.last_name}</div></td>
                                         <td><div className="pxp-company-dashboard-candidate-location"><span className="fa fa-globe"></span>Casablanca, Ma</div></td>

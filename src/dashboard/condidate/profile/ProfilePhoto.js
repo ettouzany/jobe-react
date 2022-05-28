@@ -7,7 +7,7 @@ const ProfilePhoto = ({ user, handleNewPhoto }) => {
   const [croppie, setCroppie] = useState(null)
   const [data, setData] = useState(null)
 
-  const [image, setImage] = useState(user.photo)
+  const [image, setImage] = useState(process.env.REACT_APP_API_URL + user.photo)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)

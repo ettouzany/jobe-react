@@ -61,7 +61,7 @@ const JobDetails = ({ id }) => {
           className="pxp-jobs-tab-pane-logo"
           style={{
             backgroundImage:
-              `url(${job.user.photo})`,
+              `url(${process.env.REACT_APP_API_URL + job.user.photo})`,
           }}
         ></div>
         <div className="pxp-jobs-tab-pane-content">

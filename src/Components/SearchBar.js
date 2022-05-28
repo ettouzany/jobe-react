@@ -24,13 +24,24 @@ const SearchBar = (props) => {
     setCity(_city);
     setCountry(_country);
     setCountryCode(_countryCode);
+    console.log(props);
+    if(props.search)
+       setSearch(props.search);
+    if(props.city)
+        setCity(props.city);
+    if(props.country)
+        setCountry(props.country);
+    if(props.countryCode)
+        setCountryCode(props.countryCode);
+    if(props.category)
+        setCategory(props.category);
   }, [_city]);
 
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log(search, city, countryCode, category);
-    props.searchCallback({ search, location, category });
+    props.searchCallback({ search, city, country, countryCode, category });
   };
 
 

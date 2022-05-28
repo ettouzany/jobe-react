@@ -6,7 +6,7 @@ const HeaderProfile = ({ user }) => {
             <div className="pxp-hero-opacity"></div>
             <div className="pxp-single-candidate-hero-caption">
                 <div className="pxp-single-candidate-hero-content d-block text-center">
-                    <div className="pxp-single-candidate-hero-avatar d-inline-block" style={{backgroundImage: `url(${user.photo})`}}></div>
+                    <div className="pxp-single-candidate-hero-avatar d-inline-block" style={{backgroundImage: `url(${process.env.REACT_APP_API_URL + user.photo})`}}></div>
                     <div className="pxp-single-candidate-hero-name ms-0 mt-3">
                         {
                             user.isCompany ?
