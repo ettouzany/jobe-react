@@ -54,6 +54,10 @@ export class CandidateProfile extends Component {
     this.setState({ me: authService.getUserId() });
   }
 
+
+
+
+
   getUser() {
     userService.getUserFullDataById(this.props.router.params.id).then(data => {
       this.setState({ user: data.data, loading: false });
@@ -62,15 +66,21 @@ export class CandidateProfile extends Component {
     });
   }
 
-
+  //update component when props change
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setState({ props: this.props, loading: true });
+      this.getUser();
+    }
+  }
   render() {
     return (
-      this.state.loading ? 
-      <div className="spinner-container d-flex justify-content-center align-items-center
+      this.state.loading ?
+        <div className="spinner-container d-flex justify-content-center align-items-center
       " style={{ height: '100vh' }}>
-        <Spinner animation="border" variant="primary" />
-      </div>
-      :
+          <Spinner animation="border" variant="primary" />
+        </div>
+        :
         this.state.error ? <NotFound></NotFound> :
           (
             <div>
@@ -101,7 +111,7 @@ export class CandidateProfile extends Component {
 
                             }
                             {this.state.me && this.state.me !== this.state.user.id
-                             ? <ContactForm id={this.state.user.id} name={this.state.user.isCompany ?this.state.user.companyname:this.state.user.first_name} /> : null}
+                              ? <ContactForm id={this.state.user.id} name={this.state.user.isCompany ? this.state.user.companyname : this.state.user.first_name} /> : null}
 
                           </div>
                         </div>

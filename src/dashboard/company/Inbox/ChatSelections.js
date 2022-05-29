@@ -22,10 +22,10 @@ const ChatSelections = ({ callback }) => {
         };
         if (!chats.length)
             fetchMessages();
-        else if(window.innerWidth > 992)
+        else if (window.innerWidth > 992)
             handleSelect(chats[0].chat_id);
         // console.log(chats[0].chat_id);
-    }, [chats]);
+    }, []);
 
 
     //send active chat to parent

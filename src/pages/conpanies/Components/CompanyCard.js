@@ -11,7 +11,7 @@ const CompanyCard = ({ company }) => {
             className="col-md-6 col-xl-4 col-xxl-3 pxp-companies-card-1-container">
             <div className="pxp-companies-card-1 pxp-has-border">
                 <div className="pxp-companies-card-1-top">
-                    <span className="pxp-companies-card-1-company-logo" style={{ backgroundImage: `url(${company.users_photo})` }}></span>
+                    <span className="pxp-companies-card-1-company-logo" style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL + company.users_photo})` }}></span>
                     <span className="pxp-companies-card-1-company-name">{company.users_companyname}</span>
                     <div className="pxp-companies-card-1-company-description pxp-text-light">{company.users_description}</div>
                 </div>
