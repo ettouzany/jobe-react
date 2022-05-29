@@ -1,6 +1,7 @@
 import jobService from "../../services/job.service";
 import { useEffect,useState } from 'react';
 import { Link } from "react-router-dom";
+import globalService from "../../services/global.services";
 const JobsSection = () => {
 
     const [jobs, setJobs] = useState([]);
@@ -18,7 +19,19 @@ const JobsSection = () => {
             });
     }, []);
 
-
+    const getDateAgo = (date) => {
+        const dateAgo = new Date(date);
+        const now = new Date();
+        const timeDiff = Math.abs(now.getTime() - dateAgo.getTime());
+        const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        if (diffDays === 0) {
+            return "Today";
+        }
+        if (diffDays === 1) {
+            return "Yesterday";
+        }
+        return `${diffDays} days ago`;
+    }
 
     return(
         <section className="mt-100">
@@ -41,19 +54,19 @@ const JobsSection = () => {
                 <div className="pxp-jobs-card-1-top">
                     <Link to={`/jobs/${job.id}`} className="pxp-jobs-card-1-category">
                         <div className="pxp-jobs-card-1-category-icon"><span className="fa fa-bullhorn"></span></div>
-                        {/* <div className="pxp-jobs-card-1-category-label">{job.category}</div> */}
+                        <div className="pxp-jobs-card-1-category-label">{job.category}</div>
                     </Link>
                     <Link to={`/jobs/${job.id}`} className="pxp-jobs-card-1-title">{job.jobTitle}</Link>
                     <div className="pxp-jobs-card-1-details">
                         <Link to={`/jobs/${job.id}`} className="pxp-jobs-card-1-location">
-                            {/* <span className="fa fa-globe"></span>{job.location} */}
+                            <span className="fa fa-globe"></span>{job.location}
                         </Link>
                         <div className="pxp-jobs-card-1-type">{job.jobType}</div>
                     </div>
                 </div>
                 <div className="pxp-jobs-card-1-bottom">
                     <div className="pxp-jobs-card-1-bottom-left">
-                        <div className="pxp-jobs-card-1-date pxp-text-light">3 days ago by</div>
+                        <div className="pxp-jobs-card-1-date pxp-text-light">{getDateAgo(job.createdAt)}</div>
                         <Link to={`/${job.id}`} className="pxp-jobs-card-1-company">google</Link>
                     </div>
                     <Link to={`/${job.id}`} className="pxp-jobs-card-1-company-logo" style={{backgroundImage: `url(${process.env.REACT_APP_API_URL + job.user.photo})`}}></Link>

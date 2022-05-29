@@ -2,7 +2,7 @@ const Card = (props) => {
   function interuptClick() {
     props.customClickEvent(props.id);
   }
-
+  console.log("-----",props);
   return (
     <span //eslint-disable-line
       onClick={() => interuptClick()}
@@ -15,7 +15,7 @@ const Card = (props) => {
       aria-selected="true"
     > 
       <div className="pxp-jobs-card-4-company-top ">
-        {/* <div className="pxp-jobs-card-4-company-logo" style="background-image: url(./assets/images/company-logo-1.png);"></div> */}
+        <div className="pxp-jobs-card-4-company-logo bg-white" style={{backgroundImage: `url(${process.env.REACT_APP_API_URL + props.image}`}}></div>
         <div className="pxp-jobs-card-4-info">
           <div className="pxp-jobs-card-4-title">{props.title}</div>
           <div className="pxp-jobs-card-4-details">
@@ -33,7 +33,7 @@ const Card = (props) => {
         </div>
         <div className="pxp-jobs-card-4-bottom-right">
           <span className="pxp-jobs-card-4-date pxp-text-light">
-            {props.date}
+            {props.date.substring(0, 10).split("-").reverse().join("/")}, {props.date.substring(11, 16)}
           </span>
         </div>
       </div>

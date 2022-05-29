@@ -161,8 +161,27 @@ class Search extends Component {
                             {error ? <p>{error.message}</p> : null}
                             {jobs.map((job) => {
                               const {
+                                // categorie: {id: 1, label: "ewe", icon: "wewe"}
+                                // icon: "wewe"
+                                // id: 1
+                                // label: "ewe"
+                                // createdAt: "2022-05-29T20:25:33.079Z"
+                                // id: 2
+                                // jobTitle: "Database Administrator, MSSQL (Bangkok based)"
+                                // jobType: "Contract"
+                                // user: {photo: "/users/image/2f7933007d2b2193ff0de6dde298f5d4.jpg"}
+                                // photo: "/users/image/2f7933007d2b2193ff0de6dde298f5d4.jpg"
                                 id,
-                                jobTitle, jobLocation,
+                                jobTitle, 
+                                jobType,
+                                jobCity,
+                                jobCountryCode,
+                                user: { photo,companyname },
+                                categorie: { label, icon },
+                                createdAt,
+                                // jobCategorie: { label },
+                                
+
                                 //jobDescription,userId
                               } = job;
                               return (
@@ -171,11 +190,12 @@ class Search extends Component {
                                   key={id}
                                   id={id}
                                   title={jobTitle}
-                                  image={"image"}
-                                  date={"date"}
-                                  type={"type"}
-                                  company={"company"}
-                                  location={jobLocation}
+                                  image={job.user.photo}
+                                  date={createdAt}
+                                  type={jobType}
+                                  company={companyname}
+                                  categorie={label}
+                                  location={jobCity+ ', ' +jobCountryCode}
                                   active={id == jobId}
                                 />
                               );
