@@ -98,7 +98,7 @@ const authService = {
     getCurrentUser,
     // refreshToken,
     getUserId,
-    changePassword
+    changePassword,
 };
 
 export default authService;

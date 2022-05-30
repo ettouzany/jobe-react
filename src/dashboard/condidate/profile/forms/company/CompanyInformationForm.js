@@ -174,26 +174,26 @@ const CompanyInformationForm = ({ user, handleUserChange }) => {
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="mb-3">
-                                    <label htmlFor="pxp-company-facebook" className="form-label">Facebook</label>
-                                    <input type="url" id="pxp-company-facebook" className="form-control" placeholder="https://"/>
+                                    <label htmlFor="facebook" className="form-label">Facebook</label>
+                                    <input type="url" id="facebook" onChange={(e) => handleUserChange(e)} value={user.facebook} className="form-control" placeholder="https://"/>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="mb-3">
-                                    <label htmlFor="pxp-company-twitter" className="form-label">Twitter</label>
-                                    <input type="url" id="pxp-company-twitter" className="form-control" placeholder="https://"/>
+                                    <label htmlFor="twitter" className="form-label">Twitter</label>
+                                    <input type="url" id="twitter" onChange={(e) => handleUserChange(e)} value={user.twitter} className="form-control" placeholder="https://"/>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="mb-3">
-                                    <label htmlFor="pxp-company-instagram" className="form-label">Instagram</label>
-                                    <input type="url" id="pxp-company-instagram" className="form-control" placeholder="https://"/>
+                                    <label htmlFor="instagram" className="form-label">Instagram</label>
+                                    <input type="url" id="instagram" onChange={(e) => handleUserChange(e)} value={user.instagram} className="form-control" placeholder="https://"/>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="mb-3">
-                                    <label htmlFor="pxp-company-linkedin" className="form-label">Linkedin</label>
-                                    <input type="url" id="pxp-company-linkedin" className="form-control" placeholder="https://"/>
+                                    <label htmlFor="linkedin" className="form-label">Linkedin</label>
+                                    <input type="url" id="linkedin" onChange={(e) => handleUserChange(e)} value={user.linkedin} className="form-control" placeholder="https://"/>
                                 </div>
                             </div>
                         </div>

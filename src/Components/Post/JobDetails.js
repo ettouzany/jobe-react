@@ -52,13 +52,13 @@ const JobDetails = ({ id }) => {
               className="pxp-jobs-tab-pane-cover pxp-cover"
               style={{
                 backgroundImage:
-                  `url(${job.user.cover})`,
+                  `url(${process.env.REACT_APP_API_URL +  job.user.cover})`,
               }}
             ></div>
             : null
         }
         <div
-          className="pxp-jobs-tab-pane-logo"
+          className="pxp-jobs-tab-pane-logo bg-white"
           style={{
             backgroundImage:
               `url(${process.env.REACT_APP_API_URL + job.user.photo})`,

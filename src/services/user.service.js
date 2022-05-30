@@ -86,7 +86,11 @@ const getCompanies = ({ search, location, category, filters, limit, page }) => {
     return axios.get(API_URL + "/users/companies", { headers: authHeader() , params });
 };
 
-
+const changeCover = (cover) => {
+    const filedata = new FormData();
+    filedata.append('photo', cover);
+    return axios.patch(API_URL + "/users/cover", filedata, { headers: authHeader() });
+};
 const userService = {
     updateUser,
     UpdateCompany,
@@ -97,7 +101,7 @@ const userService = {
     getUserFullData,
     getUserFullDataById,
     getCompanies,
-    
+    changeCover
 };
 
 export default userService;
