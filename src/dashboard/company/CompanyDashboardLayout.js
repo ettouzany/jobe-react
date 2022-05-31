@@ -5,6 +5,7 @@ import authService from "../../services/auth/auth.service";
 import { useEffect, useState } from "react";
 import messageService from "../../services/messages.service";
 import notificationService from "../../services/notifications.service";
+import logo from "../../assets/logo.png";
 const CompanyDashboardLayout = (props) => {
 
 
@@ -99,7 +100,9 @@ const CompanyDashboardLayout = (props) => {
                         <div className="offcanvas offcanvas-start pxp-nav-mobile-container pxp-is-dashboard" tabIndex="-1" id="pxpMobileNav">
                             <div className="offcanvas-header">
                                 <div className="pxp-logo">
-                                    <a href="index.html" className="pxp-animate"><span style={{ color: "var(--pxpMainColor}" }}>j</span>obster</a>
+                                    {/* <a href="index.html" className="pxp-animate"><span style={{ color: "var(--pxpMainColor}" }}>j</span>obster</a> */}
+                                    <Link to="/" className="pxp-animate"><img width={132} src={logo} alt="logo" />
+                                    </Link>
                                 </div>
                                 <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>

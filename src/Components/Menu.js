@@ -21,7 +21,7 @@ const Menu = ({ mode }) => {
               {/* <a href="/" className="pxp-animate">
                 <span style={{ color: "var(--pxpMainColor)" }}>Der</span>Work
               </a> */}
-              <img width={132} src={logo} alt="logo" h />
+              <img width={132} src={logo} alt="logo" />
 
             </div>
             <div className={mode ? "pxp-nav-trigger  navbar d-xl-none flex-fill pxp-light" : "pxp-nav-trigger  navbar d-xl-none flex-fill"}>
@@ -42,12 +42,10 @@ const Menu = ({ mode }) => {
                 id="pxpMobileNav"
               >
                 <div className="offcanvas-header">
-                  <div className="pxp-logo">
-                    <a href="/" className="pxp-animate">
-                      <span style={{ Color: "var(--pxpMainColor)" }}>j</span>
-                      obster
-                    </a>
-                  </div>
+
+                  <Link to="/" className="pxp-close-btn">
+                    <img height={22} src={logo} alt="logo" />
+                </Link>
                   <button id="MobileNav"
                     type="button"
                     className="btn-close text-reset"

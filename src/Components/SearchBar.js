@@ -10,7 +10,7 @@ const SearchBar = (props) => {
   const [search, setSearch] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [category, setCategory] = useState("");
+  const [categorie, setcategorie] = useState("");
   const [categories, setCategories] = useState([]);
   const [countryCode, setCountryCode] = useState("");
   const { _city, _country, _countryCode } = useGeo();
@@ -33,15 +33,15 @@ const SearchBar = (props) => {
         setCountry(props.country);
     if(props.countryCode)
         setCountryCode(props.countryCode);
-    if(props.category)
-        setCategory(props.category);
+    if(props.categorie)
+        setcategorie(props.categorie);
   }, [_city]);
 
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    console.log(search, city, countryCode, category);
-    props.searchCallback({ search, city, country, countryCode, category });
+    console.log(search, city, countryCode, categorie);
+    props.searchCallback({ search, city, country, countryCode, categorie });
   };
 
 
@@ -77,9 +77,9 @@ const SearchBar = (props) => {
             </span>
             <select
               className="form-select"
-              onBlur={(e) => setCategory(e.target.value)}
-              onChange={(e) => setCategory(e.target.value)}
-              value={category}
+              onBlur={(e) => setcategorie(e.target.value)}
+              onChange={(e) => setcategorie(e.target.value)}
+              value={categorie}
             >
               <option value="" key="">
                 All categories

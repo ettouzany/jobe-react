@@ -6,6 +6,7 @@ import authService from "../../services/auth/auth.service";
 import { useState, useEffect } from "react";
 import messageService from "../../services/messages.service";
 import notificationService from "../../services/notifications.service";
+import logo from "../../assets/logo.png";
 const CondadateDashboardLayout = (props) => {
     const [messages, setMessages] = useState(0);
     const [notifications, setNotifications] = useState(0);
@@ -130,7 +131,7 @@ const CondadateDashboardLayout = (props) => {
                         <div className="offcanvas offcanvas-start pxp-nav-mobile-container pxp-is-dashboard pxp-is-candidate" tabIndex="-1" id="pxpMobileNav">
                             <div className="offcanvas-header">
                                 <div className="pxp-logo">
-                                    <a href="index.html" className="pxp-animate"><span style={{ color: "var(--pxpMainColor}" }}>j</span>obster</a>
+                                    <img width={132} src={logo} alt="logo" />
                                 </div>
                                 <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>

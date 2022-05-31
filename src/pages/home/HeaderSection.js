@@ -10,7 +10,7 @@ const HeaderSection = () => {
     }, []);
     const navigate = useNavigate();
     const handleJobSearch = (e) =>{
-        navigate(`/search?search=${e.search}&city=${e.city}&country=${e.country}&countryCode=${e.countryCode}&category=${e.category}`)
+        navigate(`/search?search=${e.search}&city=${e.city}&country=${e.country}&countryCode=${e.countryCode}&categorie=${e.categorie}`)
     }
     return (
         <section className="pxp-hero pxp-hero-bg pxp-cover" style={{backgroundImage: "url(images/hero-bg-2.jpg)"}}>

@@ -31,6 +31,7 @@ class Search extends Component {
     let query = {};
     for (let param of params) {
     let [key, value] = param.split('=');
+    value = decodeURIComponent(value);
     query[key] = value;
     }
     return query;
@@ -38,6 +39,13 @@ class Search extends Component {
 
   //get jobs from the server
   async handleJobSearch(e) {
+    // set url params
+    window.history.pushState(
+        {},
+        "",
+        `?search=${e.search}&city=${e.city}&categorie=${e.categorie}&countryCode=${e.countryCode}`
+    );
+
     this.setState({
       loading: true,
     });
@@ -54,7 +62,7 @@ class Search extends Component {
             jobs: response.data[0],
             pages: numberOfPages,
           })
-          if(this.state.jobId === 0 && window.innerWidth > 992)
+          if(window.innerWidth > 992)
           this.setState({
             jobId: response.data[0].length ? response.data[0][0].id : -1,
           })
