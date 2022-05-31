@@ -31,12 +31,13 @@ const CondadateProfileEdit = () => {
     //submit form
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSending(true);
+
         //check the form id
-        if (e.target.id === "form1") {
+        if (e.target.id === "form1" && sending == false) {
+            setSending(true);
+            setError(false);
             console.log(user)
-            if(user.isCompany)
-            {
+            if (user.isCompany) {
                 userService.UpdateCompany(user).then(res => {
                     //update user image in local storage
                     const user = JSON.parse(localStorage.getItem("user"));
@@ -45,11 +46,11 @@ const CondadateProfileEdit = () => {
                     localStorage.setItem("user", JSON.stringify(user));
                     setSending(false);
                 },
-                err => {
-                    setSending(false);
-                    setError(true);
-                }
-                
+                    err => {
+                        setSending(false);
+                        setError(true);
+                    }
+
                 )
             } else {
                 userService.updateUser(user).then(res => {
@@ -61,10 +62,10 @@ const CondadateProfileEdit = () => {
                     localStorage.setItem("user", JSON.stringify(user));
                     setSending(false);
                 }
-                , err => {
-                    setSending(false);
-                    setError(true);
-                }
+                    , err => {
+                        setSending(false);
+                        setError(true);
+                    }
                 )
             }
         }
@@ -97,58 +98,58 @@ const CondadateProfileEdit = () => {
                     user.isCompany ? (
                         <form onSubmit={handleSubmit} id="form1">
 
-                        <ProfilePhoto user={user} handleNewPhoto={handleNewPhoto} />
-                        <CompanyInformationForm user={user} handleUserChange={handleUserChange} />
+                            <ProfilePhoto user={user} handleNewPhoto={handleNewPhoto} />
+                            <CompanyInformationForm user={user} handleUserChange={handleUserChange} />
 
-                        {/* <Skill ss={user.userSkills} />
+                            {/* <Skill ss={user.userSkills} />
                         <Experience es={user.experiences} />
                         <Education es={user.educations} /> */}
 
-                        <div className="mt-4 mt-lg-5">
-                            <button className="btn rounded-pill pxp-section-cta">
-                                
-                                {
+                            <div className="mt-4 mt-lg-5">
+                                <button className="btn rounded-pill pxp-section-cta">
+
+                                    {
                                         error == false ?
-                                        sending ? <Spinner animation="border" size="sm" />
-                                        : <i className="fa fa-check"></i>
-                                        : <i className="fa fa-warning"></i>
+                                            sending ? <Spinner animation="border" size="sm" />
+                                                : <i className="fa fa-check"></i>
+                                            : <i className="fa fa-warning"></i>
 
                                     }
                                     <span className="ml-3">
                                         Save Profile
                                     </span>
                                 </button>
-                        </div>
-                    </form>
+                            </div>
+                        </form>
                     ) : (
                         <form onSubmit={handleSubmit} id="form1">
 
-                        <ProfilePhoto user={user} handleNewPhoto={handleNewPhoto} />
-                        <InformationForm user={user} handleUserChange={handleUserChange} />
+                            <ProfilePhoto user={user} handleNewPhoto={handleNewPhoto} />
+                            <InformationForm user={user} handleUserChange={handleUserChange} />
 
-                        <Skill ss={user.userSkills} />
-                        <Experience es={user.experiences} />
-                        <Education es={user.educations} />
+                            <Skill ss={user.userSkills} />
+                            <Experience es={user.experiences} />
+                            <Education es={user.educations} />
 
-                        <div className="mt-4 mt-lg-5">
-                            <button className="btn rounded-pill pxp-section-cta">
-                                
-                                {
+                            <div className="mt-4 mt-lg-5">
+                                <button className="btn rounded-pill pxp-section-cta">
+
+                                    {
                                         error == false ?
-                                        sending ? <Spinner animation="border" size="sm" />
-                                        : <i className="fa fa-check"></i>
-                                        : <i className="fa fa-warning"></i>
+                                            sending ? <Spinner animation="border" size="sm" />
+                                                : <i className="fa fa-check"></i>
+                                            : <i className="fa fa-warning"></i>
 
                                     }
                                     <span className="ml-3">
                                         Save Profile
                                     </span>
                                 </button>
-                        </div>
-                    </form>
-                        )
+                            </div>
+                        </form>
+                    )
                 ) : (
-                        <div>Loading...</div>
+                    <div>Loading...</div>
                 )
             }
 

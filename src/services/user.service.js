@@ -45,7 +45,12 @@ const UpdateCompany = (user) => {
     filedata.append('fix', user.fix);
     filedata.append('address', user.address);
     filedata.append('founded', user.founded);
-    return axios.patch(API_URL + "/users/company",filedata, { headers: authHeader() });
+    filedata.append('facebook', user.facebook);
+    filedata.append('instagram', user.instagram);
+    filedata.append('twitter', user.twitter);
+    filedata.append('linkedin', user.linkedin);
+
+    return axios.patch(API_URL + "/users/company", filedata, { headers: authHeader() });
 };
 
 const updateCompanyNameImage = (user) => {
@@ -83,7 +88,7 @@ const getCompanies = ({ search, location, category, filters, limit, page }) => {
     if (filters) params.append("filters", filters);
     if (limit) params.append("limit", +limit);
     if (page) params.append("page", +page);
-    return axios.get(API_URL + "/users/companies", { headers: authHeader() , params });
+    return axios.get(API_URL + "/users/companies", { headers: authHeader(), params });
 };
 
 const changeCover = (cover) => {
