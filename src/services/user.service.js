@@ -63,6 +63,7 @@ const UpdateCompany = (user) => {
     // filedata.append('linkedin', user.linkedin);
     if(user.photo) filedata.append('photo', user.photo);
     if(user.companyname) filedata.append('companyname', user.companyname);
+    if(user.prefix) filedata.append('prefix', user.prefix);
     if(user.industry) filedata.append('industry', user.industry);
     if(user.city) filedata.append('city', user.city);
     if(user.country) filedata.append('country', user.country);
@@ -71,7 +72,7 @@ const UpdateCompany = (user) => {
     if(user.website) filedata.append('website', user.website);
     if(user.size) filedata.append('size', user.size);
     if(user.email) filedata.append('email', user.email);
-    if(user.fix) filedata.append('fix', user.fix);
+    if(user.fix) filedata.append('fix', user.prefix+user.fix);
     if(user.address) filedata.append('address', user.address);
     if(user.founded) filedata.append('founded', user.founded);
     if(user.facebook) filedata.append('facebook', user.facebook);

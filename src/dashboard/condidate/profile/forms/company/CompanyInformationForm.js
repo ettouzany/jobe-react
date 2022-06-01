@@ -136,17 +136,15 @@ const CompanyInformationForm = ({ user, handleUserChange }) => {
                             <input type="email" id="email" name="email" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.email} className="form-control" placeholder="Email" />
                         </div>
                     </div>
-                    {/* phone number prefix */}
-                    <div className="col-sm-2">
-                        <div className="mb-3">
-                            <label htmlFor="prefix" className="form-label">Prefix</label>
-                            <input type="text" id="prefix" name="prefix" onChange={e=>{setPrefix(e);checkState(e)}} value={prefix} className="form-control" placeholder="+" />
-                            </div>
-                    </div>
-                    <div className="col-sm-4">
+                    
+                    <div className="col-sm-6">
                         <div className="mb-3">
                             <label htmlFor="fix" className="form-label">Fix</label>
-                            <input type="tel" id="fix" name="fix" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.fix} className="form-control" placeholder="(+12) 345 6789" />
+                            <div className="input-group">
+                                <input type="text" id="prefix" name="prefix" onChange={e=>{handleUserChange(e);checkState(e)}} value={user.prefix?user.prefix:prefix} className="form-control" style={{width:"20%"}} placeholder="+" />
+                                <input type="tel" id="fix" name="fix" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.fix} className="form-control" style={{width:"80%"}}  placeholder="(+12) 345 6789" />
+                            </div>
+
                         </div>
                     </div>
                 </div>
