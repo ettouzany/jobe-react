@@ -17,38 +17,68 @@ const getUserFullDataById = (id) => {
 //update user
 const updateUser = (user) => {
     const filedata = new FormData();
-    filedata.append('photo', user.photo);
-    filedata.append('first_name', user.first_name);
-    filedata.append('last_name', user.last_name);
-    filedata.append('email', user.email);
-    filedata.append('phone', user.phone);
-    filedata.append('description', user.description);
-    filedata.append('city', user.city);
-    filedata.append('country', user.country);
-    filedata.append('title', user.title);
-    filedata.append('username', user.username);
+    // filedata.append('photo', user.photo);
+    // filedata.append('first_name', user.first_name);
+    // filedata.append('last_name', user.last_name);
+    // filedata.append('email', user.email);
+    // filedata.append('phone', user.phone);
+    // filedata.append('description', user.description);
+    // filedata.append('city', user.city);
+    // filedata.append('country', user.country);
+    // filedata.append('title', user.title);
+    // filedata.append('username', user.username);
+    if(user.photo) filedata.append('photo', user.photo);
+    if(user.first_name) filedata.append('first_name', user.first_name);
+    if(user.last_name) filedata.append('last_name', user.last_name);
+    if(user.email) filedata.append('email', user.email);
+    if(user.phone) filedata.append('phone', user.phone);
+    if(user.description) filedata.append('description', user.description);
+    if(user.city) filedata.append('city', user.city);
+    if(user.country) filedata.append('country', user.country);
+    if(user.title) filedata.append('title', user.title);
+    if(user.username) filedata.append('username', user.username);
+    
     return axios.patch(API_URL + "/users/user", filedata, { headers: authHeader() });
 };
 
 const UpdateCompany = (user) => {
     const filedata = new FormData();
-    filedata.append('photo', user.photo);
-    filedata.append('companyname', user.companyname);
-    filedata.append('industry', user.industry);
-    filedata.append('city', user.city);
-    filedata.append('country', user.country);
-    filedata.append('countryCode', user.countryCode);
-    filedata.append('description', user.description);
-    filedata.append('website', user.website);
-    filedata.append('size', user.size);
-    filedata.append('email', user.email);
-    filedata.append('fix', user.fix);
-    filedata.append('address', user.address);
-    filedata.append('founded', user.founded);
-    filedata.append('facebook', user.facebook);
-    filedata.append('instagram', user.instagram);
-    filedata.append('twitter', user.twitter);
-    filedata.append('linkedin', user.linkedin);
+    
+    // filedata.append('photo', user.photo);
+    // filedata.append('companyname', user.companyname);
+    // filedata.append('industry', user.industry);
+    // filedata.append('city', user.city);
+    // filedata.append('country', user.country);
+    // filedata.append('countryCode', user.countryCode);
+    // filedata.append('description', user.description);
+    // filedata.append('website', user.website);
+    // filedata.append('size', user.size);
+    // filedata.append('email', user.email);
+    // filedata.append('fix', user.fix);
+    // filedata.append('address', user.address);
+    // filedata.append('founded', user.founded);
+    // filedata.append('facebook', user.facebook);
+    // filedata.append('instagram', user.instagram);
+    // filedata.append('twitter', user.twitter);
+    // filedata.append('linkedin', user.linkedin);
+    if(user.photo) filedata.append('photo', user.photo);
+    if(user.companyname) filedata.append('companyname', user.companyname);
+    if(user.industry) filedata.append('industry', user.industry);
+    if(user.city) filedata.append('city', user.city);
+    if(user.country) filedata.append('country', user.country);
+    if(user.countryCode) filedata.append('countryCode', user.countryCode);
+    if(user.description) filedata.append('description', user.description);
+    if(user.website) filedata.append('website', user.website);
+    if(user.size) filedata.append('size', user.size);
+    if(user.email) filedata.append('email', user.email);
+    if(user.fix) filedata.append('fix', user.fix);
+    if(user.address) filedata.append('address', user.address);
+    if(user.founded) filedata.append('founded', user.founded);
+    if(user.facebook) filedata.append('facebook', user.facebook);
+    if(user.instagram) filedata.append('instagram', user.instagram);
+    if(user.twitter) filedata.append('twitter', user.twitter);
+    if(user.linkedin) filedata.append('linkedin', user.linkedin);
+    
 
     return axios.patch(API_URL + "/users/company", filedata, { headers: authHeader() });
 };

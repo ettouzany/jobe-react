@@ -4822,7 +4822,7 @@ a:hover {
 
 .pxp-dashboard-content-details form .form-control,
 .pxp-dashboard-content-details form .form-select {
-    border: 1px solid rgba(0, 0, 0, .2);
+    /* border: 1px solid rgba(0, 0, 0, .2); */
     font-weight: 300;
     color: var(--pxpTextColor);
     background-color: #fff;

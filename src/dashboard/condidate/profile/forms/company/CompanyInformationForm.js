@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import globalService from "../../../../../services/global.services";
+
 const CompanyInformationForm = ({ user, handleUserChange }) => {
     // // Company
     // @Column({ nullable: true })
@@ -26,7 +29,12 @@ const CompanyInformationForm = ({ user, handleUserChange }) => {
 
     // @Column({ nullable: true })
     // cover:string;
+    const [prefix, setPrefix] = useState('');
 
+    useEffect (() => {
+        setPrefix('+'+globalService.getCountryCodePrefix(user.countryCode));
+    }, []);     
+        
 
     // @Column({ nullable: true })
     // googleId:string;
@@ -81,30 +89,70 @@ const CompanyInformationForm = ({ user, handleUserChange }) => {
 
     // @Column({ nullable: true })
     // status:string;
+
+    const checkState = (e) => {
+        // get element from the form event
+        const element = e.target;
+        // get the value of the element
+        const value = element.value;
+        // get the name of the element
+        const name = element.name;
+        console.log(element)
+        if(!value)
+        {
+            element.classList.add("is-invalid");
+            const error = document.createElement("div");
+            error.classList.add("invalid-feedback");
+            error.innerHTML = "This field is required";
+            element.parentElement.appendChild(error);
+        }
+        else
+        {
+            element.classList.remove("is-invalid");
+            const error = element.parentElement.querySelector(".invalid-feedback");
+            if(error)
+            {
+                element.parentElement.removeChild(error);
+            }
+
+        }
+    };
+
     return (
         <div>
             <div className="row mt-4 mt-lg-5">
                 <div className="mb-3">
                     <label htmlFor="companyname" className="form-label">Company Name</label>
-                    <input type="text" id="companyname" name="companyname" onChange={(e) => handleUserChange(e)} value={user.companyname} className="form-control" placeholder="Company Name" />
+                    <input 
+                        type="text" id="companyname" name="companyname"
+                        onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.companyname}
+                        className="form-control" 
+                        placeholder="Company Name"/>
                 </div>
                 <div className="row">
                     <div className="col-sm-6">
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" id="email" name="email" onChange={(e) => handleUserChange(e)} value={user.email} className="form-control" placeholder="Email" />
+                            <input type="email" id="email" name="email" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.email} className="form-control" placeholder="Email" />
                         </div>
                     </div>
-                    <div className="col-sm-6">
+                    {/* phone number prefix */}
+                    <div className="col-sm-2">
+                        <div className="mb-3">
+                            <label htmlFor="prefix" className="form-label">Prefix</label>
+                            <input type="text" id="prefix" name="prefix" onChange={e=>{setPrefix(e);checkState(e)}} value={prefix} className="form-control" placeholder="+" />
+                            </div>
+                    </div>
+                    <div className="col-sm-4">
                         <div className="mb-3">
                             <label htmlFor="fix" className="form-label">Fix</label>
-                            <input type="tel" id="fix" name="fix" onChange={(e) => handleUserChange(e)} value={user.fix} className="form-control" placeholder="(+12) 345 6789" />
+                            <input type="tel" id="fix" name="fix" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.fix} className="form-control" placeholder="(+12) 345 6789" />
                         </div>
                     </div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="website" className="form-label">Website</label>
-                    <input type="url" id=" website" name="website" onChange={(e) => handleUserChange(e)} value={user.website} className="form-control" placeholder="http://www.example.com" />
+                    <input type="url" id=" website" name="website" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.website} className="form-control" placeholder="http://www.example.com" />
                 </div>
             </div>
 
@@ -113,7 +161,7 @@ const CompanyInformationForm = ({ user, handleUserChange }) => {
                 <textarea
                     id="description"
                     name="description"
-                    onChange={(e) => handleUserChange(e)}
+                    onChange={(e) => {checkState(e);handleUserChange(e)}}
                     value={user.description}
                     className="form-control" placeholder="Type your info here..."></textarea>
             </div>
@@ -122,19 +170,19 @@ const CompanyInformationForm = ({ user, handleUserChange }) => {
                 <div className="col-md-4">
                     <div className="mb-3">
                         <label htmlFor="industry" className="form-label">Industry</label>
-                        <input type="text" id="industry" name="industry" onChange={(e) => handleUserChange(e)} value={user.industry} className="form-control" placeholder="E.g. Software" />
+                        <input type="text" id="industry" name="industry" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.industry} className="form-control" placeholder="E.g. Software" />
                     </div>
                 </div>
                 <div className="col-md-4">
                     <div className="mb-3">
                         <label htmlFor="founded" className="form-label">Founded in</label>
-                        <input type="text" id="founded" name="founded" onChange={(e) => handleUserChange(e)} value={user.founded} className="form-control" placeholder="E.g. 2017" />
+                        <input type="text" id="founded" name="founded" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.founded} className="form-control" placeholder="E.g. 2017" />
                     </div>
                 </div>
                 <div className="col-md-4">
                     <div className="mb-3">
                         <label htmlFor="size" className="form-label">Company size</label>
-                        <select id="size" name="size" onChange={(e) => handleUserChange(e)} value={user.size} onBlur={(e) => handleUserChange(e)} className="form-control">
+                        <select id="size" name="size" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.size} onBlur={(e) => handleUserChange(e)} className="form-control">
                             <option value="< 50">&lt; 50 employees</option>
                             <option value="50 - 100">50 - 100 employees</option>
                             <option value="100 - 150">100 - 150 employees</option>
@@ -153,19 +201,19 @@ const CompanyInformationForm = ({ user, handleUserChange }) => {
                     <div className="col-md-6">
                         <div className="mb-3">
                             <label htmlFor="country" className="form-label">Country</label>
-                            <input type="text" id="country" name="country" onChange={(e) => handleUserChange(e)} value={user.country} className="form-control" placeholder="E.g. USA" />
+                            <input type="text" id="country" name="country" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.country} className="form-control" placeholder="E.g. USA" />
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="mb-3">
                             <label htmlFor="city" className="form-label">City</label>
-                            <input type="text" id="city" name="city" onChange={(e) => handleUserChange(e)} value={user.city} className="form-control" placeholder="E.g. New York" />
+                            <input type="text" id="city" name="city" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.city} className="form-control" placeholder="E.g. New York" />
                         </div>
                     </div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="address" className="form-label">Address</label>
-                    <input type="text" id="address" name="address" onChange={(e) => handleUserChange(e)} value={user.address} className="form-control" placeholder="E.g. 123 Main St" />
+                    <input type="text" id="address" name="address" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.address} className="form-control" placeholder="E.g. 123 Main St" />
                 </div>
             </div>
 
@@ -175,25 +223,25 @@ const CompanyInformationForm = ({ user, handleUserChange }) => {
                     <div className="col-md-6">
                         <div className="mb-3">
                             <label htmlFor="facebook" className="form-label">Facebook</label>
-                            <input type="url" id="facebook" name="facebook" onChange={(e) => handleUserChange(e)} value={user.facebook} className="form-control" placeholder="https://" />
+                            <input type="url" id="facebook" name="facebook" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.facebook} className="form-control" placeholder="https://" />
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="mb-3">
                             <label htmlFor="twitter" className="form-label">Twitter</label>
-                            <input type="url" id="twitter" name="twitter" onChange={(e) => handleUserChange(e)} value={user.twitter} className="form-control" placeholder="https://" />
+                            <input type="url" id="twitter" name="twitter" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.twitter} className="form-control" placeholder="https://" />
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="mb-3">
                             <label htmlFor="instagram" className="form-label">Instagram</label>
-                            <input type="url" id="instagram" name="instagram" onChange={(e) => handleUserChange(e)} value={user.instagram} className="form-control" placeholder="https://" />
+                            <input type="url" id="instagram" name="instagram" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.instagram} className="form-control" placeholder="https://" />
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="mb-3">
                             <label htmlFor="linkedin" className="form-label">Linkedin</label>
-                            <input type="url" id="linkedin" name="linkedin" onChange={(e) => handleUserChange(e)} value={user.linkedin} className="form-control" placeholder="https://" />
+                            <input type="url" id="linkedin" name="linkedin" onChange={(e) => {checkState(e);handleUserChange(e)}} value={user.linkedin} className="form-control" placeholder="https://" />
                         </div>
                     </div>
                 </div>

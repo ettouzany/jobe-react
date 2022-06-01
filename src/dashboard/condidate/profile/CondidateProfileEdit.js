@@ -15,6 +15,7 @@ const CondadateProfileEdit = () => {
     const [loading, setLoading] = React.useState(true);
     const [sending, setSending] = React.useState(false);
     const [error, setError] = React.useState(false);
+    const [errorMessages, setErrorMessages] = React.useState([]);
     React.useEffect(() => {
         userService.getUserFullData().then(user => {
             // console.log(user.data)
@@ -45,10 +46,13 @@ const CondadateProfileEdit = () => {
                     user.companyName = res.data.companyname;
                     localStorage.setItem("user", JSON.stringify(user));
                     setSending(false);
+                    setError(false);
+                    setErrorMessages([]);
                 },
                     err => {
                         setSending(false);
                         setError(true);
+                        setErrorMessages(err.response.data.message);
                     }
 
                 )
@@ -101,11 +105,25 @@ const CondadateProfileEdit = () => {
                             <ProfilePhoto user={user} handleNewPhoto={handleNewPhoto} />
                             <CompanyInformationForm user={user} handleUserChange={handleUserChange} />
 
-                            {/* <Skill ss={user.userSkills} />
-                        <Experience es={user.experiences} />
-                        <Education es={user.educations} /> */}
+                            {
+                                errorMessages.length > 0 ? (
+                                    <div className="alert alert-danger">
+                                        <ul className="m-0">
+                                            {
+                                                errorMessages.map((error, index) => {
+                                                    return <li key={index}>{error}</li>
+                                                }
+                                                )
+                                                }
+                                        </ul>   
+                                    </div>    
+                                ) : null
+
+                            }
+
 
                             <div className="mt-4 mt-lg-5">
+
                                 <button className="btn rounded-pill pxp-section-cta">
 
                                     {

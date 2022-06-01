@@ -40,6 +40,7 @@ class Search extends Component {
   //get jobs from the server
   async handleJobSearch(e) {
     // set url params
+    if(e.search)
     window.history.pushState(
         {},
         "",
