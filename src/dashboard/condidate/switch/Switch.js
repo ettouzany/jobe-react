@@ -1,7 +1,7 @@
 import { useState } from "react";
 import userService from "../../../services/user.service";
 import ProfilePhoto from "../profile/ProfilePhoto";
-import userImage from '../../../assets/user.svg';
+import userImage from './../../../assets/user.svg';
 import authService from "../../../services/auth/auth.service";
 
 const Switch = () => {

@@ -125,6 +125,7 @@ const App = () => {
     );
 };
 export default App;
+
 render(
     <StrictMode>
         <BrowserRouter>

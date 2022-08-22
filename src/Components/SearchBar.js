@@ -18,7 +18,9 @@ const SearchBar = (props) => {
 
 
   useEffect(() => {
+    // alert(categories.length)
     categorieService.getCategories().then(res => {
+      console.log(res.data)
       setCategories(res.data);
     });
     setCity(_city);
@@ -84,7 +86,7 @@ const SearchBar = (props) => {
               <option value="" key="">
                 All categories
               </option>
-              {categories ? categories.map((category) => {
+              {categories.length > 0 ? categories.map((category) => {
                 return (
                   <option key={category.id} value={category.id}>
                     {category.label}

@@ -1,5 +1,5 @@
 
-import PasswordForm from "./passwordForm";
+import PasswordForm from "./PasswordForm";
 const ChangePassword = (props) => {
 
 

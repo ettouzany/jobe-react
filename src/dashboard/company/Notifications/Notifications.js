@@ -75,9 +75,15 @@ const Notifications = () => {
                                                     <span className="sr-only">Loading...</span>
                                                 </div>
                                             </div>:
+                                            notifications.length > 0 ?
                                             notifications.map(notification => (
                                                 <Notification key={notification.id} notification={notification} />
                                             ))
+                                            :
+                                            <div className="text-center w-100  py-5">
+                                                <p>Nothing right now. Check back later!</p>
+                                            </div>
+
                                         }
                                     </tbody>
                                 </table>

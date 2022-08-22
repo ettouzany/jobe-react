@@ -49,6 +49,39 @@ const Step2 = ({
     }
     const handleSubmit = () => {
         setSending(true);
+        // validate form
+        // alert("submit");
+        console.log(user);
+        if (user.isCompany && user.companyName === "") {
+            setError(true);
+            setErrorMessages(["Please enter company name"]);
+            setSending(false);
+            return;
+        }
+        if (user.isCompany && (user.industry === "" || user.industry === undefined)) {
+            setError(true);
+            setErrorMessages(["Please enter industry"]);
+            setSending(false);
+            return;
+        }
+        if (!user.isCompany && (user.firstName === "" || user.lastName === "")) {
+            setError(true);
+            setErrorMessages(["Please enter first name and last name"]);
+            setSending(false);
+            return;
+        }
+        if (!user.isCompany  && user.title === "") {
+            setError(true);
+            setErrorMessages(["Please enter title"]);
+            setSending(false);
+            return;
+        }
+        if (!user.isCompany  && (user.city === "" || user.country === "")) {
+            setError(true);
+            setErrorMessages(["Please enter city and country"]);
+            setSending(false);
+            return;
+        }
 
         if (user.isCompany)
             userService.updateCompanyNameImage(user).then(user => {
@@ -67,7 +100,7 @@ const Step2 = ({
             )
         else
             userService.updateUserNameImage(user).then(user => {
-
+                setSending(false);
                 setUser(user.data);
                 let auser = authService.getCurrentUser();
                 auser.photo = user.data.photo;
@@ -75,7 +108,10 @@ const Step2 = ({
                 auser.lastName = user.data.first_name;
                 localStorage.setItem("user", JSON.stringify(auser));
                 handelNext();
-            })
+            }), err => {
+                setSending(false);
+                setError(true);
+            }
     }
 
     return (

@@ -39,11 +39,12 @@ const Skill = ({ ss }) => {
                         skills ?
                             skills.map((skill, inbox) => {
                                 return (
-                                    <li key={inbox}>{skill.skill.label} <span className="fa fa-trash-o" onClick={() => deleteFromUserSkills(skill)}></span></li>
+                                    <li key={inbox}>{skill.label} <span className="fa fa-trash-o" onClick={() => deleteFromUserSkills(skill)}></span></li>
                                 )
                             }
 
-                            ) : null
+                            ) : 
+                            null
                     }
                 </ul>
             </div>

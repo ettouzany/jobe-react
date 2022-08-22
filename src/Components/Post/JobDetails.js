@@ -9,7 +9,27 @@ import JobLabel from "./JobDetailsElements/JobLabel";
 import { Link } from "react-router-dom";
 import authService from "../../services/auth/auth.service";
 import Like from "./Like";
-
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  HatenaShareButton,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
 const JobDetails = ({ id }) => {
   const [job, setJob] = useState();
   const [loading, setLoading] = useState(true);
@@ -103,35 +123,45 @@ const JobDetails = ({ id }) => {
                     aria-labelledby="socialShareBtn-2"
                   >
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="https://derwork.com/themes/derwork/jobs-list-10.html#"
-                      >
-                        <span className="fa fa-facebook"></span> Facebook
+                      <a className="dropdown-item">
+                        <FacebookShareButton url={window.location.href}>
+                          <span className="fa fa-facebook"></span> Facebook
+                        </FacebookShareButton>
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="https://derwork.com/themes/derwork/jobs-list-10.html#"
-                      >
-                        <span className="fa fa-twitter"></span> Twitter
+                      <a className="dropdown-item">
+                        <TwitterShareButton url={window.location.href}>
+                          <span className="fa fa-twitter"></span> Twitter
+                        </TwitterShareButton>
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="https://derwork.com/themes/derwork/jobs-list-10.html#"
-                      >
-                        <span className="fa fa-pinterest"></span> Pinterest
+                      <a className="dropdown-item">
+                        <LinkedinShareButton url={window.location.href}>
+                          <span className="fa fa-linkedin"></span> Linkedin
+                        </LinkedinShareButton>
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="https://derwork.com/themes/derwork/jobs-list-10.html#"
-                      >
-                        <span className="fa fa-linkedin"></span> LinkedIn
+                      <a className="dropdown-item">
+                        <EmailShareButton url={window.location.href}>
+                          <span className="fa fa-envelope"></span> Email
+                        </EmailShareButton>
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item">
+                        <TelegramShareButton url={window.location.href}>
+                          <span className="fa fa-telegram"></span> Telegram
+                        </TelegramShareButton>
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item">
+                        <WhatsappShareButton url={window.location.href}>
+                          <span className="fa fa-whatsapp"></span> Whatsapp
+                        </WhatsappShareButton>
                       </a>
                     </li>
                   </ul>
